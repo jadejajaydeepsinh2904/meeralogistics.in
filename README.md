@@ -1,2 +1,0 @@
-# meeralogistics.in
-transport servies
