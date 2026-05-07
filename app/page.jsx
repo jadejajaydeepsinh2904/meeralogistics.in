@@ -1,189 +1,90 @@
 export default function Home() {
   const phone = "9558959579";
-  const wa = "https://wa.me/919558959579";
+  const whatsapp = "https://wa.me/919558959579";
+  const instagram = "https://www.instagram.com/jaydeep_talks?igsh=MTJ1M3JtN3E5djA2";
+  const youtube = "https://youtube.com/@meeralogisticsjam?si=cLkcDQfjHA30WU3R";
+
+  const btn = {
+    display: "inline-block",
+    padding: "14px 22px",
+    borderRadius: 12,
+    textDecoration: "none",
+    fontWeight: 800,
+    margin: 6,
+  };
 
   const card = {
     background: "rgba(255,255,255,0.08)",
     border: "1px solid rgba(255,255,255,0.14)",
-    borderRadius: 24,
+    borderRadius: 22,
     padding: 26,
-    boxShadow: "0 20px 50px rgba(0,0,0,0.25)",
+    boxShadow: "0 20px 60px rgba(0,0,0,0.35)",
   };
 
   const loads = [
-    {
-      pickup: "Jamnagar",
-      drop: "Ahmedabad",
-      truck: "Tipper / Dumper",
-      material: "Industrial Material",
-      rate: "Best Rate",
-    },
-    {
-      pickup: "Morbi",
-      drop: "Surat",
-      truck: "Body Truck",
-      material: "Tiles / Ceramic",
-      rate: "Full Load",
-    },
-    {
-      pickup: "Dahej",
-      drop: "All Gujarat",
-      truck: "Truck / Dumper",
-      material: "Industrial Goods",
-      rate: "Contact Now",
-    },
+    ["Jamnagar", "Ahmedabad", "Tipper / Dumper", "Industrial Material"],
+    ["Morbi", "Surat", "Body Truck", "Tiles / Ceramic"],
+    ["Dahej", "All Gujarat", "Truck / Dumper", "Industrial Goods"],
   ];
 
   return (
-    <main
-      style={{
-        fontFamily: "Arial, sans-serif",
-        background: "#07111f",
-        color: "white",
-      }}
-    >
-      {/* HERO */}
-      <section
-        style={{
-          padding: "80px 24px",
-          background:
-            "linear-gradient(135deg,#07111f,#123c7c,#07111f)",
-        }}
-      >
-        <div style={{ maxWidth: 1150, margin: "auto" }}>
-          <p style={{ color: "#fde047", fontWeight: 700 }}>
-            🚛 Trusted Gujarat Transport Service
-          </p>
+    <main style={{ margin: 0, fontFamily: "Arial, sans-serif", background: "#06111f", color: "white" }}>
+      <header style={{ padding: "18px 24px", background: "#020617", position: "sticky", top: 0, zIndex: 10 }}>
+        <div style={{ maxWidth: 1200, margin: "auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: 15 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <img src="/logo.jpg" alt="Meera Logistics Logo" style={{ width: 54, height: 54, borderRadius: 12, objectFit: "cover", background: "white" }} />
+            <b style={{ fontSize: 22 }}>MEERA LOGISTICS</b>
+          </div>
+          <a href={whatsapp} style={{ ...btn, background: "#facc15", color: "#000" }}>WhatsApp</a>
+        </div>
+      </header>
 
-          <h1
-            style={{
-              fontSize: "clamp(45px,8vw,90px)",
-              lineHeight: 1,
-              margin: "15px 0",
-            }}
-          >
-            MEERA <span style={{ color: "#fde047" }}>LOGISTICS</span>
-          </h1>
+      <section style={{ padding: "90px 24px", background: "linear-gradient(135deg,#020617,#0f3b73,#06111f)" }}>
+        <div style={{ maxWidth: 1200, margin: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))", gap: 35, alignItems: "center" }}>
+          <div>
+            <p style={{ color: "#facc15", fontWeight: 900 }}>GUJARAT TRANSPORT NETWORK</p>
+            <h1 style={{ fontSize: "clamp(46px,8vw,88px)", lineHeight: 1, margin: 0 }}>
+              Fast Transport. <br />
+              <span style={{ color: "#facc15" }}>Reliable Loads.</span>
+            </h1>
+            <p style={{ color: "#dbeafe", fontSize: 21, maxWidth: 760 }}>
+              Meera Logistics provides Tipper, Dumper and Truck service all over Gujarat from Jamnagar.
+              Industrial, construction and bulk load movement with quick response.
+            </p>
+            <a href={whatsapp} style={{ ...btn, background: "#facc15", color: "#000" }}>Get Transport Quote</a>
+            <a href={`tel:${phone}`} style={{ ...btn, border: "1px solid white", color: "white" }}>Call Now</a>
+          </div>
 
-          <p
-            style={{
-              fontSize: 22,
-              maxWidth: 750,
-              color: "#dbeafe",
-            }}
-          >
-            Reliable Tipper, Dumper & Truck Transport Service
-            across Gujarat with fast and trusted logistics support.
-          </p>
-
-          <div
-            style={{
-              display: "flex",
-              gap: 15,
-              marginTop: 30,
-              flexWrap: "wrap",
-            }}
-          >
-            <a
-              href={wa}
-              style={{
-                background: "#fde047",
-                color: "#000",
-                padding: "15px 26px",
-                borderRadius: 16,
-                textDecoration: "none",
-                fontWeight: 800,
-              }}
-            >
-              WhatsApp Now
-            </a>
-
-            <a
-              href={`tel:${phone}`}
-              style={{
-                border: "1px solid white",
-                color: "white",
-                padding: "15px 26px",
-                borderRadius: 16,
-                textDecoration: "none",
-                fontWeight: 800,
-              }}
-            >
-              Call Now
-            </a>
+          <div style={{ ...card, background: "white", color: "#111", textAlign: "center" }}>
+            <img src="/logo.jpg" alt="Meera Logistics" style={{ maxWidth: 230, width: "100%", borderRadius: 18 }} />
+            <h2 style={{ color: "#0f3b73" }}>MEERA LOGISTICS</h2>
+            <p><b>Tipper • Dumper • Truck</b></p>
+            <p>📍 Jamnagar | 🌍 All Gujarat</p>
+            <p>📞 {phone}</p>
           </div>
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section style={{ padding: "60px 24px" }}>
-        <div
-          style={{
-            maxWidth: 1150,
-            margin: "auto",
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(230px,1fr))",
-            gap: 18,
-          }}
-        >
-          <div style={card}>
-            <h2 style={{ color: "#fde047" }}>24/7</h2>
-            <p>Transport Support</p>
-          </div>
-
-          <div style={card}>
-            <h2 style={{ color: "#fde047" }}>All Gujarat</h2>
-            <p>Fast Route Service</p>
-          </div>
-
-          <div style={card}>
-            <h2 style={{ color: "#fde047" }}>Jamnagar</h2>
-            <p>Office Location</p>
-          </div>
+      <section style={{ padding: "40px 24px", background: "#0f172a" }}>
+        <div style={{ maxWidth: 1200, margin: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(210px,1fr))", gap: 18 }}>
+          {["24/7 Response", "All Gujarat Service", "Bulk Load Support", "Trusted Network"].map((x) => (
+            <div key={x} style={card}><h3 style={{ color: "#facc15" }}>✅ {x}</h3></div>
+          ))}
         </div>
       </section>
 
-      {/* SERVICES */}
-      <section
-        style={{
-          padding: "70px 24px",
-          background: "#0f172a",
-        }}
-      >
-        <div style={{ maxWidth: 1150, margin: "auto" }}>
-          <h2 style={{ fontSize: 42 }}>Our Services</h2>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(260px,1fr))",
-              gap: 22,
-            }}
-          >
+      <section style={{ padding: "70px 24px" }}>
+        <div style={{ maxWidth: 1200, margin: "auto" }}>
+          <h2 style={{ fontSize: 42 }}>Our Transport Services</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 22 }}>
             {[
-              [
-                "🚛",
-                "Truck Service",
-                "Reliable body truck transportation across Gujarat.",
-              ],
-              [
-                "⛏️",
-                "Tipper Service",
-                "Construction and industrial material transport.",
-              ],
-              [
-                "🏗️",
-                "Dumper Service",
-                "Heavy-duty dumper logistics solutions.",
-              ],
+              ["🚛", "Truck Service", "Body truck transport for commercial and industrial routes."],
+              ["⛏️", "Tipper Service", "Sand, stone, construction material and industrial loads."],
+              ["🏗️", "Dumper Service", "Heavy bulk movement for Gujarat industrial areas."],
             ].map(([icon, title, text]) => (
               <div key={title} style={card}>
-                <div style={{ fontSize: 46 }}>{icon}</div>
-
-                <h3 style={{ fontSize: 25 }}>{title}</h3>
-
+                <div style={{ fontSize: 48 }}>{icon}</div>
+                <h3>{title}</h3>
                 <p style={{ color: "#cbd5e1" }}>{text}</p>
               </div>
             ))}
@@ -191,39 +92,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* LOAD SECTION */}
-      <section
-        style={{
-          padding: "70px 24px",
-          background: "#07111f",
-        }}
-      >
-        <div style={{ maxWidth: 1150, margin: "auto" }}>
-          <h2 style={{ fontSize: 42 }}>
-            Today’s Available Loads
-          </h2>
+      <section style={{ padding: "70px 24px", background: "#0f172a" }}>
+        <div style={{ maxWidth: 1200, margin: "auto" }}>
+          <h2 style={{ fontSize: 42 }}>Today’s Available Loads</h2>
+          <p style={{ color: "#cbd5e1" }}>Truck owners can apply directly on WhatsApp.</p>
 
-          <p style={{ color: "#cbd5e1", fontSize: 18 }}>
-            Truck owners and drivers can apply directly on WhatsApp.
-          </p>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(280px,1fr))",
-              gap: 22,
-              marginTop: 25,
-            }}
-          >
-            {loads.map((load) => {
-              const message = `Hello Meera Logistics,
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 22 }}>
+            {loads.map(([pickup, drop, truck, material]) => {
+              const msg = `Hello Meera Logistics,
 I want to apply for this load.
 
-Pickup: ${load.pickup}
-Drop: ${load.drop}
-Truck Type: ${load.truck}
-Material: ${load.material}
+Pickup: ${pickup}
+Drop: ${drop}
+Truck Type: ${truck}
+Material: ${material}
 
 My Details:
 Name:
@@ -232,46 +114,12 @@ Vehicle Number:
 Current Location:`;
 
               return (
-                <div
-                  key={load.pickup + load.drop}
-                  style={card}
-                >
-                  <h3
-                    style={{
-                      color: "#fde047",
-                      fontSize: 24,
-                    }}
-                  >
-                    {load.pickup} → {load.drop}
-                  </h3>
-
-                  <p>
-                    🚛 <b>Truck:</b> {load.truck}
-                  </p>
-
-                  <p>
-                    📦 <b>Material:</b> {load.material}
-                  </p>
-
-                  <p>
-                    💰 <b>Rate:</b> {load.rate}
-                  </p>
-
-                  <a
-                    href={`https://wa.me/919558959579?text=${encodeURIComponent(
-                      message
-                    )}`}
-                    style={{
-                      display: "inline-block",
-                      marginTop: 16,
-                      background: "#fde047",
-                      color: "#000",
-                      padding: "13px 20px",
-                      borderRadius: 14,
-                      textDecoration: "none",
-                      fontWeight: 800,
-                    }}
-                  >
+                <div key={pickup + drop} style={card}>
+                  <h3 style={{ color: "#facc15", fontSize: 24 }}>{pickup} → {drop}</h3>
+                  <p>🚛 <b>Truck:</b> {truck}</p>
+                  <p>📦 <b>Material:</b> {material}</p>
+                  <p>💰 <b>Rate:</b> Contact Now</p>
+                  <a href={`https://wa.me/919558959579?text=${encodeURIComponent(msg)}`} style={{ ...btn, background: "#facc15", color: "#000" }}>
                     Apply Now
                   </a>
                 </div>
@@ -281,146 +129,75 @@ Current Location:`;
         </div>
       </section>
 
-      {/* ABOUT */}
-      <section style={{ padding: "70px 24px" }}>
-        <div
-          style={{
-            maxWidth: 1150,
-            margin: "auto",
-            display: "grid",
-            gridTemplateColumns:
-              "repeat(auto-fit,minmax(300px,1fr))",
-            gap: 25,
-          }}
-        >
+      <section style={{ padding: "75px 24px" }}>
+        <div style={{ maxWidth: 1200, margin: "auto", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 28 }}>
           <div>
-            <h2 style={{ fontSize: 42 }}>
-              Serving All Over Gujarat
-            </h2>
-
-            <p
-              style={{
-                color: "#cbd5e1",
-                fontSize: 18,
-              }}
-            >
-              Jamnagar, Kutch, Morbi, Ahmedabad,
-              Vadodara, Surat, Vapi, Dahej and all
-              major industrial areas.
+            <h2 style={{ fontSize: 42 }}>Post Your Truck</h2>
+            <p style={{ color: "#cbd5e1", fontSize: 18 }}>
+              Truck owner, driver or broker can send truck details for load matching.
             </p>
-
-            <p>✅ Fast Industrial Transport</p>
-            <p>✅ Bulk Load Movement</p>
-            <p>✅ Experienced Drivers</p>
-            <p>✅ On-Time Delivery</p>
+            <a
+              href={`https://wa.me/919558959579?text=${encodeURIComponent(
+                "Hello Meera Logistics,\nI want to post my truck.\n\nName:\nMobile:\nTruck Type:\nVehicle Number:\nCurrent Location:\nAvailable Route:"
+              )}`}
+              style={{ ...btn, background: "#facc15", color: "#000" }}
+            >
+              Post Truck on WhatsApp
+            </a>
           </div>
 
-          <div
-            style={{
-              background:
-                "linear-gradient(135deg,#fde047,#f59e0b)",
-              color: "#111",
-              borderRadius: 28,
-              padding: 32,
-            }}
-          >
-            <h2>Book Transport</h2>
-
-            <p>
-              <b>📍 Office:</b> Jamnagar
-            </p>
-
-            <p>
-              <b>📞 Mobile:</b> {phone}
-            </p>
-
-            <p>
-              <b>🚛 Service:</b> Tipper / Dumper / Truck
-            </p>
-
-            <p>
-              <b>🌍 Coverage:</b> All Gujarat
-            </p>
-
-            <a
-              href={wa}
-              style={{
-                display: "inline-block",
-                marginTop: 18,
-                background: "#111",
-                color: "white",
-                padding: "14px 22px",
-                borderRadius: 14,
-                textDecoration: "none",
-                fontWeight: 800,
-              }}
-            >
-              Send Enquiry
-            </a>
+          <div style={{ background: "linear-gradient(135deg,#facc15,#f59e0b)", color: "#111", borderRadius: 26, padding: 32 }}>
+            <h2>Contact Meera Logistics</h2>
+            <p><b>📍 Office:</b> Jamnagar</p>
+            <p><b>📞 Mobile:</b> {phone}</p>
+            <p><b>🚛 Service:</b> Tipper / Dumper / Truck</p>
+            <p><b>🌍 Coverage:</b> All Gujarat</p>
+            <a href={whatsapp} style={{ ...btn, background: "#111", color: "white" }}>Send Enquiry</a>
           </div>
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section
-        style={{
-          padding: "60px 24px",
-          background: "#0f172a",
-        }}
-      >
-        <div style={{ maxWidth: 1150, margin: "auto" }}>
-          <h2 style={{ fontSize: 40 }}>
-            Customer Reviews
-          </h2>
+      <section style={{ padding: "70px 24px", background: "#0f172a" }}>
+        <div style={{ maxWidth: 1200, margin: "auto" }}>
+          <h2 style={{ fontSize: 42 }}>Service Areas</h2>
+          <p style={{ color: "#cbd5e1", fontSize: 18 }}>
+            Jamnagar, Kutch, Morbi, Ahmedabad, Vadodara, Surat, Vapi, Dahej, Limdi and all Gujarat industrial routes.
+          </p>
+          <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" style={{ ...btn, background: "#facc15", color: "#000" }}>
+            View Location
+          </a>
+        </div>
+      </section>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns:
-                "repeat(auto-fit,minmax(250px,1fr))",
-              gap: 18,
-            }}
-          >
+      <section style={{ padding: "70px 24px" }}>
+        <div style={{ maxWidth: 1200, margin: "auto" }}>
+          <h2 style={{ fontSize: 42 }}>Why Choose Us?</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 22 }}>
             {[
-              "Fast service and professional drivers.",
-              "Reliable support for industrial loads.",
-              "Best tipper and dumper service in Gujarat.",
-            ].map((r) => (
-              <div key={r} style={card}>
-                <h3 style={{ color: "#fde047" }}>
-                  ★★★★★
-                </h3>
-
-                <p>{r}</p>
+              "Fast response for urgent loads",
+              "Tipper, dumper and truck network",
+              "All Gujarat transport coverage",
+              "Direct WhatsApp apply system",
+            ].map((x) => (
+              <div key={x} style={card}>
+                <h3 style={{ color: "#facc15" }}>★ {x}</h3>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer
-        style={{
-          padding: 35,
-          textAlign: "center",
-          background: "#000",
-        }}
-      >
+      <footer style={{ padding: 40, textAlign: "center", background: "#020617" }}>
         <h2>MEERA LOGISTICS</h2>
+        <p>Trusted Transport Partner Across Gujarat 🚛</p>
 
-        <p>
-          Trusted Transport Partner Across Gujarat 🚛
-        </p>
+        <div style={{ margin: "18px 0" }}>
+          <a href={instagram} target="_blank" style={{ ...btn, background: "#e1306c", color: "white" }}>Instagram</a>
+          <a href={youtube} target="_blank" style={{ ...btn, background: "#ff0000", color: "white" }}>YouTube</a>
+          <a href={whatsapp} style={{ ...btn, background: "#25d366", color: "#000" }}>WhatsApp</a>
+        </div>
 
-        <a
-          href={wa}
-          style={{
-            color: "#fde047",
-            fontWeight: 800,
-          }}
-        >
-          WhatsApp: {phone}
-        </a>
+        <p style={{ color: "#facc15", fontWeight: 800 }}>📞 {phone}</p>
       </footer>
     </main>
   );
