@@ -11,3 +11,1053 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Return Load Board — Meera Logistics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:        #1a56db;
+      --blue-dark:   #1341b0;
+      --blue-light:  #e8f0fe;
+      --blue-mid:    #3b7de8;
+      --navy:        #0d2a6b;
+      --navy2:       #0a1f4e;
+      --green:       #16a34a;
+      --green-dark:  #15803d;
+      --white:       #ffffff;
+      --off:         #f4f7ff;
+      --border:      #d4e0f7;
+      --text:        #1a1a2e;
+      --muted:       #6b7db3;
+      --shadow:      0 4px 24px rgba(26,86,219,0.10);
+    }
+
+    body {
+      font-family: 'Baloo Bhai 2', sans-serif;
+      background: var(--off);
+      color: var(--text);
+    }
+
+    /* ══ HERO ══ */
+    .rl-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 50%, #0c2d6b 100%);
+      padding: 52px 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .rl-hero::before {
+      content: '🚛';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.04;
+      top: -30px; right: -40px;
+      transform: rotate(-12deg);
+      pointer-events: none;
+    }
+    .rl-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40px;
+      background: var(--off);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #c8d9ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .rl-hero h1 {
+      font-size: clamp(26px, 7vw, 44px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .rl-hero h1 span {
+      color: #7eb3ff;
+    }
+    .rl-hero p {
+      color: #9db8e8;
+      font-size: 15px;
+      max-width: 460px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .h-stat { text-align: center; }
+    .h-stat-num {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--white);
+      display: block;
+    }
+    .h-stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7eb3ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ══ POST CTA BAR ══ */
+    .rl-cta {
+      background: var(--blue);
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .rl-cta p {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .rl-cta p strong { font-size: 17px; }
+    .btn-post {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 13px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-post:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.22); }
+
+    /* ══ ROUTE INFO PILLS ══ */
+    .rl-routes {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .route-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid #b8d0f8;
+    }
+
+    /* ══ FILTERS ══ */
+    .rl-filters {
+      padding: 20px 16px 4px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .filter-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 2px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .chip.active, .chip:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(26,86,219,0.25);
+    }
+
+    /* ══ BOARD ══ */
+    .rl-board {
+      padding: 18px 16px 56px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .board-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .board-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.4s infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:1; transform:scale(1); }
+      50%{ opacity:0.4; transform:scale(1.4); }
+    }
+
+    /* ══ CARD ══ */
+    .truck-card {
+      background: var(--white);
+      border-radius: 18px;
+      border: 2px solid var(--border);
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: var(--shadow);
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
+      animation: fadeUp 0.4s ease both;
+    }
+    .truck-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(26,86,219,0.14);
+      border-color: var(--blue);
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(18px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .truck-card:nth-child(1){ animation-delay:0.05s; }
+    .truck-card:nth-child(2){ animation-delay:0.10s; }
+    .truck-card:nth-child(3){ animation-delay:0.15s; }
+    .truck-card:nth-child(4){ animation-delay:0.20s; }
+    .truck-card:nth-child(5){ animation-delay:0.25s; }
+    .truck-card:nth-child(6){ animation-delay:0.30s; }
+
+    /* urgent */
+    .truck-card.urgent {
+      border-color: var(--blue-mid);
+      background: linear-gradient(135deg, #fff 80%, #eef4ff 100%);
+    }
+    .urgent-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .route-block { flex: 1; min-width: 0; }
+    .route-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .city {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .arrow {
+      font-size: 18px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+    .return-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--blue-light);
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid #b8d0f8;
+      margin-top: 6px;
+    }
+    .truck-badge {
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .card-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .meta-item {
+      background: var(--off);
+      border-radius: 12px;
+      padding: 11px 8px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+    .meta-icon { font-size: 18px; display: block; margin-bottom: 3px; }
+    .meta-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+      line-height: 1.2;
+    }
+    .meta-key {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .driver-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .driver-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(26,86,219,0.25);
+    }
+    .driver-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .driver-stars { font-size: 12px; color: #f59e0b; }
+    .driver-trips { font-size: 11px; color: var(--muted); margin-top: 1px; }
+
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 800;
+      padding: 11px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(22,163,74,0.25);
+    }
+    .btn-book:hover { background: var(--green-dark); transform: scale(1.04); }
+
+    /* ══ EMPTY ══ */
+    .empty-state {
+      text-align: center;
+      padding: 56px 20px;
+      display: none;
+    }
+    .empty-state .e-icon { font-size: 52px; margin-bottom: 14px; }
+    .empty-state h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .empty-state p { font-size: 14px; color: var(--muted); }
+
+    /* ══ MODAL ══ */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(10,31,78,0.65);
+      backdrop-filter: blur(5px);
+      z-index: 999;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 24px 24px 0 0;
+      padding: 10px 20px 40px;
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      animation: slideUp 0.38s cubic-bezier(0.34,1.56,0.64,1);
+      max-height: 92vh;
+      overflow-y: auto;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); }
+      to   { transform: translateY(0); }
+    }
+    .modal-handle {
+      width: 44px; height: 5px;
+      background: #dde6f5;
+      border-radius: 3px;
+      margin: 12px auto 20px;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+    .form-group select,
+    .form-group input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-family: 'Baloo Bhai 2', sans-serif;
+      color: var(--text);
+      outline: none;
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .form-group select:focus,
+    .form-group input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,86,219,0.12);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-submit {
+      width: 100%;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      font-size: 16px;
+      font-weight: 800;
+      padding: 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-family: 'Baloo Bhai 2', sans-serif;
+      margin-top: 10px;
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(26,86,219,0.3);
+    }
+    .btn-submit:hover { background: var(--blue-dark); transform: scale(1.02); }
+    .btn-close {
+      position: absolute;
+      top: 18px; right: 18px;
+      background: var(--off);
+      border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ══ FOOTER STRIP ══ */
+    .rl-footer {
+      background: var(--navy);
+      text-align: center;
+      padding: 20px 16px;
+      color: #7eb3ff;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .rl-footer a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    @media(max-width:480px){
+      .city { font-size: 16px; }
+      .card-meta { gap: 7px; }
+      .meta-item { padding: 9px 6px; }
+      .meta-val { font-size: 12px; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+      .h-stat-num { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     MEERA LOGISTICS — RETURN LOAD BOARD
+     Paste this full file as /return-load page
+     OR copy sections into your main site
+══════════════════════════════════ -->
+
+<!-- HERO -->
+<section class="rl-hero">
+  <div class="hero-badge">🔄 નવી Service — Free</div>
+  <h1>Return Load<br><span>ખાલી ન જાવ, પૈસા ન ગુમાવો</span></h1>
+  <p>Delivery complete? Gujarat ભરમાં return load instantly મેળવો — Meera Logistics ના trusted network સાથે.</p>
+  <div class="hero-stats">
+    <div class="h-stat">
+      <span class="h-stat-num" id="liveCount">8</span>
+      <span class="h-stat-label">Live Trucks</span>
+    </div>
+    <div class="h-stat">
+      <span class="h-stat-num">3</span>
+      <span class="h-stat-label">Main Routes</span>
+    </div>
+    <div class="h-stat">
+      <span class="h-stat-num">Free</span>
+      <span class="h-stat-label">Listing</span>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTE PILLS -->
+<div class="rl-routes">
+  <div class="route-pill">🚛 Jamnagar ↔ Ahmedabad</div>
+  <div class="route-pill">🚛 Jamnagar ↔ Surat</div>
+  <div class="route-pill">🚛 Dahej ↔ Gujarat</div>
+</div>
+
+<!-- CTA BAR -->
+<div class="rl-cta">
+  <p><strong>🚛 Delivery complete થઈ ગઈ?</strong><br>ખાલી ન જાવ — Return load 5 મિનિટ માં post કરો</p>
+  <a class="btn-post" href="#" onclick="openModal(); return false;">
+    🔄 Return Truck Post કરો — Free
+  </a>
+</div>
+
+<!-- FILTERS -->
+<div class="rl-filters">
+  <div class="filter-label">Route ફિલ્ટર કરો</div>
+  <div class="filter-chips">
+    <div class="chip active" onclick="filterCards('all',this)">બધા Routes</div>
+    <div class="chip" onclick="filterCards('jamnagar-ahmedabad',this)">Jamnagar → Ahmedabad</div>
+    <div class="chip" onclick="filterCards('jamnagar-surat',this)">Jamnagar → Surat</div>
+    <div class="chip" onclick="filterCards('ahmedabad-jamnagar',this)">Ahmedabad → Jamnagar</div>
+    <div class="chip" onclick="filterCards('surat-jamnagar',this)">Surat → Jamnagar</div>
+    <div class="chip" onclick="filterCards('dahej',this)">Dahej Routes</div>
+  </div>
+</div>
+
+<!-- BOARD -->
+<div class="rl-board">
+  <div class="board-header">
+    <div class="board-title">Available Return Trucks</div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      Live
+    </div>
+  </div>
+
+  <!-- CARD 1 — URGENT -->
+  <div class="truck-card urgent" data-route="jamnagar-ahmedabad">
+    <div class="urgent-tag">⚡ Urgent — આજ જ જોઈએ</div>
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Jamnagar</span>
+          <span class="arrow">→</span>
+          <span class="city">Ahmedabad</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🏗️ Tipper</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">આજ સાંજ 5 PM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Full Truck</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Best Rate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">R</div>
+        <div>
+          <div class="driver-name">Ramesh Bhai</div>
+          <div class="driver-stars">★★★★★</div>
+          <div class="driver-trips">Jamnagar based • 42 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Jamnagar%20%E2%86%92%20Ahmedabad%0ATruck%20Type%3A%20Tipper%0AAvailable%3A%20Aaj%20Saanj%205%20PM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="truck-card" data-route="ahmedabad-jamnagar">
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Ahmedabad</span>
+          <span class="arrow">→</span>
+          <span class="city">Jamnagar</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🚛 Dumper</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">કાલ સવારે 7 AM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Full Truck</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Negotiate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">M</div>
+        <div>
+          <div class="driver-name">Mahesh Bhai</div>
+          <div class="driver-stars">★★★★★</div>
+          <div class="driver-trips">Ahmedabad based • 56 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Ahmedabad%20%E2%86%92%20Jamnagar%0ATruck%20Type%3A%20Dumper%0AAvailable%3A%20Kal%20Savare%207%20AM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="truck-card" data-route="jamnagar-surat">
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Jamnagar</span>
+          <span class="arrow">→</span>
+          <span class="city">Surat</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🚚 Body Truck</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">આજ રાત 9 PM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Half Available</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Best Rate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">J</div>
+        <div>
+          <div class="driver-name">Jayesh Bhai</div>
+          <div class="driver-stars">★★★★☆</div>
+          <div class="driver-trips">Jamnagar based • 31 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Jamnagar%20%E2%86%92%20Surat%0ATruck%20Type%3A%20Body%20Truck%0AAvailable%3A%20Aaj%20Raat%209%20PM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- CARD 4 -->
+  <div class="truck-card" data-route="surat-jamnagar">
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Surat</span>
+          <span class="arrow">→</span>
+          <span class="city">Jamnagar</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🏗️ Tipper</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">કાલ બપોર 1 PM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Full Truck</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Negotiate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">V</div>
+        <div>
+          <div class="driver-name">Vinod Bhai</div>
+          <div class="driver-stars">★★★★★</div>
+          <div class="driver-trips">Surat based • 24 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Surat%20%E2%86%92%20Jamnagar%0ATruck%20Type%3A%20Tipper%0AAvailable%3A%20Kal%20Bapar%201%20PM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- CARD 5 -->
+  <div class="truck-card" data-route="dahej">
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Dahej</span>
+          <span class="arrow">→</span>
+          <span class="city">Jamnagar</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🚛 Dumper</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">કાલ સવારે 6 AM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Full Truck</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Fixed Rate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">P</div>
+        <div>
+          <div class="driver-name">Prakash Bhai</div>
+          <div class="driver-stars">★★★★★</div>
+          <div class="driver-trips">Dahej based • 38 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Dahej%20%E2%86%92%20Jamnagar%0ATruck%20Type%3A%20Dumper%0AAvailable%3A%20Kal%20Savare%206%20AM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- CARD 6 -->
+  <div class="truck-card" data-route="dahej">
+    <div class="card-top">
+      <div class="route-block">
+        <div class="route-line">
+          <span class="city">Dahej</span>
+          <span class="arrow">→</span>
+          <span class="city">Ahmedabad</span>
+        </div>
+        <div class="return-tag">🔄 Return Load Available</div>
+      </div>
+      <div class="truck-badge">🚚 Body Truck</div>
+    </div>
+    <div class="card-meta">
+      <div class="meta-item">
+        <span class="meta-icon">⏰</span>
+        <span class="meta-val">આજ સાંજ 7 PM</span>
+        <span class="meta-key">Available</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">📦</span>
+        <span class="meta-val">Full Truck</span>
+        <span class="meta-key">Capacity</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-icon">💰</span>
+        <span class="meta-val">Best Rate</span>
+        <span class="meta-key">Rate</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="driver-info">
+        <div class="driver-avatar">K</div>
+        <div>
+          <div class="driver-name">Ketan Bhai</div>
+          <div class="driver-stars">★★★★☆</div>
+          <div class="driver-trips">Dahej based • 17 trips</div>
+        </div>
+      </div>
+      <a class="btn-book"
+        href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0A%0AReturn%20Load%20Book%20Karvu%20Chhe%20%F0%9F%9A%9B%0A%0ARoute%3A%20Dahej%20%E2%86%92%20Ahmedabad%0ATruck%20Type%3A%20Body%20Truck%0AAvailable%3A%20Aaj%20Saanj%207%20PM%0A%0AMara%20Details%3A%0AName%3A%0AMobile%3A%0AGoods%3A%0AWeight%20(approx)%3A%0A%0A%23ReturnLoad%20%23MeeraLogistics"
+        target="_blank">📲 Book Now</a>
+    </div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="empty-state" id="emptyState">
+    <div class="e-icon">🚛</div>
+    <h3>આ route ઉપર હાલ truck available નથી</h3>
+    <p>WhatsApp ઉપર contact કરો — અમે personally match કરી આપીશું</p>
+    <br>
+    <a class="btn-book" style="display:inline-flex;"
+       href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Mane%20Return%20Load%20Joiye%20Chhe"
+       target="_blank">📲 WhatsApp કરો</a>
+  </div>
+</div>
+
+<!-- FOOTER STRIP -->
+<div class="rl-footer">
+  Meera Logistics — Jamnagar &nbsp;|&nbsp;
+  <a href="tel:9558959579">📞 9558959579</a> &nbsp;|&nbsp;
+  <a href="https://www.meeralogistics.in">meeralogistics.in</a>
+</div>
+
+<!-- ══ POST MODAL ══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="overlayClose(event)">
+  <div class="modal">
+    <div class="modal-handle"></div>
+    <button class="btn-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">🔄 Return Truck Post કરો</div>
+
+    <div class="form-group">
+      <label>Delivery ક્યાંથી complete થઈ? (From City)</label>
+      <select id="fCity">
+        <option value="">City Select કરો</option>
+        <option>Jamnagar</option>
+        <option>Ahmedabad</option>
+        <option>Surat</option>
+        <option>Dahej</option>
+        <option>Rajkot</option>
+        <option>Vadodara</option>
+        <option>Morbi</option>
+        <option>Kutch</option>
+        <option>Vapi</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>ક્યાં જવું છે? (To City)</label>
+      <select id="tCity">
+        <option value="">City Select કરો</option>
+        <option>Jamnagar</option>
+        <option>Ahmedabad</option>
+        <option>Surat</option>
+        <option>Dahej</option>
+        <option>Rajkot</option>
+        <option>Vadodara</option>
+        <option>Morbi</option>
+        <option>Kutch</option>
+        <option>Vapi</option>
+        <option>Other</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Truck Type</label>
+        <select id="tType">
+          <option>Tipper</option>
+          <option>Dumper</option>
+          <option>Body Truck</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Available Time</label>
+        <input type="text" id="aTime" placeholder="દા.ત. સાંજ 5 PM"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Driver નું નામ</label>
+      <input type="text" id="dName" placeholder="તમારું નામ"/>
+    </div>
+
+    <div class="form-group">
+      <label>Mobile Number</label>
+      <input type="tel" id="dMobile" placeholder="10 digit mobile number"/>
+    </div>
+
+    <button class="btn-submit" onclick="submitPost()">
+      📲 WhatsApp ઉપર Post કરો — Free
+    </button>
+  </div>
+</div>
+
+<script>
+  // ── Filter
+  function filterCards(key, el) {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const cards = document.querySelectorAll('.truck-card');
+    let vis = 0;
+    cards.forEach(c => {
+      const r = c.dataset.route || '';
+      const show = key === 'all' || r.includes(key);
+      c.style.display = show ? '' : 'none';
+      if (show) vis++;
+    });
+    document.getElementById('emptyState').style.display = vis ? 'none' : 'block';
+  }
+
+  // ── Modal
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function overlayClose(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  // ── Submit → WhatsApp
+  function submitPost() {
+    const from   = document.getElementById('fCity').value;
+    const to     = document.getElementById('tCity').value;
+    const type   = document.getElementById('tType').value;
+    const time   = document.getElementById('aTime').value || 'Contact karso';
+    const name   = document.getElementById('dName').value;
+    const mobile = document.getElementById('dMobile').value;
+
+    if (!from || !to || !name || !mobile) {
+      alert('⚠️ કૃપા કરી બધી માહિતી ભરો');
+      return;
+    }
+
+    const msg =
+`Hello Meera Logistics 🚛
+
+Return Truck Post Karvou Chhe:
+
+📍 From: ${from}
+📍 To: ${to}
+🚛 Truck Type: ${type}
+⏰ Available: ${time}
+👤 Driver: ${name}
+📞 Mobile: ${mobile}
+
+#ReturnLoad #MeeraLogistics #Gujarat`;
+
+    window.open('https://wa.me/919558959579?text=' + encodeURIComponent(msg), '_blank');
+    closeModal();
+  }
+
+  // ── Live count animation
+  setInterval(() => {
+    const el = document.getElementById('liveCount');
+    if (el) el.textContent = (Math.floor(Math.random() * 5) + 6);
+  }, 9000);
+</script>
+</body>
+</html>
