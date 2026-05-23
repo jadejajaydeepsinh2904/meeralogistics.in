@@ -27,19 +27,20 @@ export default function Home() {
         borderBottomLeftRadius: 45,
         borderBottomRightRadius: 45
       }}>
-        <img
-          src="/logo.png"
-          alt="Meera Logistics"
-          style={{
-            width: 110,
-            height: 110,
-            objectFit: "contain",
-            background: "white",
-            borderRadius: 22,
-            padding: 8,
-            marginBottom: 18
-          }}
-        />
+       <img
+  src="/logo.png"
+  alt="Meera Logistics"
+  style={{
+    width: 90,
+    height: 90,
+    objectFit: "contain",
+    background: "white",
+    borderRadius: 20,
+    padding: 6,
+    marginBottom: 18,
+    border: "3px solid rgba(255,255,255,0.2)"
+  }}
+/>
 
         <div style={{
           display: "inline-block",
