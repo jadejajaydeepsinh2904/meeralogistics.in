@@ -485,29 +485,29 @@ const styles = `
 `;
 
 const services = [
-  { icon: "🚛", title: "Tipper Transport", desc: "Construction material, sand, gravel transport with tipper trucks across Gujarat." },
-  { icon: "⛏️", title: "Dumper Service", desc: "Heavy-duty dumper trucks for industrial and bulk material logistics solutions." },
-  { icon: "🏗️", title: "Truck Booking", desc: "Body truck and full-load transport booking for all types of goods and routes." },
-  { icon: "🔄", title: "Return Load", desc: "ખાલી ન જાવ — Free return load matching service for truck owners and drivers." },
-  { icon: "📦", title: "Fleet Management", desc: "Multi-truck fleet coordination for big industrial and commercial transport projects." },
-  { icon: "🗺️", title: "Gujarat Network", desc: "Jamnagar, Dahej, Morbi, Surat, Ahmedabad, Kutch — all major industrial zones." },
+  { icon: "🚛", title: "ટિપર ટ્રાન્સપોર્ટ", desc: "રેતી, કપચી, કન્સ્ટ્રક્શન મટિરિયલ અને બલ્ક માલ માટે ઝડપી ટિપર ટ્રાન્સપોર્ટ સર્વિસ." },
+  { icon: "⛏️", title: "ડમ્પર સર્વિસ", desc: "ઇન્ડસ્ટ્રીયલ અને હેવી મટિરિયલ માટે વિશ્વસનીય ડમ્પર ટ્રાન્સપોર્ટ સોલ્યુશન." },
+  { icon: "🏗️", title: "ટ્રક બુકિંગ", desc: "દરેક પ્રકારના માલ અને રૂટ માટે બોડી ટ્રક અને ફુલ લોડ બુકિંગ સેવા." },
+  { icon: "🔄", title: "રિટર્ન લોડ", desc: "ખાલી ન જાવ — ટ્રક ઓનર અને ડ્રાઈવર માટે ફ્રી રિટર્ન લોડ મેચિંગ સર્વિસ." },
+  { icon: "📦", title: "ફ્લીટ મેનેજમેન્ટ", desc: "મોટા ઇન્ડસ્ટ્રીયલ અને કોમર્શિયલ પ્રોજેક્ટ માટે મલ્ટી ટ્રક મેનેજમેન્ટ." },
+  { icon: "🗺️", title: "ગુજરાત નેટવર્ક", desc: "જામનગર, દહેજ, મોરબી, સુરત, અમદાવાદ, કચ્છ સહિત ગુજરાતભરમાં સેવા." },
 ];
 
 const whyUs = [
-  { num: "24/7", title: "Round the Clock", desc: "Day or night, anytime support for truck booking and load matching." },
-  { num: "Fast", title: "Quick Dispatch", desc: "Same day truck allocation for urgent transport requirements." },
-  { num: "Free", title: "Return Load Board", desc: "Post your truck or find return load completely free of charge." },
-  { num: "All", title: "Gujarat Coverage", desc: "All major cities and industrial areas covered in the Gujarat network." },
+  { num: "24/7", title: "24/7 સપોર્ટ", desc: "દિવસ હોય કે રાત — ટ્રક બુકિંગ અને લોડ માટે સતત સપોર્ટ." },
+  { num: "Fast", title: "ઝડપી ડિસ્પેચ", desc: "તાત્કાલિક ટ્રાન્સપોર્ટ જરૂરિયાત માટે same day ટ્રક વ્યવસ્થા." },
+  { num: "Free", title: "ફ્રી રિટર્ન લોડ", desc: "ટ્રક પોસ્ટ કરો અથવા રિટર્ન લોડ શોધો — સંપૂર્ણ મફત." },
+  { num: "All", title: "ગુજરાત કવરેજ", desc: "ગુજરાતના મુખ્ય શહેરો અને ઇન્ડસ્ટ્રીયલ વિસ્તારોમાં સેવા ઉપલબ્ધ." },
 ];
 
 
 
-const areas = ["🏭 Jamnagar","🏗️ Kutch","🏺 Morbi","🌆 Ahmedabad","🏛️ Vadodara","🌊 Surat","⚓ Vapi","⚗️ Dahej","🏘️ Limdi","🌾 Rajkot","🏭 Bhavnagar","🚢 Mundra"];
+const areas = ["🏭 જામનગર","🏗️ કચ્છ","🏺 મોરબી","🌆 અમદાવાદ","🏛️ વડોદરા","🌊 સુરત","⚓ વાપી","⚗️ દહેજ","🏘️ લીમડી","🌾 રાજકોટ","🏭 ભાવનગર","🚢 મુન્દ્રા"];
 
 const reviews = [
-  { text: "Fast service and professional drivers. Industrial load was delivered on time. Highly recommended for Jamnagar routes.", author: "Transport Contractor, Jamnagar" },
-  { text: "Reliable support for industrial loads from Dahej. Return load service is very helpful and saves money.", author: "Fleet Owner, Dahej" },
-  { text: "Best tipper and dumper service in Gujarat. Responsive on WhatsApp and honest rates. Will use again.", author: "Builder, Morbi" },
+  { text: "ઝડપી સર્વિસ અને પ્રોફેશનલ ડ્રાઈવર. ઇન્ડસ્ટ્રીયલ લોડ સમયસર પહોંચ્યો. જામનગર રૂટ માટે ખૂબ સારી સર્વિસ.", author: "ટ્રાન્સપોર્ટ કોન્ટ્રાક્ટર, જામનગર" },
+  { text: "દહેજ રૂટ માટે વિશ્વસનીય સપોર્ટ. રિટર્ન લોડ સર્વિસ ખૂબ ઉપયોગી છે અને ખર્ચ બચાવે છે.", author: "ફ્લીટ ઓનર, દહેજ" },
+  { text: "ગુજરાતમાં સારી ટિપર અને ડમ્પર સર્વિસ. વોટ્સએપ પર ઝડપી જવાબ અને સાચું ભાડું.", author: "બિલ્ડર, મોરબી" },
 ];
 
 export default function Home() {
@@ -529,17 +529,17 @@ export default function Home() {
 
   const sendBooking = () => {
     if (!form.from || !form.to) {
-      alert("Please fill in Loading and Unloading Point.");
+      alert("કૃપા કરીને લોડિંગ અને અનલોડિંગ પોઈન્ટ ભરો.");
       return;
     }
     const msg = encodeURIComponent(
-      `Hello Meera Logistics,\nMane Truck Book Karvu Chhe.\n\n` +
-      `📍 Loading: ${form.from || "-"}\n` +
-      `📍 Unloading: ${form.to || "-"}\n` +
-      `📦 Goods: ${form.goods || "-"}\n` +
-      `🚛 Truck: ${form.truck || "-"}\n` +
-      `📅 Time: ${form.datetime || "-"}\n` +
-      `📞 Mobile: ${form.mobile || "-"}`
+      `Hello Meera Logistics,\nમારે ટ્રક બુક કરવો છે.\n\n` +
+      `📍 લોડિંગ: ${form.from || "-"}\n` +
+      `📍 અનલોડિંગ: ${form.to || "-"}\n` +
+      `📦 માલ: ${form.goods || "-"}\n` +
+      `🚛 ટ્રક: ${form.truck || "-"}\n` +
+      `📅 સમય: ${form.datetime || "-"}\n` +
+      `📞 મોબાઈલ: ${form.mobile || "-"}`
     );
     window.open("https://wa.me/919558959579?text=" + msg, "_blank");
   };
@@ -556,11 +556,11 @@ export default function Home() {
             <span className="ml-nav-title">MEERA <span>LOGISTICS</span></span>
           </a>
           <div className="ml-nav-links">
-            <a href="#services">Services</a>
-            <a href="#loads">Return Load</a>
-            <a href="#booking">Book Truck</a>
-            <a href="#contact">Contact</a>
-            <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-green" style={{ borderRadius: 10, padding: "9px 18px" }}>📲 WhatsApp</a>
+            <a href="#services">સર્વિસ</a>
+            <a href="#loads">રિટર્ન લોડ</a>
+            <a href="#booking">ટ્રક બુકિંગ</a>
+            <a href="#contact">સંપર્ક</a>
+            <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-green" style={{ borderRadius: 10, padding: "9px 18px" }}>📲 વોટ્સએપ</a>
           </div>
         </nav>
 
@@ -568,11 +568,11 @@ export default function Home() {
         <section className="ml-hero">
           <div className="ml-hero-dots" />
           <div className="ml-hero-inner">
-            <div className="ml-hero-badge">🚛 Trusted Gujarat Transport Service</div>
+            <div className="ml-hero-badge">🚛 વિશ્વસનીય ગુજરાત ટ્રાન્સપોર્ટ સર્વિસ</div>
             <h1>MEERA <span>LOGISTICS</span></h1>
-            <p className="ml-hero-sub">Reliable Tipper, Dumper &amp; Truck Transport Service across Gujarat. Fast, trusted and professional logistics from Jamnagar.</p>
+            <p className="ml-hero-sub">ગુજરાતભરમાં ઝડપી, વિશ્વસનીય અને પ્રોફેશનલ ટિપર, ડમ્પર અને ટ્રક ટ્રાન્સપોર્ટ સર્વિસ.</p>
             <div className="ml-hero-stats">
-              {[["24/7","Support"],["ALL","Gujarat"],["100%","Trusted"]].map(([num,label]) => (
+              {[["24/7","સપોર્ટ"],["ALL","ગુજરાત"],["100%","ભરોસો"]].map(([num,label]) => (
                 <div key={label} className="ml-hero-stat">
                   <div className="ml-hero-stat-num">{num}</div>
                   <div className="ml-hero-stat-label">{label}</div>
@@ -580,9 +580,9 @@ export default function Home() {
               ))}
             </div>
             <div className="ml-hero-btns">
-              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 Call Now</a>
-              <a href="#loads" className="ml-btn ml-btn-blue">🔄 Return Load Board</a>
-              <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-outline">📲 WhatsApp</a>
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 કોલ કરો</a>
+              <a href="#loads" className="ml-btn ml-btn-blue">🔄 રિટર્ન લોડ બોર્ડ</a>
+              <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-outline">📲 વોટ્સએપ</a>
             </div>
           </div>
         </section>
@@ -592,9 +592,9 @@ export default function Home() {
         {/* SERVICES */}
         <section className="ml-section" id="services">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">Our Services</p>
-            <h2 className="ml-sec-title">Transport Solutions</h2>
-            <p className="ml-sec-sub">Gujarat ભરમાં professional logistics સેવા. Industrial, construction અને commercial transport.</p>
+            <p className="ml-sec-badge">અમારી સર્વિસ</p>
+            <h2 className="ml-sec-title">ટ્રાન્સપોર્ટ સોલ્યુશન</h2>
+            <p className="ml-sec-sub">ગુજરાતભરમાં ઇન્ડસ્ટ્રીયલ, કન્સ્ટ્રક્શન અને કોમર્શિયલ ટ્રાન્સપોર્ટ માટે વિશ્વસનીય સર્વિસ.</p>
             <div className="ml-services-grid">
               {services.map((s) => (
                 <div key={s.title} className="ml-svc-card">
@@ -610,9 +610,9 @@ export default function Home() {
         {/* WHY US */}
         <section className={`ml-section ml-whyus`}>
           <div className="ml-section-inner">
-            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>Why Choose Us</p>
-            <h2 className="ml-sec-title">Gujarat&apos;s Trusted Transport Partner</h2>
-            <p className="ml-sec-sub">અમે ઝડપ, ભરોસો અને professionalism સાથે Gujarat transport industry serve કરીએ છીએ.</p>
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>શા માટે અમે?</p>
+            <h2 className="ml-sec-title">ગુજરાતનો વિશ્વસનીય ટ્રાન્સપોર્ટ પાર્ટનર</h2>
+            <p className="ml-sec-sub">અમે ઝડપ, ભરોસો અને પ્રોફેશનલ સર્વિસ સાથે ગુજરાત ટ્રાન્સપોર્ટ ઇન્ડસ્ટ્રીને સેવા આપીએ છીએ.</p>
             <div className="ml-whyus-grid">
               {whyUs.map((w) => (
                 <div key={w.title} className="ml-why-card">
@@ -628,47 +628,47 @@ export default function Home() {
         {/* RETURN LOAD BOARD */}
         <section className="ml-section" id="loads">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">Live Load Board</p>
+            <p className="ml-sec-badge">લાઈવ લોડ બોર્ડ</p>
             <h2 className="ml-sec-title">Return Load Board</h2>
-            <p className="ml-sec-sub">Delivery complete? ખાલી ન જાવ — Gujarat ભરમાં Return Load instantly મેળવો. Free service for truck owners.</p>
+            <p className="ml-sec-sub">ડિલિવરી પૂર્ણ થઈ ગઈ? હવે ખાલી ન જાવ — ગુજરાતભરમાં તરત રિટર્ન લોડ મેળવો.</p>
             {loadingLoads ? (
               <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
-                🔄 Loads load થઈ રહ્યા છે...
+                🔄 લોડ માહિતી લોડ થઈ રહી છે...
               </div>
             ) : loads.length === 0 ? (
               <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
-                અત્યારે કોઈ load available નથી. થોડીવારમાં check કરો.
+                અત્યારે કોઈ લોડ ઉપલબ્ધ નથી. થોડીવારમાં ફરી ચેક કરો.
               </div>
             ) : (
               <div className="ml-loads-grid">
                 {loads.map((l, i) => (
                   <div key={i} className="ml-load-card">
-                    <div className="ml-load-badge">🔄 Return Load</div>
+                    <div className="ml-load-badge">🔄 રિટર્ન લોડ</div>
                     <div className="ml-load-route">{l.from} <span>→</span> {l.to}</div>
-                    <div className="ml-load-info">🚛 Truck: <strong>{l.truck}</strong></div>
-                    <div className="ml-load-info">📦 Material: <strong>{l.material}</strong></div>
-                    <div className="ml-load-info">⏰ Available: <strong>{l.time}</strong></div>
+                    <div className="ml-load-info">🚛 ટ્રક પ્રકાર: <strong>{l.truck}</strong></div>
+                    <div className="ml-load-info">📦 માલ: <strong>{l.material}</strong></div>
+                    <div className="ml-load-info">⏰ સમય: <strong>{l.time}</strong></div>
                     <div className="ml-load-rate">💰 {l.rate}</div>
                     <a
                       href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(l.from)}%20to%20${encodeURIComponent(l.to)}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
                       target="_blank"
                       className="ml-btn ml-btn-green ml-btn-full"
                     >
-                      📲 Book Now
+                      📲 હમણાં બુક કરો
                     </a>
                   </div>
                 ))}
               </div>
             )}
             <div className="ml-post-truck-banner">
-              <h3>🚛 Return Truck Post કરો — Free</h3>
-              <p>Truck owner, driver or broker — ખાલી truck ની details send કરો. Load matching free service.</p>
+              <h3>🚛 રિટર્ન ટ્રક પોસ્ટ કરો — ફ્રી</h3>
+              <p>ટ્રક ઓનર, ડ્રાઈવર અથવા બ્રોકર — ખાલી ટ્રકની માહિતી મોકલો અને ફ્રી લોડ મેચિંગ સર્વિસ મેળવો.</p>
               <a
                 href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0AMare%20Return%20Truck%20Post%20Karvu%20Chhe.%0A%0AName%3A%0AMobile%3A%0ATruck%20Type%3A%0AVehicle%20Number%3A%0ACurrent%20Location%3A%0AAvailable%20Route%3A"
                 target="_blank"
                 className="ml-btn ml-btn-gold"
               >
-                📲 WhatsApp પર Post કરો
+                📲 વોટ્સએપ પર પોસ્ટ કરો
               </a>
             </div>
           </div>
@@ -677,46 +677,46 @@ export default function Home() {
         {/* BOOKING */}
         <section className="ml-section ml-booking-bg" id="booking">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">Book Transport</p>
-            <h2 className="ml-sec-title">Truck Book કરો</h2>
-            <p className="ml-sec-sub">Details ભરો અને WhatsApp પર booking confirm કરો.</p>
+            <p className="ml-sec-badge">ટ્રાન્સપોર્ટ બુકિંગ</p>
+            <h2 className="ml-sec-title">ટ્રક બુક કરો</h2>
+            <p className="ml-sec-sub">વિગતો ભરો અને વોટ્સએપ પર બુકિંગ કન્ફર્મ કરો.</p>
             <div className="ml-booking-card">
               <div className="ml-form-row">
                 <div className="ml-form-group">
-                  <label>📍 Loading Point</label>
-                  <input name="from" value={form.from} onChange={handleChange} placeholder="e.g. Jamnagar" />
+                  <label>📍 લોડિંગ પોઈન્ટ</label>
+                  <input name="from" value={form.from} onChange={handleChange} placeholder="દા.ત. જામનગર" />
                 </div>
                 <div className="ml-form-group">
-                  <label>📍 Unloading Point</label>
-                  <input name="to" value={form.to} onChange={handleChange} placeholder="e.g. Ahmedabad" />
+                  <label>📍 અનલોડિંગ પોઈન્ટ</label>
+                  <input name="to" value={form.to} onChange={handleChange} placeholder="દા.ત. અમદાવાદ" />
                 </div>
               </div>
               <div className="ml-form-group">
-                <label>📦 Goods / Material Details</label>
-                <input name="goods" value={form.goods} onChange={handleChange} placeholder="e.g. Industrial Material, Sand, Tiles" />
+                <label>📦 માલની માહિતી</label>
+                <input name="goods" value={form.goods} onChange={handleChange} placeholder="દા.ત. ઇન્ડસ્ટ્રીયલ માલ, રેતી, ટાઇલ્સ" />
               </div>
               <div className="ml-form-row">
                 <div className="ml-form-group">
-                  <label>🚛 Select Truck Type</label>
+                  <label>🚛 ટ્રક પ્રકાર પસંદ કરો</label>
                   <select name="truck" value={form.truck} onChange={handleChange}>
-                    <option value="">Select Truck</option>
-                    <option>Tipper</option>
-                    <option>Dumper</option>
-                    <option>Body Truck</option>
-                    <option>Trailer</option>
+                    <option value="">ટ્રક પસંદ કરો</option>
+                    <option>ટિપર</option>
+                    <option>ડમ્પર</option>
+                    <option>બોડી ટ્રક</option>
+                    <option>ટ્રેલર</option>
                   </select>
                 </div>
                 <div className="ml-form-group">
-                  <label>📅 Date / Time</label>
-                  <input name="datetime" value={form.datetime} onChange={handleChange} placeholder="e.g. Aaj / Kal Savare 7 AM" />
+                  <label>📅 તારીખ / સમય</label>
+                  <input name="datetime" value={form.datetime} onChange={handleChange} placeholder="દા.ત. આજે / કાલે સવારે 7 વાગ્યે" />
                 </div>
               </div>
               <div className="ml-form-group">
-                <label>📞 Your Mobile Number</label>
-                <input name="mobile" type="tel" value={form.mobile} onChange={handleChange} placeholder="Your mobile number" />
+                <label>📞 તમારો મોબાઈલ નંબર</label>
+                <input name="mobile" type="tel" value={form.mobile} onChange={handleChange} placeholder="તમારો મોબાઈલ નંબર" />
               </div>
               <button onClick={sendBooking} className="ml-btn ml-btn-green ml-btn-full">
-                📲 Send Booking on WhatsApp
+                📲 વોટ્સએપ પર બુકિંગ મોકલો
               </button>
             </div>
           </div>
@@ -725,14 +725,14 @@ export default function Home() {
         {/* COVERAGE AREAS */}
         <section className="ml-section ml-areas-bg">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">Coverage</p>
-            <h2 className="ml-sec-title">Serving All Over Gujarat</h2>
-            <p className="ml-sec-sub">All major cities, ports and industrial zones covered.</p>
+            <p className="ml-sec-badge">સેવા વિસ્તાર</p>
+            <h2 className="ml-sec-title">ગુજરાતભરમાં સેવા</h2>
+            <p className="ml-sec-sub">ગુજરાતના મુખ્ય શહેરો, પોર્ટ અને ઇન્ડસ્ટ્રીયલ વિસ્તારોમાં સેવા ઉપલબ્ધ.</p>
             <div className="ml-areas-list">
               {areas.map((a) => <div key={a} className="ml-area-pill">{a}</div>)}
             </div>
             <div style={{ textAlign: "center", marginTop: 28 }}>
-              <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" className="ml-btn ml-btn-blue">📍 View Office Location</a>
+              <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-blue">📍 ઓફિસ લોકેશન જુઓ</a>
             </div>
           </div>
         </section>
@@ -740,9 +740,9 @@ export default function Home() {
         {/* REVIEWS */}
         <section className="ml-section">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">Customer Reviews</p>
-            <h2 className="ml-sec-title">What Clients Say</h2>
-            <p className="ml-sec-sub">Gujarat ભરના truck owners અને businesses ની feedback.</p>
+            <p className="ml-sec-badge">ગ્રાહકોનો વિશ્વાસ</p>
+            <h2 className="ml-sec-title">લોકો શું કહે છે</h2>
+            <p className="ml-sec-sub">ગુજરાતભરના ટ્રક ઓનર અને બિઝનેસ ગ્રાહકોનો વિશ્વાસ.</p>
             <div className="ml-reviews-grid">
               {reviews.map((r) => (
                 <div key={r.author} className="ml-review-card">
@@ -758,15 +758,15 @@ export default function Home() {
         {/* CONTACT */}
         <section className="ml-contact-section" id="contact">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>Contact Us</p>
-            <h2 className="ml-sec-title">Contact Meera Logistics</h2>
-            <p className="ml-sec-sub">Truck booking, return load, fleet inquiry — ગમે ત્યારે contact કરો.</p>
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>સંપર્ક કરો</p>
+            <h2 className="ml-sec-title">મીરા લોજિસ્ટિક્સ સંપર્ક</h2>
+            <p className="ml-sec-sub">ટ્રક બુકિંગ, રિટર્ન લોડ અને ફ્લીટ માટે ગમે ત્યારે સંપર્ક કરો.</p>
             <div className="ml-contact-grid">
               {[
-                { icon: "📞", title: "Phone / Call", content: <a href="tel:9558959579">9558959579</a> },
-                { icon: "📲", title: "WhatsApp", content: <a href="https://wa.me/919558959579" target="_blank">+91 9558959579</a> },
-                { icon: "📍", title: "Office Location", content: <p>Jamnagar, Gujarat</p> },
-                { icon: "🌐", title: "Website", content: <a href="https://meeralogistics.in" target="_blank">meeralogistics.in</a> },
+                { icon: "📞", title: "ફોન / કોલ", content: <a href="tel:9558959579">9558959579</a> },
+                { icon: "📲", title: "WhatsApp", content: <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer">+91 9558959579</a> },
+                { icon: "📍", title: "ઓફિસ લોકેશન", content: <p>Jamnagar, Gujarat</p> },
+                { icon: "🌐", title: "વેબસાઈટ", content: <a href="https://meeralogistics.in" target="_blank" rel="noopener noreferrer">meeralogistics.in</a> },
               ].map((c) => (
                 <div key={c.title} className="ml-contact-card">
                   <div className="ml-contact-icon">{c.icon}</div>
@@ -776,9 +776,9 @@ export default function Home() {
               ))}
             </div>
             <div className="ml-contact-btns">
-              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 Call Now</a>
-              <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-green">📲 WhatsApp Contact</a>
-              <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20I%20want%20to%20book%20a%20truck." target="_blank" className="ml-btn ml-btn-blue">🚛 Book Truck Now</a>
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 કોલ કરો</a>
+              <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-green">📲 વોટ્સએપ સંપર્ક</a>
+              <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20I%20want%20to%20book%20a%20truck." target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-blue">🚛 હમણાં ટ્રક બુક કરો</a>
             </div>
           </div>
         </section>
@@ -786,7 +786,7 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="ml-footer">
           <p style={{ marginBottom: 8 }}>
-            <strong style={{ color: "#94a3b8" }}>MEERA LOGISTICS</strong> — Trusted Transport Partner Across Gujarat 🚛
+            <strong style={{ color: "#94a3b8" }}>MEERA LOGISTICS</strong> — ગુજરાતનો વિશ્વસનીય ટ્રાન્સપોર્ટ પાર્ટનર 🚛
           </p>
           <p>
             <a href="https://meeralogistics.in">meeralogistics.in</a>
@@ -795,11 +795,11 @@ export default function Home() {
             {" | "}
             Jamnagar, Gujarat
           </p>
-          <p style={{ marginTop: 10 }}>© 2026 Meera Logistics. All Rights Reserved.</p>
+          <p style={{ marginTop: 10 }}>© 2026 મીરા લોજિસ્ટિક્સ. સર્વ હકો સુરક્ષિત.</p>
         </footer>
 
         {/* FLOATING WA */}
-        <a href="https://wa.me/919558959579" target="_blank" className="ml-wa-float" title="WhatsApp">📲</a>
+        <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-wa-float" title="WhatsApp">📲</a>
       </div>
     </>
   );
