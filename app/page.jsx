@@ -63,9 +63,20 @@ export default function Home() {
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 28 }}>
               <a href={wa} style={{ ...btn, background: "#fde047", color: "#000" }}>WhatsApp Now</a>
               <a href={`tel:${phone}`} style={{ ...btn, border: "1px solid white", color: "white" }}>Call Now</a>
-      <a
+     <a
   href="/return-load.html"
-  className="bg-green-600 text-white px-5 py-3 rounded-xl font-bold inline-block mt-4"
+  style={{
+    display: "inline-block",
+    background: "#16a34a",
+    color: "white",
+    padding: "14px 28px",
+    borderRadius: "14px",
+    textDecoration: "none",
+    fontWeight: "800",
+    marginTop: "20px",
+    marginLeft: "12px",
+    boxShadow: "0 4px 14px rgba(0,0,0,0.25)"
+  }}
 >
   🔄 Return Load Board
 </a>
