@@ -1,9 +1,12 @@
 export const metadata = {
-  title: "Meera Logistics | Tipper Dumper Truck Transport Gujarat",
-  description:
-    "Meera Logistics provides tipper, dumper and truck transport service all over Gujarat from Jamnagar.",
+  title: "Meera Logistics",
+  description: "Trusted Gujarat Transport Service",
 };
 
 export default function RootLayout({ children }) {
   return (
- 
+    <html lang="gu">
+      <body>{children}</body>
+    </html>
+  );
+}
