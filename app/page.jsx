@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap');
@@ -498,12 +500,7 @@ const whyUs = [
   { num: "All", title: "Gujarat Coverage", desc: "All major cities and industrial areas covered in the Gujarat network." },
 ];
 
-const loads = [
-  { from: "Jamnagar", to: "Ahmedabad", truck: "Tipper / Dumper", material: "Industrial Material", time: "આજ સાંજ 5 PM", rate: "Best Rate / Negotiate" },
-  { from: "Morbi", to: "Surat", truck: "Body Truck", material: "Tiles / Ceramic", time: "કાલ સવારે 7 AM", rate: "Full Load" },
-  { from: "Jamnagar", to: "Surat", truck: "Dumper", material: "Industrial Goods", time: "આજ રાત 9 PM", rate: "Best Rate / Negotiate" },
-  { from: "Dahej", to: "All Gujarat", truck: "Truck / Dumper", material: "Industrial Goods", time: "કાલ સવારે 6 AM", rate: "Contact Now" },
-];
+
 
 const areas = ["🏭 Jamnagar","🏗️ Kutch","🏺 Morbi","🌆 Ahmedabad","🏛️ Vadodara","🌊 Surat","⚓ Vapi","⚗️ Dahej","🏘️ Limdi","🌾 Rajkot","🏭 Bhavnagar","🚢 Mundra"];
 
@@ -515,6 +512,18 @@ const reviews = [
 
 export default function Home() {
   const [form, setForm] = useState({ from: "", to: "", goods: "", truck: "", datetime: "", mobile: "" });
+  const [loads, setLoads] = useState([]);
+  const [loadingLoads, setLoadingLoads] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/loads")
+      .then((r) => r.json())
+      .then((data) => {
+        setLoads(data.loads || []);
+        setLoadingLoads(false);
+      })
+      .catch(() => setLoadingLoads(false));
+  }, []);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -622,25 +631,35 @@ export default function Home() {
             <p className="ml-sec-badge">Live Load Board</p>
             <h2 className="ml-sec-title">Return Load Board</h2>
             <p className="ml-sec-sub">Delivery complete? ખાલી ન જાવ — Gujarat ભરમાં Return Load instantly મેળવો. Free service for truck owners.</p>
-            <div className="ml-loads-grid">
-              {loads.map((l) => (
-                <div key={l.from + l.to} className="ml-load-card">
-                  <div className="ml-load-badge">🔄 Return Load</div>
-                  <div className="ml-load-route">{l.from} <span>→</span> {l.to}</div>
-                  <div className="ml-load-info">🚛 Truck: <strong>{l.truck}</strong></div>
-                  <div className="ml-load-info">📦 Material: <strong>{l.material}</strong></div>
-                  <div className="ml-load-info">⏰ Available: <strong>{l.time}</strong></div>
-                  <div className="ml-load-rate">💰 {l.rate}</div>
-                  <a
-                    href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(l.from)}%20to%20${encodeURIComponent(l.to)}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
-                    target="_blank"
-                    className="ml-btn ml-btn-green ml-btn-full"
-                  >
-                    📲 Book Now
-                  </a>
-                </div>
-              ))}
-            </div>
+            {loadingLoads ? (
+              <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
+                🔄 Loads load થઈ રહ્યા છે...
+              </div>
+            ) : loads.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
+                અત્યારે કોઈ load available નથી. થોડીવારમાં check કરો.
+              </div>
+            ) : (
+              <div className="ml-loads-grid">
+                {loads.map((l, i) => (
+                  <div key={i} className="ml-load-card">
+                    <div className="ml-load-badge">🔄 Return Load</div>
+                    <div className="ml-load-route">{l.from} <span>→</span> {l.to}</div>
+                    <div className="ml-load-info">🚛 Truck: <strong>{l.truck}</strong></div>
+                    <div className="ml-load-info">📦 Material: <strong>{l.material}</strong></div>
+                    <div className="ml-load-info">⏰ Available: <strong>{l.time}</strong></div>
+                    <div className="ml-load-rate">💰 {l.rate}</div>
+                    <a
+                      href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(l.from)}%20to%20${encodeURIComponent(l.to)}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
+                      target="_blank"
+                      className="ml-btn ml-btn-green ml-btn-full"
+                    >
+                      📲 Book Now
+                    </a>
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="ml-post-truck-banner">
               <h3>🚛 Return Truck Post કરો — Free</h3>
               <p>Truck owner, driver or broker — ખાલી truck ની details send કરો. Load matching free service.</p>
