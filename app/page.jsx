@@ -44,12 +44,6 @@ export default function Home() {
       rate: "Contact Now",
     },
   ];
-  <a
-  href="/return-load.html"
-  className="bg-green-600 text-white px-5 py-3 rounded-xl font-bold inline-block mt-4"
->
-  🔄 Return Load Board
-</a>
 
   return (
     <main style={{ fontFamily: "Arial, sans-serif", background: "#07111f", color: "white" }}>
@@ -69,6 +63,12 @@ export default function Home() {
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 28 }}>
               <a href={wa} style={{ ...btn, background: "#fde047", color: "#000" }}>WhatsApp Now</a>
               <a href={`tel:${phone}`} style={{ ...btn, border: "1px solid white", color: "white" }}>Call Now</a>
+      <a
+  href="/return-load.html"
+  className="bg-green-600 text-white px-5 py-3 rounded-xl font-bold inline-block mt-4"
+>
+  🔄 Return Load Board
+</a>
             </div>
           </div>
 
