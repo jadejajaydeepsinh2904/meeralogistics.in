@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="gu">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="Meera Logistics - Tipper, Dumper & Truck Transport Service across Gujarat from Jamnagar"/>
-<title>Meera Logistics | Tipper Dumper Truck Transport Gujarat</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap" rel="stylesheet"/>
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+"use client";
+import { useState } from "react";
+
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap');
 
   :root {
     --navy: #071a4f;
@@ -29,7 +24,7 @@
 
   html { scroll-behavior: smooth; }
 
-  body {
+  .ml-body {
     font-family: 'Rajdhani', 'Noto Sans Gujarati', sans-serif;
     background: var(--bg);
     color: var(--text);
@@ -37,25 +32,7 @@
     line-height: 1.6;
   }
 
-  /* ---- TOP BAR ---- */
-  .topbar {
-    background: var(--navy);
-    color: #a8c0ff;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 8px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  .topbar a { color: var(--gold2); text-decoration: none; }
-  .topbar a:hover { text-decoration: underline; }
-
-  /* ---- NAV ---- */
-  nav {
+  .ml-nav {
     background: var(--white);
     border-bottom: 2px solid var(--border);
     position: sticky;
@@ -68,34 +45,34 @@
     gap: 16px;
     box-shadow: 0 2px 12px rgba(26,86,219,0.08);
   }
-  .nav-brand {
+  .ml-nav-brand {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 10px 0;
     text-decoration: none;
   }
-  .nav-logo {
+  .ml-nav-logo {
     width: 48px; height: 48px;
     object-fit: contain;
     border-radius: 10px;
     border: 2px solid var(--border);
     background: var(--white);
   }
-  .nav-title {
+  .ml-nav-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
     color: var(--navy);
     letter-spacing: 2px;
   }
-  .nav-title span { color: var(--blue); }
-  .nav-links {
+  .ml-nav-title span { color: var(--blue); }
+  .ml-nav-links {
     display: flex;
     gap: 6px;
     align-items: center;
     flex-wrap: wrap;
   }
-  .nav-links a {
+  .ml-nav-links a {
     color: var(--navy2);
     text-decoration: none;
     font-weight: 600;
@@ -104,17 +81,9 @@
     border-radius: 8px;
     transition: background 0.2s, color 0.2s;
   }
-  .nav-links a:hover { background: var(--bg2); color: var(--blue); }
-  .nav-cta {
-    background: var(--blue);
-    color: white !important;
-    border-radius: 10px !important;
-    padding: 9px 18px !important;
-  }
-  .nav-cta:hover { background: var(--navy2) !important; color: white !important; }
+  .ml-nav-links a:hover { background: var(--bg2); color: var(--blue); }
 
-  /* ---- HERO ---- */
-  .hero {
+  .ml-hero {
     background: linear-gradient(135deg, #020d2e 0%, #071a4f 40%, #0e2e72 70%, #123c7c 100%);
     color: white;
     padding: 64px 20px 72px;
@@ -122,7 +91,7 @@
     position: relative;
     overflow: hidden;
   }
-  .hero::before {
+  .ml-hero::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -131,16 +100,15 @@
       radial-gradient(circle at 80% 20%, rgba(245,181,0,0.10) 0%, transparent 50%);
     pointer-events: none;
   }
-  .hero-dots {
+  .ml-hero-dots {
     position: absolute;
     inset: 0;
     background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
     background-size: 32px 32px;
     pointer-events: none;
   }
-  .hero-inner { position: relative; z-index: 1; max-width: 900px; margin: auto; }
-
-  .hero-logo {
+  .ml-hero-inner { position: relative; z-index: 1; max-width: 900px; margin: auto; }
+  .ml-hero-logo {
     width: 100px; height: 100px;
     object-fit: contain;
     background: white;
@@ -149,8 +117,7 @@
     margin-bottom: 22px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   }
-
-  .hero-badge {
+  .ml-hero-badge {
     display: inline-block;
     background: rgba(245,181,0,0.18);
     border: 1px solid rgba(245,181,0,0.4);
@@ -163,49 +130,40 @@
     text-transform: uppercase;
     margin-bottom: 20px;
   }
-
-  .hero h1 {
+  .ml-hero h1 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(52px, 12vw, 96px);
     letter-spacing: 4px;
     line-height: 1;
     margin-bottom: 8px;
+    color: white;
   }
-  .hero h1 span { color: var(--gold2); }
-
-  .hero-sub {
+  .ml-hero h1 span { color: var(--gold2); }
+  .ml-hero-sub {
     font-size: clamp(15px, 3vw, 20px);
     color: #bdd0ff;
     max-width: 680px;
     margin: 18px auto 32px;
     font-weight: 500;
   }
-
-  .hero-stats {
+  .ml-hero-stats {
     display: flex;
     justify-content: center;
     gap: 32px;
     flex-wrap: wrap;
     margin-bottom: 36px;
   }
-  .hero-stat { text-align: center; }
-  .hero-stat-num {
+  .ml-hero-stat { text-align: center; }
+  .ml-hero-stat-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 38px;
     color: var(--gold2);
     line-height: 1;
   }
-  .hero-stat-label { font-size: 12px; color: #8aaee0; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .ml-hero-stat-label { font-size: 12px; color: #8aaee0; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .ml-hero-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-  .hero-btns {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  /* ---- BUTTONS ---- */
-  .btn {
+  .ml-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -217,23 +175,20 @@
     text-decoration: none;
     cursor: pointer;
     border: none;
-    transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    transition: transform 0.15s, opacity 0.15s;
     white-space: nowrap;
   }
-  .btn:hover { transform: translateY(-2px); opacity: 0.93; }
-  .btn:active { transform: scale(0.97); }
+  .ml-btn:hover { transform: translateY(-2px); opacity: 0.93; }
+  .ml-btn:active { transform: scale(0.97); }
+  .ml-btn-blue { background: var(--blue); color: white; box-shadow: 0 4px 16px rgba(26,86,219,0.35); }
+  .ml-btn-green { background: var(--green); color: white; box-shadow: 0 4px 16px rgba(22,163,74,0.35); }
+  .ml-btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 4px 16px rgba(245,181,0,0.30); font-weight: 800; }
+  .ml-btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .ml-btn-full { width: 100%; justify-content: center; font-size: 18px; padding: 16px; }
 
-  .btn-blue { background: var(--blue); color: white; box-shadow: 0 4px 16px rgba(26,86,219,0.35); }
-  .btn-green { background: var(--green); color: white; box-shadow: 0 4px 16px rgba(22,163,74,0.35); }
-  .btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 4px 16px rgba(245,181,0,0.30); font-weight: 800; }
-  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
-  .btn-outline:hover { background: rgba(255,255,255,0.1); }
-
-  /* ---- SECTION BASE ---- */
-  .section { padding: 64px 20px; }
-  .section-inner { max-width: 1150px; margin: auto; }
-
-  .sec-badge {
+  .ml-section { padding: 64px 20px; }
+  .ml-section-inner { max-width: 1150px; margin: auto; }
+  .ml-sec-badge {
     text-align: center;
     color: var(--blue);
     font-weight: 800;
@@ -242,7 +197,7 @@
     text-transform: uppercase;
     margin-bottom: 10px;
   }
-  .sec-title {
+  .ml-sec-title {
     text-align: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(32px, 6vw, 52px);
@@ -250,7 +205,7 @@
     letter-spacing: 2px;
     margin-bottom: 12px;
   }
-  .sec-sub {
+  .ml-sec-sub {
     text-align: center;
     color: var(--muted);
     max-width: 600px;
@@ -258,13 +213,12 @@
     font-size: 16px;
   }
 
-  /* ---- SERVICES ---- */
-  .services-grid {
+  .ml-services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
   }
-  .svc-card {
+  .ml-svc-card {
     background: white;
     border-radius: 20px;
     padding: 28px 22px;
@@ -273,8 +227,8 @@
     transition: transform 0.2s, box-shadow 0.2s;
     text-align: center;
   }
-  .svc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,86,219,0.16); }
-  .svc-icon {
+  .ml-svc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,86,219,0.16); }
+  .ml-svc-icon {
     width: 60px; height: 60px;
     background: var(--bg2);
     border-radius: 16px;
@@ -285,38 +239,36 @@
     margin: 0 auto 16px;
     border: 1.5px solid var(--border);
   }
-  .svc-card h3 { font-size: 18px; font-weight: 700; color: var(--navy2); margin-bottom: 8px; }
-  .svc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .ml-svc-card h3 { font-size: 18px; font-weight: 700; color: var(--navy2); margin-bottom: 8px; }
+  .ml-svc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-  /* ---- WHY US ---- */
-  .whyus { background: var(--navy); color: white; }
-  .whyus .sec-title { color: white; }
-  .whyus .sec-sub { color: #8aaee0; }
-  .whyus-grid {
+  .ml-whyus { background: var(--navy); color: white; }
+  .ml-whyus .ml-sec-title { color: white; }
+  .ml-whyus .ml-sec-sub { color: #8aaee0; }
+  .ml-whyus-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
   }
-  .why-card {
+  .ml-why-card {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.10);
     border-radius: 18px;
     padding: 26px 20px;
     text-align: center;
   }
-  .why-num {
+  .ml-why-num {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     color: var(--gold2);
     line-height: 1;
     margin-bottom: 6px;
   }
-  .why-card h3 { font-size: 17px; font-weight: 700; color: white; margin-bottom: 8px; }
-  .why-card p { font-size: 14px; color: #8aaee0; }
+  .ml-why-card h3 { font-size: 17px; font-weight: 700; color: white; margin-bottom: 8px; }
+  .ml-why-card p { font-size: 14px; color: #8aaee0; }
 
-  /* ---- BOOKING ---- */
-  .booking-bg { background: linear-gradient(135deg, var(--bg2) 0%, #d6e6ff 100%); }
-  .booking-card {
+  .ml-booking-bg { background: linear-gradient(135deg, var(--bg2) 0%, #d6e6ff 100%); }
+  .ml-booking-card {
     max-width: 680px;
     margin: auto;
     background: white;
@@ -325,8 +277,8 @@
     box-shadow: 0 12px 48px rgba(26,86,219,0.13);
     border: 1.5px solid var(--border);
   }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
+  .ml-form-group { margin-bottom: 16px; }
+  .ml-form-group label {
     display: block;
     font-size: 13px;
     font-weight: 700;
@@ -335,9 +287,8 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
   }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
+  .ml-form-group input,
+  .ml-form-group select {
     width: 100%;
     padding: 13px 16px;
     border-radius: 12px;
@@ -349,19 +300,16 @@
     transition: border-color 0.2s;
     outline: none;
   }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--blue); background: white; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+  .ml-form-group input:focus,
+  .ml-form-group select:focus { border-color: var(--blue); background: white; }
+  .ml-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-  /* ---- LOADS BOARD ---- */
-  .loads-grid {
+  .ml-loads-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
   }
-  .load-card {
+  .ml-load-card {
     background: white;
     border-radius: 22px;
     padding: 26px 22px;
@@ -369,8 +317,8 @@
     border: 2px solid var(--border);
     transition: transform 0.2s, border-color 0.2s;
   }
-  .load-card:hover { transform: translateY(-4px); border-color: var(--blue); }
-  .load-badge {
+  .ml-load-card:hover { transform: translateY(-4px); border-color: var(--blue); }
+  .ml-load-badge {
     display: inline-block;
     background: #dbeafe;
     color: var(--blue2);
@@ -382,7 +330,7 @@
     border-radius: 20px;
     margin-bottom: 14px;
   }
-  .load-route {
+  .ml-load-route {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 26px;
     color: var(--navy);
@@ -390,10 +338,10 @@
     margin-bottom: 14px;
     line-height: 1.1;
   }
-  .load-route span { color: var(--blue); }
-  .load-info { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
-  .load-info strong { color: var(--navy2); }
-  .load-rate {
+  .ml-load-route span { color: var(--blue); }
+  .ml-load-info { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+  .ml-load-info strong { color: var(--navy2); }
+  .ml-load-rate {
     display: inline-block;
     background: #dcfce7;
     color: var(--green2);
@@ -404,8 +352,7 @@
     margin: 8px 0 16px;
   }
 
-  /* ---- POST TRUCK ---- */
-  .post-truck-banner {
+  .ml-post-truck-banner {
     background: linear-gradient(135deg, var(--blue), var(--navy2));
     color: white;
     border-radius: 24px;
@@ -414,19 +361,23 @@
     margin-top: 48px;
     box-shadow: 0 8px 32px rgba(26,86,219,0.25);
   }
-  .post-truck-banner h3 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 10px; }
-  .post-truck-banner p { color: #c8d9ff; margin-bottom: 22px; }
+  .ml-post-truck-banner h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .ml-post-truck-banner p { color: #c8d9ff; margin-bottom: 22px; }
 
-  /* ---- COVERAGE AREAS ---- */
-  .areas-bg { background: var(--bg2); }
-  .areas-list {
+  .ml-areas-bg { background: var(--bg2); }
+  .ml-areas-list {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
     margin-top: 32px;
   }
-  .area-pill {
+  .ml-area-pill {
     background: white;
     border: 2px solid var(--border);
     color: var(--navy2);
@@ -436,70 +387,68 @@
     border-radius: 50px;
     box-shadow: 0 2px 8px rgba(26,86,219,0.07);
     transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: default;
   }
-  .area-pill:hover { background: var(--blue); color: white; border-color: var(--blue); }
+  .ml-area-pill:hover { background: var(--blue); color: white; border-color: var(--blue); }
 
-  /* ---- REVIEWS ---- */
-  .reviews-grid {
+  .ml-reviews-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 20px;
   }
-  .review-card {
+  .ml-review-card {
     background: white;
     border-radius: 20px;
     padding: 26px 22px;
     box-shadow: var(--card-shadow);
     border: 1.5px solid var(--border);
   }
-  .review-stars { color: var(--gold); font-size: 20px; margin-bottom: 12px; }
-  .review-text { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 14px; font-style: italic; }
-  .review-author { font-weight: 700; color: var(--navy2); font-size: 15px; }
+  .ml-review-stars { color: var(--gold); font-size: 20px; margin-bottom: 12px; }
+  .ml-review-text { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 14px; font-style: italic; }
+  .ml-review-author { font-weight: 700; color: var(--navy2); font-size: 15px; }
 
-  /* ---- CONTACT ---- */
-  .contact-section {
+  .ml-contact-section {
     background: linear-gradient(135deg, #020d2e 0%, #071a4f 60%, #0e2e72 100%);
     color: white;
+    padding: 64px 20px;
   }
-  .contact-section .sec-title { color: white; }
-  .contact-section .sec-sub { color: #8aaee0; }
-  .contact-grid {
+  .ml-contact-section .ml-sec-title { color: white; }
+  .ml-contact-section .ml-sec-sub { color: #8aaee0; }
+  .ml-contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     margin-bottom: 36px;
   }
-  .contact-card {
+  .ml-contact-card {
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 18px;
     padding: 26px 22px;
     text-align: center;
   }
-  .contact-icon { font-size: 36px; margin-bottom: 10px; }
-  .contact-card h3 { font-size: 14px; color: #8aaee0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .contact-card p, .contact-card a {
+  .ml-contact-icon { font-size: 36px; margin-bottom: 10px; }
+  .ml-contact-card h3 { font-size: 14px; color: #8aaee0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .ml-contact-card p, .ml-contact-card a {
     font-size: 18px;
     font-weight: 700;
     color: white;
     text-decoration: none;
   }
-  .contact-card a:hover { color: var(--gold2); }
-  .contact-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .ml-contact-card a:hover { color: var(--gold2); }
+  .ml-contact-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-  /* ---- FOOTER ---- */
-  footer {
+  .ml-footer {
     background: #020617;
     color: #475569;
     text-align: center;
     padding: 22px 20px;
     font-size: 14px;
   }
-  footer a { color: #64748b; text-decoration: none; }
-  footer a:hover { color: var(--gold2); }
+  .ml-footer a { color: #64748b; text-decoration: none; }
+  .ml-footer a:hover { color: var(--gold2); }
 
-  /* ---- FLOATING WA ---- */
-  .wa-float {
+  .ml-wa-float {
     position: fixed;
     bottom: 24px;
     right: 24px;
@@ -515,10 +464,9 @@
     box-shadow: 0 4px 20px rgba(37,211,102,0.45);
     transition: transform 0.2s;
   }
-  .wa-float:hover { transform: scale(1.12); }
+  .ml-wa-float:hover { transform: scale(1.12); }
 
-  /* ---- DIVIDER ---- */
-  .truck-divider {
+  .ml-truck-divider {
     text-align: center;
     padding: 10px 0;
     color: var(--border);
@@ -528,379 +476,312 @@
     white-space: nowrap;
   }
 
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .topbar { font-size: 12px; gap: 6px; }
-    .booking-card { padding: 24px 18px; }
+  @media (max-width: 560px) {
+    .ml-form-row { grid-template-columns: 1fr; }
+    .ml-nav-links { display: none; }
   }
-</style>
-</head>
-<body>
+`;
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-brand">
-    <img src="https://www.meeralogistics.in/logo.png.jpeg" alt="Meera Logistics" class="nav-logo" onerror="this.style.display='none'"/>
-    <span class="nav-title">MEERA <span>LOGISTICS</span></span>
-  </a>
-  <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#loads">Return Load</a>
-    <a href="#booking">Book Truck</a>
-    <a href="#contact">Contact</a>
-    <a href="https://wa.me/919558959579" target="_blank" class="btn btn-green nav-cta">📲 WhatsApp</a>
-  </div>
-</nav>
+const services = [
+  { icon: "🚛", title: "Tipper Transport", desc: "Construction material, sand, gravel transport with tipper trucks across Gujarat." },
+  { icon: "⛏️", title: "Dumper Service", desc: "Heavy-duty dumper trucks for industrial and bulk material logistics solutions." },
+  { icon: "🏗️", title: "Truck Booking", desc: "Body truck and full-load transport booking for all types of goods and routes." },
+  { icon: "🔄", title: "Return Load", desc: "ખાલી ન જાવ — Free return load matching service for truck owners and drivers." },
+  { icon: "📦", title: "Fleet Management", desc: "Multi-truck fleet coordination for big industrial and commercial transport projects." },
+  { icon: "🗺️", title: "Gujarat Network", desc: "Jamnagar, Dahej, Morbi, Surat, Ahmedabad, Kutch — all major industrial zones." },
+];
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-inner">
-    <img src="https://www.meeralogistics.in/logo.png.jpeg" alt="Meera Logistics Logo" class="hero-logo" onerror="this.style.display='none'"/>
-    <div class="hero-badge">🚛 Trusted Gujarat Transport Service</div>
-    <h1>MEERA <span>LOGISTICS</span></h1>
-    <p class="hero-sub">Reliable Tipper, Dumper &amp; Truck Transport Service across Gujarat. Fast, trusted and professional logistics from Jamnagar.</p>
+const whyUs = [
+  { num: "24/7", title: "Round the Clock", desc: "Day or night, anytime support for truck booking and load matching." },
+  { num: "Fast", title: "Quick Dispatch", desc: "Same day truck allocation for urgent transport requirements." },
+  { num: "Free", title: "Return Load Board", desc: "Post your truck or find return load completely free of charge." },
+  { num: "All", title: "Gujarat Coverage", desc: "All major cities and industrial areas covered in the Gujarat network." },
+];
 
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-num">24/7</div>
-        <div class="hero-stat-label">Support</div>
+const loads = [
+  { from: "Jamnagar", to: "Ahmedabad", truck: "Tipper / Dumper", material: "Industrial Material", time: "આજ સાંજ 5 PM", rate: "Best Rate / Negotiate" },
+  { from: "Morbi", to: "Surat", truck: "Body Truck", material: "Tiles / Ceramic", time: "કાલ સવારે 7 AM", rate: "Full Load" },
+  { from: "Jamnagar", to: "Surat", truck: "Dumper", material: "Industrial Goods", time: "આજ રાત 9 PM", rate: "Best Rate / Negotiate" },
+  { from: "Dahej", to: "All Gujarat", truck: "Truck / Dumper", material: "Industrial Goods", time: "કાલ સવારે 6 AM", rate: "Contact Now" },
+];
+
+const areas = ["🏭 Jamnagar","🏗️ Kutch","🏺 Morbi","🌆 Ahmedabad","🏛️ Vadodara","🌊 Surat","⚓ Vapi","⚗️ Dahej","🏘️ Limdi","🌾 Rajkot","🏭 Bhavnagar","🚢 Mundra"];
+
+const reviews = [
+  { text: "Fast service and professional drivers. Industrial load was delivered on time. Highly recommended for Jamnagar routes.", author: "Transport Contractor, Jamnagar" },
+  { text: "Reliable support for industrial loads from Dahej. Return load service is very helpful and saves money.", author: "Fleet Owner, Dahej" },
+  { text: "Best tipper and dumper service in Gujarat. Responsive on WhatsApp and honest rates. Will use again.", author: "Builder, Morbi" },
+];
+
+export default function Home() {
+  const [form, setForm] = useState({ from: "", to: "", goods: "", truck: "", datetime: "", mobile: "" });
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const sendBooking = () => {
+    if (!form.from || !form.to) {
+      alert("Please fill in Loading and Unloading Point.");
+      return;
+    }
+    const msg = encodeURIComponent(
+      `Hello Meera Logistics,\nMane Truck Book Karvu Chhe.\n\n` +
+      `📍 Loading: ${form.from || "-"}\n` +
+      `📍 Unloading: ${form.to || "-"}\n` +
+      `📦 Goods: ${form.goods || "-"}\n` +
+      `🚛 Truck: ${form.truck || "-"}\n` +
+      `📅 Time: ${form.datetime || "-"}\n` +
+      `📞 Mobile: ${form.mobile || "-"}`
+    );
+    window.open("https://wa.me/919558959579?text=" + msg, "_blank");
+  };
+
+  return (
+    <>
+      <style>{styles}</style>
+      <div className="ml-body">
+
+        {/* NAV */}
+        <nav className="ml-nav">
+          <a href="#" className="ml-nav-brand">
+            <img src="/logo.png.jpeg" alt="Meera Logistics" className="ml-nav-logo" />
+            <span className="ml-nav-title">MEERA <span>LOGISTICS</span></span>
+          </a>
+          <div className="ml-nav-links">
+            <a href="#services">Services</a>
+            <a href="#loads">Return Load</a>
+            <a href="#booking">Book Truck</a>
+            <a href="#contact">Contact</a>
+            <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-green" style={{ borderRadius: 10, padding: "9px 18px" }}>📲 WhatsApp</a>
+          </div>
+        </nav>
+
+        {/* HERO */}
+        <section className="ml-hero">
+          <div className="ml-hero-dots" />
+          <div className="ml-hero-inner">
+            <div className="ml-hero-badge">🚛 Trusted Gujarat Transport Service</div>
+            <h1>MEERA <span>LOGISTICS</span></h1>
+            <p className="ml-hero-sub">Reliable Tipper, Dumper &amp; Truck Transport Service across Gujarat. Fast, trusted and professional logistics from Jamnagar.</p>
+            <div className="ml-hero-stats">
+              {[["24/7","Support"],["ALL","Gujarat"],["100%","Trusted"]].map(([num,label]) => (
+                <div key={label} className="ml-hero-stat">
+                  <div className="ml-hero-stat-num">{num}</div>
+                  <div className="ml-hero-stat-label">{label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="ml-hero-btns">
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 Call Now</a>
+              <a href="#loads" className="ml-btn ml-btn-blue">🔄 Return Load Board</a>
+              <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-outline">📲 WhatsApp</a>
+            </div>
+          </div>
+        </section>
+
+        <div className="ml-truck-divider">🚛 🚛 🚛 🚛 🚛</div>
+
+        {/* SERVICES */}
+        <section className="ml-section" id="services">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">Our Services</p>
+            <h2 className="ml-sec-title">Transport Solutions</h2>
+            <p className="ml-sec-sub">Gujarat ભરમાં professional logistics સેવા. Industrial, construction અને commercial transport.</p>
+            <div className="ml-services-grid">
+              {services.map((s) => (
+                <div key={s.title} className="ml-svc-card">
+                  <div className="ml-svc-icon">{s.icon}</div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* WHY US */}
+        <section className={`ml-section ml-whyus`}>
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>Why Choose Us</p>
+            <h2 className="ml-sec-title">Gujarat&apos;s Trusted Transport Partner</h2>
+            <p className="ml-sec-sub">અમે ઝડપ, ભરોસો અને professionalism સાથે Gujarat transport industry serve કરીએ છીએ.</p>
+            <div className="ml-whyus-grid">
+              {whyUs.map((w) => (
+                <div key={w.title} className="ml-why-card">
+                  <div className="ml-why-num">{w.num}</div>
+                  <h3>{w.title}</h3>
+                  <p>{w.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RETURN LOAD BOARD */}
+        <section className="ml-section" id="loads">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">Live Load Board</p>
+            <h2 className="ml-sec-title">Return Load Board</h2>
+            <p className="ml-sec-sub">Delivery complete? ખાલી ન જાવ — Gujarat ભરમાં Return Load instantly મેળવો. Free service for truck owners.</p>
+            <div className="ml-loads-grid">
+              {loads.map((l) => (
+                <div key={l.from + l.to} className="ml-load-card">
+                  <div className="ml-load-badge">🔄 Return Load</div>
+                  <div className="ml-load-route">{l.from} <span>→</span> {l.to}</div>
+                  <div className="ml-load-info">🚛 Truck: <strong>{l.truck}</strong></div>
+                  <div className="ml-load-info">📦 Material: <strong>{l.material}</strong></div>
+                  <div className="ml-load-info">⏰ Available: <strong>{l.time}</strong></div>
+                  <div className="ml-load-rate">💰 {l.rate}</div>
+                  <a
+                    href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(l.from)}%20to%20${encodeURIComponent(l.to)}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
+                    target="_blank"
+                    className="ml-btn ml-btn-green ml-btn-full"
+                  >
+                    📲 Book Now
+                  </a>
+                </div>
+              ))}
+            </div>
+            <div className="ml-post-truck-banner">
+              <h3>🚛 Return Truck Post કરો — Free</h3>
+              <p>Truck owner, driver or broker — ખાલી truck ની details send કરો. Load matching free service.</p>
+              <a
+                href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0AMare%20Return%20Truck%20Post%20Karvu%20Chhe.%0A%0AName%3A%0AMobile%3A%0ATruck%20Type%3A%0AVehicle%20Number%3A%0ACurrent%20Location%3A%0AAvailable%20Route%3A"
+                target="_blank"
+                className="ml-btn ml-btn-gold"
+              >
+                📲 WhatsApp પર Post કરો
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* BOOKING */}
+        <section className="ml-section ml-booking-bg" id="booking">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">Book Transport</p>
+            <h2 className="ml-sec-title">Truck Book કરો</h2>
+            <p className="ml-sec-sub">Details ભરો અને WhatsApp પર booking confirm કરો.</p>
+            <div className="ml-booking-card">
+              <div className="ml-form-row">
+                <div className="ml-form-group">
+                  <label>📍 Loading Point</label>
+                  <input name="from" value={form.from} onChange={handleChange} placeholder="e.g. Jamnagar" />
+                </div>
+                <div className="ml-form-group">
+                  <label>📍 Unloading Point</label>
+                  <input name="to" value={form.to} onChange={handleChange} placeholder="e.g. Ahmedabad" />
+                </div>
+              </div>
+              <div className="ml-form-group">
+                <label>📦 Goods / Material Details</label>
+                <input name="goods" value={form.goods} onChange={handleChange} placeholder="e.g. Industrial Material, Sand, Tiles" />
+              </div>
+              <div className="ml-form-row">
+                <div className="ml-form-group">
+                  <label>🚛 Select Truck Type</label>
+                  <select name="truck" value={form.truck} onChange={handleChange}>
+                    <option value="">Select Truck</option>
+                    <option>Tipper</option>
+                    <option>Dumper</option>
+                    <option>Body Truck</option>
+                    <option>Trailer</option>
+                  </select>
+                </div>
+                <div className="ml-form-group">
+                  <label>📅 Date / Time</label>
+                  <input name="datetime" value={form.datetime} onChange={handleChange} placeholder="e.g. Aaj / Kal Savare 7 AM" />
+                </div>
+              </div>
+              <div className="ml-form-group">
+                <label>📞 Your Mobile Number</label>
+                <input name="mobile" type="tel" value={form.mobile} onChange={handleChange} placeholder="Your mobile number" />
+              </div>
+              <button onClick={sendBooking} className="ml-btn ml-btn-green ml-btn-full">
+                📲 Send Booking on WhatsApp
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* COVERAGE AREAS */}
+        <section className="ml-section ml-areas-bg">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">Coverage</p>
+            <h2 className="ml-sec-title">Serving All Over Gujarat</h2>
+            <p className="ml-sec-sub">All major cities, ports and industrial zones covered.</p>
+            <div className="ml-areas-list">
+              {areas.map((a) => <div key={a} className="ml-area-pill">{a}</div>)}
+            </div>
+            <div style={{ textAlign: "center", marginTop: 28 }}>
+              <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" className="ml-btn ml-btn-blue">📍 View Office Location</a>
+            </div>
+          </div>
+        </section>
+
+        {/* REVIEWS */}
+        <section className="ml-section">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">Customer Reviews</p>
+            <h2 className="ml-sec-title">What Clients Say</h2>
+            <p className="ml-sec-sub">Gujarat ભરના truck owners અને businesses ની feedback.</p>
+            <div className="ml-reviews-grid">
+              {reviews.map((r) => (
+                <div key={r.author} className="ml-review-card">
+                  <div className="ml-review-stars">★★★★★</div>
+                  <p className="ml-review-text">&ldquo;{r.text}&rdquo;</p>
+                  <div className="ml-review-author">— {r.author}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section className="ml-contact-section" id="contact">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>Contact Us</p>
+            <h2 className="ml-sec-title">Contact Meera Logistics</h2>
+            <p className="ml-sec-sub">Truck booking, return load, fleet inquiry — ગમે ત્યારે contact કરો.</p>
+            <div className="ml-contact-grid">
+              {[
+                { icon: "📞", title: "Phone / Call", content: <a href="tel:9558959579">9558959579</a> },
+                { icon: "📲", title: "WhatsApp", content: <a href="https://wa.me/919558959579" target="_blank">+91 9558959579</a> },
+                { icon: "📍", title: "Office Location", content: <p>Jamnagar, Gujarat</p> },
+                { icon: "🌐", title: "Website", content: <a href="https://meeralogistics.in" target="_blank">meeralogistics.in</a> },
+              ].map((c) => (
+                <div key={c.title} className="ml-contact-card">
+                  <div className="ml-contact-icon">{c.icon}</div>
+                  <h3>{c.title}</h3>
+                  {c.content}
+                </div>
+              ))}
+            </div>
+            <div className="ml-contact-btns">
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 Call Now</a>
+              <a href="https://wa.me/919558959579" target="_blank" className="ml-btn ml-btn-green">📲 WhatsApp Contact</a>
+              <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20I%20want%20to%20book%20a%20truck." target="_blank" className="ml-btn ml-btn-blue">🚛 Book Truck Now</a>
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="ml-footer">
+          <p style={{ marginBottom: 8 }}>
+            <strong style={{ color: "#94a3b8" }}>MEERA LOGISTICS</strong> — Trusted Transport Partner Across Gujarat 🚛
+          </p>
+          <p>
+            <a href="https://meeralogistics.in">meeralogistics.in</a>
+            {" | "}
+            <a href="tel:9558959579">9558959579</a>
+            {" | "}
+            Jamnagar, Gujarat
+          </p>
+          <p style={{ marginTop: 10 }}>© 2026 Meera Logistics. All Rights Reserved.</p>
+        </footer>
+
+        {/* FLOATING WA */}
+        <a href="https://wa.me/919558959579" target="_blank" className="ml-wa-float" title="WhatsApp">📲</a>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">ALL</div>
-        <div class="hero-stat-label">Gujarat</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num">100%</div>
-        <div class="hero-stat-label">Trusted</div>
-      </div>
-    </div>
-
-    <div class="hero-btns">
-      <a href="tel:9558959579" class="btn btn-gold">📞 Call Now</a>
-      <a href="#loads" class="btn btn-blue">🔄 Return Load Board</a>
-      <a href="https://wa.me/919558959579" target="_blank" class="btn btn-outline">📲 WhatsApp</a>
-    </div>
-  </div>
-</section>
-
-<div class="truck-divider">🚛 🚛 🚛 🚛 🚛</div>
-
-<!-- SERVICES -->
-<section class="section" id="services">
-  <div class="section-inner">
-    <p class="sec-badge">Our Services</p>
-    <h2 class="sec-title">Transport Solutions</h2>
-    <p class="sec-sub">Gujarat ભરમાં professional logistics સેવા. Industrial, construction અને commercial transport.</p>
-
-    <div class="services-grid">
-      <div class="svc-card">
-        <div class="svc-icon">🚛</div>
-        <h3>Tipper Transport</h3>
-        <p>Construction material, sand, gravel transport with tipper trucks across Gujarat.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">⛏️</div>
-        <h3>Dumper Service</h3>
-        <p>Heavy-duty dumper trucks for industrial and bulk material logistics solutions.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">🏗️</div>
-        <h3>Truck Booking</h3>
-        <p>Body truck and full-load transport booking for all types of goods and routes.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">🔄</div>
-        <h3>Return Load</h3>
-        <p>ખાલી ન જાવ — Free return load matching service for truck owners and drivers.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">📦</div>
-        <h3>Fleet Management</h3>
-        <p>Multi-truck fleet coordination for big industrial and commercial transport projects.</p>
-      </div>
-      <div class="svc-card">
-        <div class="svc-icon">🗺️</div>
-        <h3>Gujarat Network</h3>
-        <p>Jamnagar, Dahej, Morbi, Surat, Ahmedabad, Kutch — all major industrial zones.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section class="section whyus">
-  <div class="section-inner">
-    <p class="sec-badge" style="color:#ffd84d;">Why Choose Us</p>
-    <h2 class="sec-title">Gujarat's Trusted Transport Partner</h2>
-    <p class="sec-sub">અમે ઝડપ, ભરોસો અને professionalism સાથે Gujarat transport industry serve કરીએ છીએ.</p>
-
-    <div class="whyus-grid">
-      <div class="why-card">
-        <div class="why-num">24/7</div>
-        <h3>Round the Clock</h3>
-        <p>Day or night, anytime support for truck booking and load matching.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-num">Fast</div>
-        <h3>Quick Dispatch</h3>
-        <p>Same day truck allocation for urgent transport requirements.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-num">Free</div>
-        <h3>Return Load Board</h3>
-        <p>Post your truck or find return load completely free of charge.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-num">All</div>
-        <h3>Gujarat Coverage</h3>
-        <p>All major cities and industrial areas covered in the Gujarat network.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TODAY'S LOADS / RETURN LOAD BOARD -->
-<section class="section" id="loads">
-  <div class="section-inner">
-    <p class="sec-badge">Live Load Board</p>
-    <h2 class="sec-title">Return Load Board</h2>
-    <p class="sec-sub">Delivery complete? ખાલી ન જાવ — Gujarat ભરમાં Return Load instantly મેળવો. Free service for truck owners.</p>
-
-    <div class="loads-grid">
-      <div class="load-card">
-        <div class="load-badge">🔄 Return Load</div>
-        <div class="load-route">Jamnagar <span>→</span> Ahmedabad</div>
-        <div class="load-info">🚛 Truck: <strong>Tipper / Dumper</strong></div>
-        <div class="load-info">📦 Material: <strong>Industrial Material</strong></div>
-        <div class="load-info">⏰ Available: <strong>આજ સાંજ 5 PM</strong></div>
-        <div class="load-rate">💰 Best Rate / Negotiate</div>
-        <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20Jamnagar%20to%20Ahmedabad%0ATruck%3A%20Tipper%2FDumper" target="_blank" class="btn btn-green" style="width:100%;justify-content:center;">📲 Book Now</a>
-      </div>
-
-      <div class="load-card">
-        <div class="load-badge">🔄 Return Load</div>
-        <div class="load-route">Morbi <span>→</span> Surat</div>
-        <div class="load-info">🚛 Truck: <strong>Body Truck</strong></div>
-        <div class="load-info">📦 Material: <strong>Tiles / Ceramic</strong></div>
-        <div class="load-info">⏰ Available: <strong>કાલ સવારે 7 AM</strong></div>
-        <div class="load-rate">💰 Full Load</div>
-        <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20Morbi%20to%20Surat%0ATruck%3A%20Body%20Truck" target="_blank" class="btn btn-green" style="width:100%;justify-content:center;">📲 Book Now</a>
-      </div>
-
-      <div class="load-card">
-        <div class="load-badge">🔄 Return Load</div>
-        <div class="load-route">Jamnagar <span>→</span> Surat</div>
-        <div class="load-info">🚛 Truck: <strong>Dumper</strong></div>
-        <div class="load-info">📦 Material: <strong>Industrial Goods</strong></div>
-        <div class="load-info">⏰ Available: <strong>આજ રાત 9 PM</strong></div>
-        <div class="load-rate">💰 Best Rate / Negotiate</div>
-        <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20Jamnagar%20to%20Surat%0ATruck%3A%20Dumper" target="_blank" class="btn btn-green" style="width:100%;justify-content:center;">📲 Book Now</a>
-      </div>
-
-      <div class="load-card">
-        <div class="load-badge">🔄 Return Load</div>
-        <div class="load-route">Dahej <span>→</span> All Gujarat</div>
-        <div class="load-info">🚛 Truck: <strong>Truck / Dumper</strong></div>
-        <div class="load-info">📦 Material: <strong>Industrial Goods</strong></div>
-        <div class="load-info">⏰ Available: <strong>કાલ સવારે 6 AM</strong></div>
-        <div class="load-rate">💰 Contact Now</div>
-        <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20Dahej%20to%20Gujarat%0ATruck%3A%20Dumper" target="_blank" class="btn btn-green" style="width:100%;justify-content:center;">📲 Book Now</a>
-      </div>
-    </div>
-
-    <div class="post-truck-banner">
-      <h3>🚛 Return Truck Post કરો — Free</h3>
-      <p>Truck owner, driver or broker — ખાલી truck ની details send કરો. Load matching free service.</p>
-      <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0AMare%20Return%20Truck%20Post%20Karvu%20Chhe.%0A%0AName%3A%0AMobile%3A%0ATruck%20Type%3A%0AVehicle%20Number%3A%0ACurrent%20Location%3A%0AAvailable%20Route%3A" target="_blank" class="btn btn-gold">📲 WhatsApp પર Post કરો</a>
-    </div>
-  </div>
-</section>
-
-<!-- BOOKING -->
-<section class="section booking-bg" id="booking">
-  <div class="section-inner">
-    <p class="sec-badge">Book Transport</p>
-    <h2 class="sec-title">Truck Book કરો</h2>
-    <p class="sec-sub">Details ભરો અને WhatsApp પર booking confirm કરો.</p>
-
-    <div class="booking-card">
-      <div class="form-row">
-        <div class="form-group">
-          <label>📍 Loading Point</label>
-          <input type="text" id="from" placeholder="e.g. Jamnagar"/>
-        </div>
-        <div class="form-group">
-          <label>📍 Unloading Point</label>
-          <input type="text" id="to" placeholder="e.g. Ahmedabad"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>📦 Goods / Material Details</label>
-        <input type="text" id="goods" placeholder="e.g. Industrial Material, Sand, Tiles"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>🚛 Select Truck Type</label>
-          <select id="truck">
-            <option value="">Select Truck</option>
-            <option>Tipper</option>
-            <option>Dumper</option>
-            <option>Body Truck</option>
-            <option>Trailer</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>📅 Date / Time</label>
-          <input type="text" id="datetime" placeholder="e.g. Aaj / Kal Savare 7 AM"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>📞 Your Mobile Number</label>
-        <input type="tel" id="mobile" placeholder="Your mobile number"/>
-      </div>
-      <button onclick="sendBooking()" class="btn btn-green" style="width:100%;justify-content:center;font-size:18px;padding:16px;">
-        📲 Send Booking on WhatsApp
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- COVERAGE AREAS -->
-<section class="section areas-bg">
-  <div class="section-inner">
-    <p class="sec-badge">Coverage</p>
-    <h2 class="sec-title">Serving All Over Gujarat</h2>
-    <p class="sec-sub">All major cities, ports and industrial zones covered.</p>
-
-    <div class="areas-list">
-      <div class="area-pill">🏭 Jamnagar</div>
-      <div class="area-pill">🏗️ Kutch</div>
-      <div class="area-pill">🏺 Morbi</div>
-      <div class="area-pill">🌆 Ahmedabad</div>
-      <div class="area-pill">🏛️ Vadodara</div>
-      <div class="area-pill">🌊 Surat</div>
-      <div class="area-pill">⚓ Vapi</div>
-      <div class="area-pill">⚗️ Dahej</div>
-      <div class="area-pill">🏘️ Limdi</div>
-      <div class="area-pill">🌾 Rajkot</div>
-      <div class="area-pill">🏭 Bhavnagar</div>
-      <div class="area-pill">🚢 Mundra</div>
-    </div>
-
-    <div style="text-align:center;margin-top:28px;">
-      <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" class="btn btn-blue">📍 View Office Location</a>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="section">
-  <div class="section-inner">
-    <p class="sec-badge">Customer Reviews</p>
-    <h2 class="sec-title">What Clients Say</h2>
-    <p class="sec-sub">Gujarat ભરના truck owners અને businesses ની feedback.</p>
-
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Fast service and professional drivers. Industrial load was delivered on time. Highly recommended for Jamnagar routes."</p>
-        <div class="review-author">— Transport Contractor, Jamnagar</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Reliable support for industrial loads from Dahej. Return load service is very helpful and saves money."</p>
-        <div class="review-author">— Fleet Owner, Dahej</div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">"Best tipper and dumper service in Gujarat. Responsive on WhatsApp and honest rates. Will use again."</p>
-        <div class="review-author">— Builder, Morbi</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section contact-section" id="contact">
-  <div class="section-inner">
-    <p class="sec-badge" style="color:#ffd84d;">Contact Us</p>
-    <h2 class="sec-title">Contact Meera Logistics</h2>
-    <p class="sec-sub">Truck booking, return load, fleet inquiry — ગમે ત્યારે contact કરો.</p>
-
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-icon">📞</div>
-        <h3>Phone / Call</h3>
-        <a href="tel:9558959579">9558959579</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">📲</div>
-        <h3>WhatsApp</h3>
-        <a href="https://wa.me/919558959579" target="_blank">+91 9558959579</a>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">📍</div>
-        <h3>Office Location</h3>
-        <p>Jamnagar, Gujarat</p>
-      </div>
-      <div class="contact-card">
-        <div class="contact-icon">🌐</div>
-        <h3>Website</h3>
-        <a href="https://meeralogistics.in" target="_blank">meeralogistics.in</a>
-      </div>
-    </div>
-
-    <div class="contact-btns">
-      <a href="tel:9558959579" class="btn btn-gold">📞 Call Now</a>
-      <a href="https://wa.me/919558959579" target="_blank" class="btn btn-green">📲 WhatsApp Contact</a>
-      <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20I%20want%20to%20book%20a%20truck." target="_blank" class="btn btn-blue">🚛 Book Truck Now</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <p style="margin-bottom:8px;">
-    <strong style="color:#94a3b8;">MEERA LOGISTICS</strong> — Trusted Transport Partner Across Gujarat 🚛
-  </p>
-  <p>
-    <a href="https://meeralogistics.in">meeralogistics.in</a> &nbsp;|&nbsp;
-    <a href="tel:9558959579">9558959579</a> &nbsp;|&nbsp;
-    Jamnagar, Gujarat
-  </p>
-  <p style="margin-top:10px;">© 2026 Meera Logistics. All Rights Reserved.</p>
-</footer>
-
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/919558959579" target="_blank" class="wa-float" title="WhatsApp">📲</a>
-
-<script>
-function sendBooking() {
-  const from = document.getElementById('from').value.trim();
-  const to = document.getElementById('to').value.trim();
-  const goods = document.getElementById('goods').value.trim();
-  const truck = document.getElementById('truck').value.trim();
-  const dt = document.getElementById('datetime').value.trim();
-  const mob = document.getElementById('mobile').value.trim();
-
-  if (!from || !to) {
-    alert('Please fill in Loading and Unloading Point.');
-    return;
-  }
-
-  const msg = encodeURIComponent(
-    `Hello Meera Logistics,\nMane Truck Book Karvu Chhe.\n\n` +
-    `📍 Loading: ${from || '-'}\n` +
-    `📍 Unloading: ${to || '-'}\n` +
-    `📦 Goods: ${goods || '-'}\n` +
-    `🚛 Truck: ${truck || '-'}\n` +
-    `📅 Time: ${dt || '-'}\n` +
-    `📞 Mobile: ${mob || '-'}`
+    </>
   );
-
-  window.open('https://wa.me/919558959579?text=' + msg, '_blank');
 }
-</script>
-</body>
-</html>
