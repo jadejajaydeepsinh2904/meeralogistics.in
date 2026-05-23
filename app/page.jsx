@@ -28,7 +28,7 @@ export default function Home() {
         borderBottomRightRadius: 45
       }}>
        <img
-  src="/logo.png"
+  src="/logo.png.jpeg"
   alt="Meera Logistics"
   style={{
     width: 90,
