@@ -1,683 +1,806 @@
-'use client';
+"use client";
+import { useState, useEffect } from "react";
 
-import { useState } from 'react';
 
-const TRUCK_TYPES = ['ડમ્પર', 'ટિપર', 'બોડી', 'ટ્રેલર', 'કન્ટેઈનર', 'ટેન્કર'];
 
-function getTodayStr() {
-  const d = new Date();
-  const days = ['રવિવાર', 'સોમવાર', 'મંગળવાર', 'બુધવાર', 'ગુરુવાર', 'શુક્રવાર', 'શનિવાર'];
-  const months = ['જાન્યુ', 'ફેબ્રુ', 'માર્ચ', 'એપ્રિ', 'મે', 'જૂન', 'જુલા', 'ઓગ', 'સપ્ટ', 'ઓક્ટ', 'નવે', 'ડિસે'];
-  return `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
-}
+const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap');
 
-function buildMessage(loads) {
-  if (loads.length === 0) return '';
-  const today = getTodayStr();
+  :root {
+    --navy: #071a4f;
+    --navy2: #0d2a6b;
+    --blue: #1a56db;
+    --blue2: #1341b0;
+    --gold: #f5b500;
+    --gold2: #ffd84d;
+    --green: #16a34a;
+    --green2: #15803d;
+    --white: #ffffff;
+    --bg: #f0f4ff;
+    --bg2: #e4ecfe;
+    --text: #0f172a;
+    --muted: #475569;
+    --border: #c7d9f8;
+    --card-shadow: 0 4px 24px rgba(26,86,219,0.10);
+  }
 
-  let msg = `🚛 *Meera Logistics*\n`;
-  msg += `📅 ${today}\n`;
-  msg += `──────────────────────\n\n`;
-  msg += `*આજના Available Loads:*\n\n`;
+  html { scroll-behavior: smooth; }
 
-  loads.forEach((l, i) => {
-    msg += `*${i + 1}. ${l.from} ➜ ${l.to}*\n`;
-    msg += `   🚛 Truck: ${l.truck}\n`;
-    if (l.material) msg += `   📦 Material: ${l.material}\n`;
-    if (l.rate) msg += `   💰 Rate: ${l.rate}\n`;
-    msg += `\n`;
-  });
+  .ml-body {
+    font-family: 'Rajdhani', 'Noto Sans Gujarati', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
 
-  msg += `──────────────────────\n`;
-  msg += `📞 Contact: Meera Logistics\n`;
-  msg += `_Interested hoy to reply karo_ 🙏`;
+  .ml-nav {
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: 0 2px 12px rgba(26,86,219,0.08);
+  }
+  .ml-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    text-decoration: none;
+  }
+  .ml-nav-logo {
+    width: 48px; height: 48px;
+    object-fit: contain;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: var(--white);
+  }
+  .ml-nav-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--navy);
+    letter-spacing: 2px;
+  }
+  .ml-nav-title span { color: var(--blue); }
+  .ml-nav-links {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ml-nav-links a {
+    color: var(--navy2);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ml-nav-links a:hover { background: var(--bg2); color: var(--blue); }
 
-  return msg;
-}
+  .ml-hero {
+    background: linear-gradient(135deg, #020d2e 0%, #071a4f 40%, #0e2e72 70%, #123c7c 100%);
+    color: white;
+    padding: 64px 20px 72px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .ml-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(26,86,219,0.18) 0%, transparent 55%),
+      radial-gradient(circle at 80% 20%, rgba(245,181,0,0.10) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .ml-hero-dots {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+  .ml-hero-inner { position: relative; z-index: 1; max-width: 900px; margin: auto; }
+  .ml-hero-logo {
+    width: 100px; height: 100px;
+    object-fit: contain;
+    background: white;
+    border-radius: 22px;
+    padding: 8px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .ml-hero-badge {
+    display: inline-block;
+    background: rgba(245,181,0,0.18);
+    border: 1px solid rgba(245,181,0,0.4);
+    color: var(--gold2);
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ml-hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 12vw, 96px);
+    letter-spacing: 4px;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: white;
+  }
+  .ml-hero h1 span { color: var(--gold2); }
+  .ml-hero-sub {
+    font-size: clamp(15px, 3vw, 20px);
+    color: #bdd0ff;
+    max-width: 680px;
+    margin: 18px auto 32px;
+    font-weight: 500;
+  }
+  .ml-hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .ml-hero-stat { text-align: center; }
+  .ml-hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    color: var(--gold2);
+    line-height: 1;
+  }
+  .ml-hero-stat-label { font-size: 12px; color: #8aaee0; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+  .ml-hero-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-function DailyLoadTool() {
-  const [loads, setLoads] = useState([]);
-  const [form, setForm] = useState({
-    from: '',
-    to: '',
-    truck: 'ડમ્પર',
-    material: '',
-    rate: '',
-  });
+  .ml-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: transform 0.15s, opacity 0.15s;
+    white-space: nowrap;
+  }
+  .ml-btn:hover { transform: translateY(-2px); opacity: 0.93; }
+  .ml-btn:active { transform: scale(0.97); }
+  .ml-btn-blue { background: var(--blue); color: white; box-shadow: 0 4px 16px rgba(26,86,219,0.35); }
+  .ml-btn-green { background: var(--green); color: white; box-shadow: 0 4px 16px rgba(22,163,74,0.35); }
+  .ml-btn-gold { background: var(--gold); color: var(--navy); box-shadow: 0 4px 16px rgba(245,181,0,0.30); font-weight: 800; }
+  .ml-btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); }
+  .ml-btn-full { width: 100%; justify-content: center; font-size: 18px; padding: 16px; }
 
-  const [copied, setCopied] = useState(false);
+  .ml-section { padding: 64px 20px; }
+  .ml-section-inner { max-width: 1150px; margin: auto; }
+  .ml-sec-badge {
+    text-align: center;
+    color: var(--blue);
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .ml-sec-title {
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 6vw, 52px);
+    color: var(--navy);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .ml-sec-sub {
+    text-align: center;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+  }
 
-  const handleChange = (e) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  .ml-services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .ml-svc-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 22px;
+    box-shadow: var(--card-shadow);
+    border: 1.5px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+  .ml-svc-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(26,86,219,0.16); }
+  .ml-svc-icon {
+    width: 60px; height: 60px;
+    background: var(--bg2);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+    border: 1.5px solid var(--border);
+  }
+  .ml-svc-card h3 { font-size: 18px; font-weight: 700; color: var(--navy2); margin-bottom: 8px; }
+  .ml-svc-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-  const addLoad = () => {
-    if (!form.from.trim() || !form.to.trim()) {
-      alert('From અને To ભરો');
-      return;
-    }
+  .ml-whyus { background: var(--navy); color: white; }
+  .ml-whyus .ml-sec-title { color: white; }
+  .ml-whyus .ml-sec-sub { color: #8aaee0; }
+  .ml-whyus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .ml-why-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 18px;
+    padding: 26px 20px;
+    text-align: center;
+  }
+  .ml-why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold2);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .ml-why-card h3 { font-size: 17px; font-weight: 700; color: white; margin-bottom: 8px; }
+  .ml-why-card p { font-size: 14px; color: #8aaee0; }
 
-    setLoads((prev) => [...prev, { ...form, id: Date.now() }]);
+  .ml-booking-bg { background: linear-gradient(135deg, var(--bg2) 0%, #d6e6ff 100%); }
+  .ml-booking-card {
+    max-width: 680px;
+    margin: auto;
+    background: white;
+    border-radius: 28px;
+    padding: 36px 32px;
+    box-shadow: 0 12px 48px rgba(26,86,219,0.13);
+    border: 1.5px solid var(--border);
+  }
+  .ml-form-group { margin-bottom: 16px; }
+  .ml-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy2);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .ml-form-group input,
+  .ml-form-group select {
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    color: var(--text);
+    background: var(--bg);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .ml-form-group input:focus,
+  .ml-form-group select:focus { border-color: var(--blue); background: white; }
+  .ml-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-    setForm({
-      from: '',
-      to: '',
-      truck: 'ડમ્પર',
-      material: '',
-      rate: '',
-    });
-  };
+  .ml-loads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .ml-load-card {
+    background: white;
+    border-radius: 22px;
+    padding: 26px 22px;
+    box-shadow: var(--card-shadow);
+    border: 2px solid var(--border);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .ml-load-card:hover { transform: translateY(-4px); border-color: var(--blue); }
+  .ml-load-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: var(--blue2);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .ml-load-route {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    color: var(--navy);
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+    line-height: 1.1;
+  }
+  .ml-load-route span { color: var(--blue); }
+  .ml-load-info { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+  .ml-load-info strong { color: var(--navy2); }
+  .ml-load-rate {
+    display: inline-block;
+    background: #dcfce7;
+    color: var(--green2);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin: 8px 0 16px;
+  }
 
-  const removeLoad = (id) => {
-    setLoads((prev) => prev.filter((l) => l.id !== id));
-  };
+  .ml-post-truck-banner {
+    background: linear-gradient(135deg, var(--blue), var(--navy2));
+    color: white;
+    border-radius: 24px;
+    padding: 36px 32px;
+    text-align: center;
+    margin-top: 48px;
+    box-shadow: 0 8px 32px rgba(26,86,219,0.25);
+  }
+  .ml-post-truck-banner h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .ml-post-truck-banner p { color: #c8d9ff; margin-bottom: 22px; }
 
-  const copyMessage = async () => {
-    const msg = buildMessage(loads);
+  .ml-areas-bg { background: var(--bg2); }
+  .ml-areas-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 32px;
+  }
+  .ml-area-pill {
+    background: white;
+    border: 2px solid var(--border);
+    color: var(--navy2);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 9px 20px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(26,86,219,0.07);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .ml-area-pill:hover { background: var(--blue); color: white; border-color: var(--blue); }
 
-    if (!msg) {
-      alert('પહેલા loads ઉમેરો!');
-      return;
-    }
+  .ml-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .ml-review-card {
+    background: white;
+    border-radius: 20px;
+    padding: 26px 22px;
+    box-shadow: var(--card-shadow);
+    border: 1.5px solid var(--border);
+  }
+  .ml-review-stars { color: var(--gold); font-size: 20px; margin-bottom: 12px; }
+  .ml-review-text { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 14px; font-style: italic; }
+  .ml-review-author { font-weight: 700; color: var(--navy2); font-size: 15px; }
 
-    await navigator.clipboard.writeText(msg);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
-  };
+  .ml-contact-section {
+    background: linear-gradient(135deg, #020d2e 0%, #071a4f 60%, #0e2e72 100%);
+    color: white;
+    padding: 64px 20px;
+  }
+  .ml-contact-section .ml-sec-title { color: white; }
+  .ml-contact-section .ml-sec-sub { color: #8aaee0; }
+  .ml-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+  .ml-contact-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    padding: 26px 22px;
+    text-align: center;
+  }
+  .ml-contact-icon { font-size: 36px; margin-bottom: 10px; }
+  .ml-contact-card h3 { font-size: 14px; color: #8aaee0; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .ml-contact-card p, .ml-contact-card a {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+  }
+  .ml-contact-card a:hover { color: var(--gold2); }
+  .ml-contact-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
-  const message = buildMessage(loads);
+  .ml-footer {
+    background: #020617;
+    color: #475569;
+    text-align: center;
+    padding: 22px 20px;
+    font-size: 14px;
+  }
+  .ml-footer a { color: #64748b; text-decoration: none; }
+  .ml-footer a:hover { color: var(--gold2); }
 
-  return (
-    <section style={section}>
-      <p style={badge}>DAILY LOAD TOOL</p>
-      <h2 style={title}>Daily Load Broadcast</h2>
+  .ml-wa-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 58px; height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    transition: transform 0.2s;
+  }
+  .ml-wa-float:hover { transform: scale(1.12); }
 
-      <div className="ml-tool">
-        <div className="ml-header">
-          <div className="ml-logo">🚛</div>
-          <div>
-            <h1>Meera Logistics</h1>
-            <p>Daily Load Broadcast Tool</p>
-          </div>
-        </div>
+  .ml-truck-divider {
+    text-align: center;
+    padding: 10px 0;
+    color: var(--border);
+    font-size: 32px;
+    letter-spacing: 8px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
-        <p className="ml-date">📅 {getTodayStr()}</p>
+  @media (max-width: 560px) {
+    .ml-form-row { grid-template-columns: 1fr; }
+    .ml-nav-links { display: none; }
+  }
+`;
 
-        <div className="ml-card">
-          <div className="ml-card-title">➕ નવો Load ઉમેરો</div>
+const services = [
+  { icon: "🚛", title: "ટિપર ટ્રાન્સપોર્ટ", desc: "રેતી, કપચી, કન્સ્ટ્રક્શન મટિરિયલ અને બલ્ક માલ માટે ઝડપી ટિપર ટ્રાન્સપોર્ટ સર્વિસ." },
+  { icon: "⛏️", title: "ડમ્પર સર્વિસ", desc: "ઇન્ડસ્ટ્રીયલ અને હેવી મટિરિયલ માટે વિશ્વસનીય ડમ્પર ટ્રાન્સપોર્ટ સોલ્યુશન." },
+  { icon: "🏗️", title: "ટ્રક બુકિંગ", desc: "દરેક પ્રકારના માલ અને રૂટ માટે બોડી ટ્રક અને ફુલ લોડ બુકિંગ સેવા." },
+  { icon: "🔄", title: "રિટર્ન લોડ", desc: "ખાલી ન જાવ — ટ્રક ઓનર અને ડ્રાઈવર માટે ફ્રી રિટર્ન લોડ મેચિંગ સર્વિસ." },
+  { icon: "📦", title: "ફ્લીટ મેનેજમેન્ટ", desc: "મોટા ઇન્ડસ્ટ્રીયલ અને કોમર્શિયલ પ્રોજેક્ટ માટે મલ્ટી ટ્રક મેનેજમેન્ટ." },
+  { icon: "🗺️", title: "ગુજરાત નેટવર્ક", desc: "જામનગર, દહેજ, મોરબી, સુરત, અમદાવાદ, કચ્છ સહિત ગુજરાતભરમાં સેવા." },
+];
 
-          <div className="ml-grid2">
-            <div className="ml-field">
-              <label>From (ક્યાંથી)</label>
-              <input name="from" value={form.from} onChange={handleChange} placeholder="દા.ત. દહેજ" />
-            </div>
+const whyUs = [
+  { num: "24/7", title: "24/7 સપોર્ટ", desc: "દિવસ હોય કે રાત — ટ્રક બુકિંગ અને લોડ માટે સતત સપોર્ટ." },
+  { num: "Fast", title: "ઝડપી ડિસ્પેચ", desc: "તાત્કાલિક ટ્રાન્સપોર્ટ જરૂરિયાત માટે same day ટ્રક વ્યવસ્થા." },
+  { num: "Free", title: "ફ્રી રિટર્ન લોડ", desc: "ટ્રક પોસ્ટ કરો અથવા રિટર્ન લોડ શોધો — સંપૂર્ણ મફત." },
+  { num: "All", title: "ગુજરાત કવરેજ", desc: "ગુજરાતના મુખ્ય શહેરો અને ઇન્ડસ્ટ્રીયલ વિસ્તારોમાં સેવા ઉપલબ્ધ." },
+];
 
-            <div className="ml-field">
-              <label>To (ક્યાં)</label>
-              <input name="to" value={form.to} onChange={handleChange} placeholder="દા.ત. કંડલા" />
-            </div>
-          </div>
 
-          <div className="ml-grid3">
-            <div className="ml-field">
-              <label>Truck type</label>
-              <select name="truck" value={form.truck} onChange={handleChange}>
-                {TRUCK_TYPES.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
-              </select>
-            </div>
 
-            <div className="ml-field">
-              <label>Material</label>
-              <input name="material" value={form.material} onChange={handleChange} placeholder="દા.ત. ચૂનો" />
-            </div>
+const areas = ["🏭 જામનગર","🏗️ કચ્છ","🏺 મોરબી","🌆 અમદાવાદ","🏛️ વડોદરા","🌊 સુરત","⚓ વાપી","⚗️ દહેજ","🏘️ લીમડી","🌾 રાજકોટ","🏭 ભાવનગર","🚢 મુન્દ્રા"];
 
-            <div className="ml-field">
-              <label>Rate</label>
-              <input name="rate" value={form.rate} onChange={handleChange} placeholder="દા.ત. ₹18/km" />
-            </div>
-          </div>
-
-          <button className="ml-add-btn" onClick={addLoad}>
-            + Load ઉમેરો
-          </button>
-        </div>
-
-        <div className="ml-card">
-          <div className="ml-card-title">📋 આજના Loads ({loads.length})</div>
-
-          {loads.length === 0 ? (
-            <p className="ml-empty">હજુ કોઈ load ઉમેર્યો નથી</p>
-          ) : (
-            loads.map((l) => (
-              <div key={l.id} className="ml-load-item">
-                <button className="ml-remove" onClick={() => removeLoad(l.id)}>
-                  ✕
-                </button>
-
-                <div className="ml-route">
-                  📍 {l.from} → {l.to}
-                </div>
-
-                <div className="ml-badges">
-                  <span className="ml-badge">🚛 {l.truck}</span>
-                  {l.material && <span className="ml-badge">📦 {l.material}</span>}
-                  {l.rate && <span className="ml-badge">💰 {l.rate}</span>}
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        <div className="ml-card">
-          <div className="ml-card-title">📱 WhatsApp Message Preview</div>
-
-          <div className="ml-preview">
-            {message || <span style={{ opacity: 0.5 }}>Loads ઉમેર્યા પછી message અહીં દેખાશે...</span>}
-          </div>
-
-          <button className="ml-copy-btn" onClick={copyMessage}>
-            {copied ? '✅ Copied! WhatsApp માં Paste કરો' : '📋 Message Copy કરો'}
-          </button>
-        </div>
-      </div>
-
-      <style>{`
-        .ml-tool {
-          max-width: 720px;
-          margin: 0 auto;
-          padding: 16px;
-        }
-
-        .ml-header {
-          background: #1a7a4a;
-          color: #fff;
-          border-radius: 18px;
-          padding: 18px 22px;
-          margin-bottom: 12px;
-          display: flex;
-          align-items: center;
-          gap: 12px;
-        }
-
-        .ml-logo {
-          width: 48px;
-          height: 48px;
-          background: rgba(255,255,255,0.2);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 24px;
-        }
-
-        .ml-header h1 {
-          font-size: 19px;
-          margin: 0;
-        }
-
-        .ml-header p {
-          font-size: 13px;
-          opacity: 0.85;
-          margin: 2px 0 0;
-        }
-
-        .ml-date {
-          text-align: center;
-          color: #64748b;
-          font-size: 14px;
-        }
-
-        .ml-card {
-          background: white;
-          border: 1px solid #d4e0f7;
-          border-radius: 18px;
-          padding: 18px;
-          margin-bottom: 14px;
-          box-shadow: 0 8px 28px rgba(26,86,219,0.08);
-        }
-
-        .ml-card-title {
-          font-weight: 800;
-          color: #1a7a4a;
-          margin-bottom: 14px;
-        }
-
-        .ml-grid2 {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-          margin-bottom: 10px;
-        }
-
-        .ml-grid3 {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: 10px;
-          margin-bottom: 12px;
-        }
-
-        .ml-field label {
-          display: block;
-          font-size: 13px;
-          color: #64748b;
-          margin-bottom: 5px;
-        }
-
-        .ml-field input,
-        .ml-field select {
-          width: 100%;
-          padding: 11px 13px;
-          border: 1px solid #d4e0f7;
-          border-radius: 10px;
-          font-size: 14px;
-          outline: none;
-          background: #f8fafc;
-        }
-
-        .ml-add-btn {
-          width: 100%;
-          padding: 12px;
-          background: #e8f5ee;
-          border: 2px dashed #7ec4a0;
-          border-radius: 12px;
-          color: #1a7a4a;
-          font-weight: 800;
-          cursor: pointer;
-        }
-
-        .ml-empty {
-          text-align: center;
-          color: #64748b;
-        }
-
-        .ml-load-item {
-          background: #e8f5ee;
-          border: 1px solid #b8dfc8;
-          border-radius: 14px;
-          padding: 14px;
-          margin-bottom: 10px;
-          position: relative;
-        }
-
-        .ml-remove {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-          font-size: 16px;
-        }
-
-        .ml-route {
-          font-weight: 800;
-          color: #1a7a4a;
-        }
-
-        .ml-badges {
-          display: flex;
-          gap: 6px;
-          flex-wrap: wrap;
-          margin-top: 8px;
-        }
-
-        .ml-badge {
-          background: white;
-          border: 1px solid #d4e0f7;
-          padding: 4px 10px;
-          border-radius: 8px;
-          font-size: 12px;
-        }
-
-        .ml-preview {
-          background: #075E54;
-          border-radius: 14px;
-          padding: 18px;
-          color: white;
-          font-size: 14px;
-          line-height: 1.8;
-          white-space: pre-wrap;
-          min-height: 90px;
-        }
-
-        .ml-copy-btn {
-          width: 100%;
-          margin-top: 12px;
-          padding: 14px;
-          background: #25D366;
-          border: none;
-          border-radius: 12px;
-          color: white;
-          font-weight: 900;
-          cursor: pointer;
-        }
-
-        @media (max-width: 520px) {
-          .ml-grid2,
-          .ml-grid3 {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-    </section>
-  );
-}
+const reviews = [
+  { text: "ઝડપી સર્વિસ અને પ્રોફેશનલ ડ્રાઈવર. ઇન્ડસ્ટ્રીયલ લોડ સમયસર પહોંચ્યો. જામનગર રૂટ માટે ખૂબ સારી સર્વિસ.", author: "ટ્રાન્સપોર્ટ કોન્ટ્રાક્ટર, જામનગર" },
+  { text: "દહેજ રૂટ માટે વિશ્વસનીય સપોર્ટ. રિટર્ન લોડ સર્વિસ ખૂબ ઉપયોગી છે અને ખર્ચ બચાવે છે.", author: "ફ્લીટ ઓનર, દહેજ" },
+  { text: "ગુજરાતમાં સારી ટિપર અને ડમ્પર સર્વિસ. વોટ્સએપ પર ઝડપી જવાબ અને સાચું ભાડું.", author: "બિલ્ડર, મોરબી" },
+];
 
 export default function Home() {
-  const services = [
-    'Tipper Transport',
-    'Dumper Service',
-    'Truck Booking',
-    'Return Load',
-    'Fleet Management',
-    'All Gujarat Service',
-  ];
+  const [form, setForm] = useState({ from: "", to: "", goods: "", truck: "", datetime: "", mobile: "" });
+  const [loads, setLoads] = useState([]);
+  const [loadingLoads, setLoadingLoads] = useState(true);
 
-  const loads = [
-    ['Jamnagar', 'Ahmedabad', 'Tipper', 'આજ સાંજ 5 PM'],
-    ['Ahmedabad', 'Jamnagar', 'Dumper', 'કાલ સવારે 7 AM'],
-    ['Jamnagar', 'Surat', 'Body Truck', 'આજ રાત 9 PM'],
-    ['Dahej', 'Jamnagar', 'Dumper', 'કાલ સવારે 6 AM'],
-  ];
+  useEffect(() => {
+    fetch("/api/loads")
+      .then((r) => r.json())
+      .then((data) => {
+        setLoads(data.loads || []);
+        setLoadingLoads(false);
+      })
+      .catch(() => setLoadingLoads(false));
+  }, []);
+
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const sendBooking = () => {
+    if (!form.from || !form.to) {
+      alert("કૃપા કરીને લોડિંગ અને અનલોડિંગ પોઈન્ટ ભરો.");
+      return;
+    }
+    const msg = encodeURIComponent(
+      `Hello Meera Logistics,\nમારે ટ્રક બુક કરવો છે.\n\n` +
+      `📍 લોડિંગ: ${form.from || "-"}\n` +
+      `📍 અનલોડિંગ: ${form.to || "-"}\n` +
+      `📦 માલ: ${form.goods || "-"}\n` +
+      `🚛 ટ્રક: ${form.truck || "-"}\n` +
+      `📅 સમય: ${form.datetime || "-"}\n` +
+      `📞 મોબાઈલ: ${form.mobile || "-"}`
+    );
+    window.open("https://wa.me/919558959579?text=" + msg, "_blank");
+  };
 
   return (
-    <main style={{ fontFamily: 'Arial, sans-serif', background: '#f4f7ff', color: '#0f172a' }}>
-      <section style={hero}>
-        <img src="/logo.png" alt="Meera Logistics" style={logoStyle} />
+    <>
+      <style>{styles}</style>
+      <div className="ml-body">
 
-        <div style={topBadge}>🚛 Trusted Gujarat Transport Service</div>
-
-        <h1 style={heroTitle}>
-          MEERA <span style={{ color: '#ffd84d' }}>LOGISTICS</span>
-        </h1>
-
-        <p style={heroText}>
-          Reliable Tipper, Dumper & Truck Transport Service across Gujarat with fast and trusted logistics support.
-        </p>
-
-        <div style={heroButtons}>
-          <a href="tel:9558959579" style={btnBlue}>
-            📞 Call Now
+        {/* NAV */}
+        <nav className="ml-nav">
+          <a href="#" className="ml-nav-brand">
+            <img src="/logo.png.jpeg" alt="Meera Logistics" className="ml-nav-logo" />
+            <span className="ml-nav-title">MEERA <span>LOGISTICS</span></span>
           </a>
+          <div className="ml-nav-links">
+            <a href="#services">સર્વિસ</a>
+            <a href="#loads">રિટર્ન લોડ</a>
+            <a href="#booking">ટ્રક બુકિંગ</a>
+            <a href="#contact">સંપર્ક</a>
+            <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-green" style={{ borderRadius: 10, padding: "9px 18px" }}>📲 વોટ્સએપ</a>
+          </div>
+        </nav>
 
-          <a href="#return-load" style={btnGreen}>
-            🔄 Return Load Board
-          </a>
-
-          <a href="https://wa.me/919558959579" target="_blank" style={btnWhite}>
-            📲 WhatsApp
-          </a>
-        </div>
-      </section>
-
-      <section style={section}>
-        <p style={badge}>OUR SERVICES</p>
-        <h2 style={title}>Transport Solutions</h2>
-
-        <div style={grid}>
-          {services.map((s, i) => (
-            <div key={i} style={card}>
-              <div style={{ fontSize: 34 }}>🚛</div>
-              <h3>{s}</h3>
-              <p style={muted}>Professional logistics service for daily transport and business loads.</p>
+        {/* HERO */}
+        <section className="ml-hero">
+          <div className="ml-hero-dots" />
+          <div className="ml-hero-inner">
+            <div className="ml-hero-badge">🚛 વિશ્વસનીય ગુજરાત ટ્રાન્સપોર્ટ સર્વિસ</div>
+            <h1>MEERA <span>LOGISTICS</span></h1>
+            <p className="ml-hero-sub">ગુજરાતભરમાં ઝડપી, વિશ્વસનીય અને પ્રોફેશનલ ટિપર, ડમ્પર અને ટ્રક ટ્રાન્સપોર્ટ સર્વિસ.</p>
+            <div className="ml-hero-stats">
+              {[["24/7","સપોર્ટ"],["ALL","ગુજરાત"],["100%","ભરોસો"]].map(([num,label]) => (
+                <div key={label} className="ml-hero-stat">
+                  <div className="ml-hero-stat-num">{num}</div>
+                  <div className="ml-hero-stat-label">{label}</div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+            <div className="ml-hero-btns">
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 કોલ કરો</a>
+              <a href="#loads" className="ml-btn ml-btn-blue">🔄 રિટર્ન લોડ બોર્ડ</a>
+              <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-outline">📲 વોટ્સએપ</a>
+            </div>
+          </div>
+        </section>
 
-      <section style={{ ...section, background: '#e8f0fe', borderRadius: 30 }}>
-        <p style={badge}>BOOKING</p>
-        <h2 style={title}>Book Your Truck</h2>
+        <div className="ml-truck-divider">🚛 🚛 🚛 🚛 🚛</div>
 
-        <div style={formBox}>
-          <input style={input} placeholder="Loading Point" />
-          <input style={input} placeholder="Unloading Point" />
-          <input style={input} placeholder="Goods Details" />
+        {/* SERVICES */}
+        <section className="ml-section" id="services">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">અમારી સર્વિસ</p>
+            <h2 className="ml-sec-title">ટ્રાન્સપોર્ટ સોલ્યુશન</h2>
+            <p className="ml-sec-sub">ગુજરાતભરમાં ઇન્ડસ્ટ્રીયલ, કન્સ્ટ્રક્શન અને કોમર્શિયલ ટ્રાન્સપોર્ટ માટે વિશ્વસનીય સર્વિસ.</p>
+            <div className="ml-services-grid">
+              {services.map((s) => (
+                <div key={s.title} className="ml-svc-card">
+                  <div className="ml-svc-icon">{s.icon}</div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <select style={input}>
-            <option>Select Truck</option>
-            <option>Tipper</option>
-            <option>Dumper</option>
-            <option>Body Truck</option>
-          </select>
+        {/* WHY US */}
+        <section className={`ml-section ml-whyus`}>
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>શા માટે અમે?</p>
+            <h2 className="ml-sec-title">ગુજરાતનો વિશ્વસનીય ટ્રાન્સપોર્ટ પાર્ટનર</h2>
+            <p className="ml-sec-sub">અમે ઝડપ, ભરોસો અને પ્રોફેશનલ સર્વિસ સાથે ગુજરાત ટ્રાન્સપોર્ટ ઇન્ડસ્ટ્રીને સેવા આપીએ છીએ.</p>
+            <div className="ml-whyus-grid">
+              {whyUs.map((w) => (
+                <div key={w.title} className="ml-why-card">
+                  <div className="ml-why-num">{w.num}</div>
+                  <h3>{w.title}</h3>
+                  <p>{w.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <a
-            href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Mane%20Truck%20Book%20Karvu%20Chhe"
-            target="_blank"
-            style={{ ...btnGreen, display: 'block', textAlign: 'center', marginTop: 10 }}
-          >
-            📲 Send Booking on WhatsApp
-          </a>
-        </div>
-      </section>
-
-      <section id="return-load" style={section}>
-        <p style={badge}>NEW SERVICE — FREE</p>
-        <h2 style={title}>Return Load Board</h2>
-
-        <p style={{ ...muted, textAlign: 'center', maxWidth: 650, margin: '0 auto 28px' }}>
-          Delivery complete? ખાલી ન જાવ — Gujarat ભરમાં Return Load instantly મેળવો.
-        </p>
-
-        <div style={grid}>
-          {loads.map((l, i) => (
-            <div key={i} style={{ ...card, border: '2px solid #d4e0f7' }}>
-              <div style={returnTag}>🔄 Return Load Available</div>
-
-              <h3 style={{ fontSize: 24 }}>
-                {l[0]} <span style={{ color: '#1a56db' }}>→</span> {l[1]}
-              </h3>
-
-              <p>
-                🚛 Truck Type: <b>{l[2]}</b>
-              </p>
-
-              <p>
-                ⏰ Available: <b>{l[3]}</b>
-              </p>
-
-              <p>
-                💰 Rate: <b>Best / Negotiate</b>
-              </p>
-
+        {/* RETURN LOAD BOARD */}
+        <section className="ml-section" id="loads">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">લાઈવ લોડ બોર્ડ</p>
+            <h2 className="ml-sec-title">Return Load Board</h2>
+            <p className="ml-sec-sub">ડિલિવરી પૂર્ણ થઈ ગઈ? હવે ખાલી ન જાવ — ગુજરાતભરમાં તરત રિટર્ન લોડ મેળવો.</p>
+            {loadingLoads ? (
+              <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
+                🔄 લોડ માહિતી લોડ થઈ રહી છે...
+              </div>
+            ) : loads.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "40px", color: "var(--muted)", fontSize: 18 }}>
+                અત્યારે કોઈ લોડ ઉપલબ્ધ નથી. થોડીવારમાં ફરી ચેક કરો.
+              </div>
+            ) : (
+              <div className="ml-loads-grid">
+                {loads.map((l, i) => (
+                  <div key={i} className="ml-load-card">
+                    <div className="ml-load-badge">🔄 રિટર્ન લોડ</div>
+                    <div className="ml-load-route">{l.from} <span>→</span> {l.to}</div>
+                    <div className="ml-load-info">🚛 ટ્રક પ્રકાર: <strong>{l.truck}</strong></div>
+                    <div className="ml-load-info">📦 માલ: <strong>{l.material}</strong></div>
+                    <div className="ml-load-info">⏰ સમય: <strong>{l.time}</strong></div>
+                    <div className="ml-load-rate">💰 {l.rate}</div>
+                    <a
+                      href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(l.from)}%20to%20${encodeURIComponent(l.to)}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
+                      target="_blank"
+                      className="ml-btn ml-btn-green ml-btn-full"
+                    >
+                      📲 હમણાં બુક કરો
+                    </a>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="ml-post-truck-banner">
+              <h3>🚛 રિટર્ન ટ્રક પોસ્ટ કરો — ફ્રી</h3>
+              <p>ટ્રક ઓનર, ડ્રાઈવર અથવા બ્રોકર — ખાલી ટ્રકની માહિતી મોકલો અને ફ્રી લોડ મેચિંગ સર્વિસ મેળવો.</p>
               <a
-                href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${l[0]}%20to%20${l[1]}%0ATruck%3A%20${l[2]}`}
+                href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%0AMare%20Return%20Truck%20Post%20Karvu%20Chhe.%0A%0AName%3A%0AMobile%3A%0ATruck%20Type%3A%0AVehicle%20Number%3A%0ACurrent%20Location%3A%0AAvailable%20Route%3A"
                 target="_blank"
-                style={{ ...btnGreen, display: 'inline-block', marginTop: 12 }}
+                className="ml-btn ml-btn-gold"
               >
-                📲 Book Now
+                📲 વોટ્સએપ પર પોસ્ટ કરો
               </a>
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
 
-        <div style={{ textAlign: 'center', marginTop: 30 }}>
-          <a
-            href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Mare%20Return%20Truck%20Post%20Karvu%20Chhe"
-            target="_blank"
-            style={btnBlue}
-          >
-            🚛 Return Truck Post કરો — Free
-          </a>
-        </div>
-      </section>
+        {/* BOOKING */}
+        <section className="ml-section ml-booking-bg" id="booking">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">ટ્રાન્સપોર્ટ બુકિંગ</p>
+            <h2 className="ml-sec-title">ટ્રક બુક કરો</h2>
+            <p className="ml-sec-sub">વિગતો ભરો અને વોટ્સએપ પર બુકિંગ કન્ફર્મ કરો.</p>
+            <div className="ml-booking-card">
+              <div className="ml-form-row">
+                <div className="ml-form-group">
+                  <label>📍 લોડિંગ પોઈન્ટ</label>
+                  <input name="from" value={form.from} onChange={handleChange} placeholder="દા.ત. જામનગર" />
+                </div>
+                <div className="ml-form-group">
+                  <label>📍 અનલોડિંગ પોઈન્ટ</label>
+                  <input name="to" value={form.to} onChange={handleChange} placeholder="દા.ત. અમદાવાદ" />
+                </div>
+              </div>
+              <div className="ml-form-group">
+                <label>📦 માલની માહિતી</label>
+                <input name="goods" value={form.goods} onChange={handleChange} placeholder="દા.ત. ઇન્ડસ્ટ્રીયલ માલ, રેતી, ટાઇલ્સ" />
+              </div>
+              <div className="ml-form-row">
+                <div className="ml-form-group">
+                  <label>🚛 ટ્રક પ્રકાર પસંદ કરો</label>
+                  <select name="truck" value={form.truck} onChange={handleChange}>
+                    <option value="">ટ્રક પસંદ કરો</option>
+                    <option>ટિપર</option>
+                    <option>ડમ્પર</option>
+                    <option>બોડી ટ્રક</option>
+                    <option>ટ્રેલર</option>
+                  </select>
+                </div>
+                <div className="ml-form-group">
+                  <label>📅 તારીખ / સમય</label>
+                  <input name="datetime" value={form.datetime} onChange={handleChange} placeholder="દા.ત. આજે / કાલે સવારે 7 વાગ્યે" />
+                </div>
+              </div>
+              <div className="ml-form-group">
+                <label>📞 તમારો મોબાઈલ નંબર</label>
+                <input name="mobile" type="tel" value={form.mobile} onChange={handleChange} placeholder="તમારો મોબાઈલ નંબર" />
+              </div>
+              <button onClick={sendBooking} className="ml-btn ml-btn-green ml-btn-full">
+                📲 વોટ્સએપ પર બુકિંગ મોકલો
+              </button>
+            </div>
+          </div>
+        </section>
 
-      <DailyLoadTool />
+        {/* COVERAGE AREAS */}
+        <section className="ml-section ml-areas-bg">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">સેવા વિસ્તાર</p>
+            <h2 className="ml-sec-title">ગુજરાતભરમાં સેવા</h2>
+            <p className="ml-sec-sub">ગુજરાતના મુખ્ય શહેરો, પોર્ટ અને ઇન્ડસ્ટ્રીયલ વિસ્તારોમાં સેવા ઉપલબ્ધ.</p>
+            <div className="ml-areas-list">
+              {areas.map((a) => <div key={a} className="ml-area-pill">{a}</div>)}
+            </div>
+            <div style={{ textAlign: "center", marginTop: 28 }}>
+              <a href="https://www.google.com/maps/search/Jamnagar" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-blue">📍 ઓફિસ લોકેશન જુઓ</a>
+            </div>
+          </div>
+        </section>
 
-      <section style={contactSection}>
-        <h2 style={{ fontSize: 34 }}>Contact Meera Logistics</h2>
-        <p>📍 Jamnagar, Gujarat</p>
-        <p>📞 9558959579</p>
-        <p>🌐 meeralogistics.in</p>
+        {/* REVIEWS */}
+        <section className="ml-section">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">ગ્રાહકોનો વિશ્વાસ</p>
+            <h2 className="ml-sec-title">લોકો શું કહે છે</h2>
+            <p className="ml-sec-sub">ગુજરાતભરના ટ્રક ઓનર અને બિઝનેસ ગ્રાહકોનો વિશ્વાસ.</p>
+            <div className="ml-reviews-grid">
+              {reviews.map((r) => (
+                <div key={r.author} className="ml-review-card">
+                  <div className="ml-review-stars">★★★★★</div>
+                  <p className="ml-review-text">&ldquo;{r.text}&rdquo;</p>
+                  <div className="ml-review-author">— {r.author}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <a href="https://wa.me/919558959579" target="_blank" style={btnGreen}>
-          📲 WhatsApp Contact
-        </a>
-      </section>
+        {/* CONTACT */}
+        <section className="ml-contact-section" id="contact">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge" style={{ color: "#ffd84d" }}>સંપર્ક કરો</p>
+            <h2 className="ml-sec-title">મીરા લોજિસ્ટિક્સ સંપર્ક</h2>
+            <p className="ml-sec-sub">ટ્રક બુકિંગ, રિટર્ન લોડ અને ફ્લીટ માટે ગમે ત્યારે સંપર્ક કરો.</p>
+            <div className="ml-contact-grid">
+              {[
+                { icon: "📞", title: "ફોન / કોલ", content: <a href="tel:9558959579">9558959579</a> },
+                { icon: "📲", title: "WhatsApp", content: <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer">+91 9558959579</a> },
+                { icon: "📍", title: "ઓફિસ લોકેશન", content: <p>Jamnagar, Gujarat</p> },
+                { icon: "🌐", title: "વેબસાઈટ", content: <a href="https://meeralogistics.in" target="_blank" rel="noopener noreferrer">meeralogistics.in</a> },
+              ].map((c) => (
+                <div key={c.title} className="ml-contact-card">
+                  <div className="ml-contact-icon">{c.icon}</div>
+                  <h3>{c.title}</h3>
+                  {c.content}
+                </div>
+              ))}
+            </div>
+            <div className="ml-contact-btns">
+              <a href="tel:9558959579" className="ml-btn ml-btn-gold">📞 કોલ કરો</a>
+              <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-green">📲 વોટ્સએપ સંપર્ક</a>
+              <a href="https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20I%20want%20to%20book%20a%20truck." target="_blank" rel="noopener noreferrer" className="ml-btn ml-btn-blue">🚛 હમણાં ટ્રક બુક કરો</a>
+            </div>
+          </div>
+        </section>
 
-      <footer style={footer}>
-        © 2026 Meera Logistics. All Rights Reserved.
-      </footer>
-    </main>
+        {/* FOOTER */}
+        <footer className="ml-footer">
+          <p style={{ marginBottom: 8 }}>
+            <strong style={{ color: "#94a3b8" }}>MEERA LOGISTICS</strong> — ગુજરાતનો વિશ્વસનીય ટ્રાન્સપોર્ટ પાર્ટનર 🚛
+          </p>
+          <p>
+            <a href="https://meeralogistics.in">meeralogistics.in</a>
+            {" | "}
+            <a href="tel:9558959579">9558959579</a>
+            {" | "}
+            Jamnagar, Gujarat
+          </p>
+          <p style={{ marginTop: 10 }}>© 2026 મીરા લોજિસ્ટિક્સ. સર્વ હકો સુરક્ષિત.</p>
+        </footer>
+
+        {/* FLOATING WA */}
+        <a href="https://wa.me/919558959579" target="_blank" rel="noopener noreferrer" className="ml-wa-float" title="WhatsApp">📲</a>
+      </div>
+    </>
   );
 }
-
-const hero = {
-  background: 'linear-gradient(135deg,#071a4f,#0d2a6b,#123c7c)',
-  color: 'white',
-  padding: '55px 20px',
-  textAlign: 'center',
-  borderBottomLeftRadius: 45,
-  borderBottomRightRadius: 45,
-};
-
-const logoStyle = {
-  width: 110,
-  height: 110,
-  objectFit: 'contain',
-  background: 'white',
-  borderRadius: 22,
-  padding: 8,
-  marginBottom: 18,
-};
-
-const heroTitle = {
-  fontSize: 'clamp(36px,8vw,72px)',
-  margin: 0,
-  fontWeight: 900,
-};
-
-const heroText = {
-  fontSize: 20,
-  color: '#c8d9ff',
-  maxWidth: 700,
-  margin: '18px auto',
-};
-
-const heroButtons = {
-  display: 'flex',
-  justifyContent: 'center',
-  gap: 14,
-  flexWrap: 'wrap',
-  marginTop: 28,
-};
-
-const section = {
-  padding: '55px 20px',
-  maxWidth: 1150,
-  margin: 'auto',
-};
-
-const title = {
-  fontSize: 'clamp(30px,6vw,46px)',
-  textAlign: 'center',
-  color: '#0d2a6b',
-  marginTop: 0,
-};
-
-const badge = {
-  textAlign: 'center',
-  color: '#1a56db',
-  fontWeight: 900,
-  letterSpacing: 1.5,
-};
-
-const topBadge = {
-  display: 'inline-block',
-  background: 'rgba(255,255,255,0.12)',
-  padding: '7px 18px',
-  borderRadius: 25,
-  fontWeight: 800,
-  fontSize: 13,
-  marginBottom: 18,
-};
-
-const grid = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-  gap: 18,
-};
-
-const card = {
-  background: 'white',
-  padding: 24,
-  borderRadius: 24,
-  boxShadow: '0 8px 28px rgba(26,86,219,0.10)',
-};
-
-const muted = {
-  color: '#64748b',
-  lineHeight: 1.6,
-};
-
-const input = {
-  width: '100%',
-  padding: 15,
-  marginBottom: 12,
-  borderRadius: 14,
-  border: '2px solid #d4e0f7',
-  fontSize: 16,
-};
-
-const formBox = {
-  maxWidth: 700,
-  margin: 'auto',
-  background: 'white',
-  padding: 25,
-  borderRadius: 24,
-  boxShadow: '0 10px 30px rgba(0,0,0,0.08)',
-};
-
-const btnBlue = {
-  background: '#1a56db',
-  color: 'white',
-  padding: '14px 26px',
-  borderRadius: 16,
-  textDecoration: 'none',
-  fontWeight: 900,
-};
-
-const btnGreen = {
-  background: '#16a34a',
-  color: 'white',
-  padding: '14px 26px',
-  borderRadius: 16,
-  textDecoration: 'none',
-  fontWeight: 900,
-};
-
-const btnWhite = {
-  background: 'white',
-  color: '#0d2a6b',
-  padding: '14px 26px',
-  borderRadius: 16,
-  textDecoration: 'none',
-  fontWeight: 900,
-};
-
-const returnTag = {
-  background: '#e8f0fe',
-  color: '#1341b0',
-  padding: '6px 12px',
-  borderRadius: 20,
-  display: 'inline-block',
-  fontWeight: 800,
-};
-
-const contactSection = {
-  background: '#071a4f',
-  color: 'white',
-  padding: '45px 20px',
-  textAlign: 'center',
-};
-
-const footer = {
-  background: '#020617',
-  color: '#94a3b8',
-  textAlign: 'center',
-  padding: 18,
-};
