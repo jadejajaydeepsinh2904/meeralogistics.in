@@ -144,14 +144,20 @@ const styles = `
 
   .ml-hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 12vw, 96px);
-    letter-spacing: 4px;
-    line-height: 1;
+    font-size: clamp(38px, 8vw, 68px);
+    letter-spacing: 2px;
+    line-height: 1.08;
     margin-bottom: 8px;
     color: white;
   }
 
-  .ml-hero h1 span { color: var(--gold2); }
+  .ml-hero h1 span {
+    color: var(--gold2);
+    display: block;
+    font-size: 0.58em;
+    margin-top: 10px;
+    letter-spacing: 3px;
+  }
 
   .ml-hero-sub {
     font-size: clamp(15px, 3vw, 20px);
@@ -899,7 +905,8 @@ export default function Home() {
             </div>
 
             <h1>
-              MEERA <span>LOGISTICS</span>
+              Truck Booking &amp; Transport Service
+              <span>in Jamnagar, Gujarat</span>
             </h1>
 
             <p className="ml-hero-sub">
