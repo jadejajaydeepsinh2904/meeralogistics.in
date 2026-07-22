@@ -552,6 +552,29 @@ const styles = `
     line-height: 1.25;
   }
 
+  .ml-location-links {
+    display: grid;
+    gap: 8px;
+    margin: 10px 0 14px;
+  }
+
+  .ml-location-link {
+    display: block;
+    padding: 9px 11px;
+    border-radius: 9px;
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    color: var(--blue2);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .ml-location-link:hover {
+    background: #eaf1ff;
+    border-color: var(--blue);
+  }
+
   .ml-post-truck-banner {
     background: linear-gradient(135deg, var(--blue), var(--navy2));
     color: white;
@@ -1221,6 +1244,31 @@ export default function Home() {
                     </div>
 
                     <div className="ml-load-rate">💰 {l.rate}</div>
+
+                    {(l.loadingMap || l.unloadingMap) && (
+                      <div className="ml-location-links">
+                        {l.loadingMap && (
+                          <a
+                            href={l.loadingMap}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-location-link"
+                          >
+                            📍 Loading Point Google Mapsમાં જુઓ
+                          </a>
+                        )}
+                        {l.unloadingMap && (
+                          <a
+                            href={l.unloadingMap}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-location-link"
+                          >
+                            🏁 Unloading Point Google Mapsમાં જુઓ
+                          </a>
+                        )}
+                      </div>
+                    )}
 
                     <div className="ml-load-actions">
                       <a
