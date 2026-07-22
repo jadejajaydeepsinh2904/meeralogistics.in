@@ -535,6 +535,13 @@ const styles = `
     margin: 8px 0 16px;
   }
 
+  .ml-load-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+
   .ml-post-truck-banner {
     background: linear-gradient(135deg, var(--blue), var(--navy2));
     color: white;
@@ -811,6 +818,10 @@ const styles = `
 
     .ml-booking-card {
       padding: 28px 20px;
+    }
+
+    .ml-load-actions {
+      grid-template-columns: 1fr;
     }
   }
 `;
@@ -1204,18 +1215,44 @@ export default function Home() {
 
                     <div className="ml-load-rate">💰 {l.rate}</div>
 
-                    <a
-                      href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(
-                        l.from
-                      )}%20to%20${encodeURIComponent(
-                        l.to
-                      )}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-btn ml-btn-green ml-btn-full"
-                    >
-                      📲 હમણાં બુક કરો
-                    </a>
+                    <div className="ml-load-actions">
+                      <a
+                        href={`https://wa.me/919558959579?text=${encodeURIComponent(
+                          `Hello Meera Logistics, Return Load Book Karvu Chhe\n\n` +
+                          `Route: ${l.from} → ${l.to}\n` +
+                          `Truck: ${l.truck}\nMaterial: ${l.material}\n` +
+                          `Time: ${l.time}\nRate: ${l.rate}`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-btn ml-btn-green ml-btn-full"
+                      >
+                        📲 હમણાં બુક કરો
+                      </a>
+
+                      <a
+                        href={`https://wa.me/?text=${encodeURIComponent(
+                          `🚛 *MEERA LOGISTICS* 🚛\n` +
+                          `━━━━━━━━━━━━━━━━\n` +
+                          `🔄 *RETURN LOAD AVAILABLE*\n\n` +
+                          `📍 *Route:* ${l.from} ➜ ${l.to}\n` +
+                          `🚚 *Truck:* ${l.truck}\n` +
+                          `📦 *Material:* ${l.material}\n\n` +
+                          `━━━━━━━━━━━━━━━━\n\n` +
+                          `✅ *સંપૂર્ણ માહિતી અને Booking માટે:*\n` +
+                          `🌐 https://www.meeralogistics.in/#loads\n\n` +
+                          `💬 *અમારા Google Reviews જુઓ:*\n` +
+                          `https://share.google/u1RdWtaFpQkWwCnsl\n\n` +
+                          `📞 *Call / WhatsApp:* 9558959579\n\n` +
+                          `_વિશ્વસનીય Gujarat Transport Service_ 🤝`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-btn ml-btn-blue ml-btn-full"
+                      >
+                        ↗️ WhatsApp પર Share કરો
+                      </a>
+                    </div>
                   </article>
                 ))}
               </div>

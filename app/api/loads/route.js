@@ -25,6 +25,13 @@ export async function GET() {
     };
 
     const rows = parseCSV(csv);
+    const safeMapUrl = (value) => {
+      const url = (value || "").trim();
+      return /^https:\/\/(maps\.app\.goo\.gl|www\.google\.com\/maps|maps\.google\.com)\//i.test(url)
+        ? url
+        : "";
+    };
+
     const loads = rows.slice(1)
       .filter((cols) => cols[0] && cols[1])
       .map((cols) => ({
@@ -34,6 +41,8 @@ export async function GET() {
         material: cols[3] || "",
         time: cols[4] || "",
         rate: cols[5] || "",
+        loadingMap: safeMapUrl(cols[6]),
+        unloadingMap: safeMapUrl(cols[7]),
       }));
 
     return Response.json({ loads });
