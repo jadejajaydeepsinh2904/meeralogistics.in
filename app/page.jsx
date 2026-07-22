@@ -535,6 +535,23 @@ const styles = `
     margin: 8px 0 16px;
   }
 
+  .ml-load-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .ml-load-actions .ml-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 10px;
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+
   .ml-post-truck-banner {
     background: linear-gradient(135deg, var(--blue), var(--navy2));
     color: white;
@@ -590,6 +607,85 @@ const styles = `
 
   .ml-reviews-grid {
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .ml-route-grid,
+  .ml-process-grid,
+  .ml-faq-grid {
+    display: grid;
+    gap: 18px;
+  }
+
+  .ml-route-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+
+  .ml-route-card,
+  .ml-process-card,
+  .ml-faq-item,
+  .ml-google-review-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .ml-route-card h3,
+  .ml-process-card h3 {
+    color: var(--navy2);
+    font-size: 19px;
+    margin-bottom: 7px;
+  }
+
+  .ml-route-card p,
+  .ml-process-card p,
+  .ml-faq-item p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .ml-process-grid {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  }
+
+  .ml-process-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--blue);
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  .ml-faq-grid {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .ml-faq-item h3 {
+    color: var(--navy);
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .ml-google-review-card {
+    max-width: 760px;
+    margin: auto;
+    text-align: center;
+    border-color: #f5cf62;
+    background: linear-gradient(135deg, #fffdf6, #ffffff);
+  }
+
+  .ml-google-review-card .stars {
+    color: var(--gold);
+    font-size: 30px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
   }
 
   .ml-review-stars {
@@ -733,6 +829,7 @@ const styles = `
     .ml-booking-card {
       padding: 28px 20px;
     }
+
   }
 `;
 
@@ -807,20 +904,60 @@ const areas = [
   "🚢 મુન્દ્રા",
 ];
 
-const reviews = [
-  {
-    text: "ઝડપી સર્વિસ અને પ્રોફેશનલ ડ્રાઈવર. Jamnagar Transport route માટે ખૂબ સારી સર્વિસ.",
-    author: "ટ્રાન્સપોર્ટ કોન્ટ્રાક્ટર, જામનગર",
-  },
-  {
-    text: "દહેજ રૂટ માટે વિશ્વસનીય સપોર્ટ. Return Load service ખૂબ ઉપયોગી છે.",
-    author: "ફ્લીટ ઓનર, દહેજ",
-  },
-  {
-    text: "Gujarat માં સારી Tipper અને Dumper Service. WhatsApp પર ઝડપી જવાબ મળે છે.",
-    author: "બિલ્ડર, મોરબી",
-  },
+const routes = [
+  ["જામનગર → અમદાવાદ", "Full Load, industrial goods અને general cargo transport."],
+  ["જામનગર → મોરબી", "Ceramic, construction material અને commercial load support."],
+  ["જામનગર → દહેજ", "Industrial route માટે truck, trailer અને return load service."],
+  ["જામનગર → કચ્છ / મુન્દ્રા", "Port અને industrial area માટે dependable transport support."],
+  ["જામનગર → સુરત / વાપી", "Long-route truck booking અને return load coordination."],
+  ["All Gujarat Routes", "Loading point અને unloading point પ્રમાણે vehicle arrangement."],
 ];
+
+const faqs = [
+  [
+    "Jamnagarથી truck booking કેવી રીતે કરવી?",
+    "Loading point, unloading point, material અને truck typeની માહિતી WhatsApp formથી મોકલો. અમારી ટીમ availability અને rate માટે સંપર્ક કરશે.",
+  ],
+  [
+    "કયા પ્રકારના વાહનો ઉપલબ્ધ છે?",
+    "Requirement પ્રમાણે tipper, dumper, body truck, trailer અને full-load vehicle માટે સંપર્ક કરી શકો છો.",
+  ],
+  [
+    "Return Load service કોના માટે છે?",
+    "Truck owner, driver અને broker ખાલી truckની location અને route મોકલીને return load matching માટે enquiry કરી શકે છે.",
+  ],
+  [
+    "Transport rate કેવી રીતે નક્કી થાય છે?",
+    "Rate route, material, vehicle type, weight, loading conditions અને current availability પર આધારિત હોય છે.",
+  ],
+  [
+    "Service કયા વિસ્તારોમાં મળે છે?",
+    "Jamnagarથી Ahmedabad, Morbi, Kutch, Mundra, Dahej, Surat, Vapi, Vadodara, Rajkot સહિત Gujaratના મુખ્ય routes પર service મળે છે.",
+  ],
+];
+
+const googleReviews = [
+  "Khima Makvana",
+  "Jagdish Rathod",
+  "Sidhdharajsinh Jadeja",
+  "Dhirajbhai Bhadka",
+  "Kripal Boricha",
+  "Ram Modhwadhiya",
+  "Chandrasinh Rathod",
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(([question, answer]) => ({
+    "@type": "Question",
+    name: question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: answer,
+    },
+  })),
+};
 
 export default function Home() {
   const [form, setForm] = useState({
@@ -871,6 +1008,11 @@ export default function Home() {
     <>
       <style>{styles}</style>
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       <main className="ml-body">
         <nav className="ml-nav">
           <a href="#" className="ml-nav-brand">
@@ -888,6 +1030,9 @@ export default function Home() {
             <a href="#services">સર્વિસ</a>
             <a href="#loads">રિટર્ન લોડ</a>
             <a href="#booking">ટ્રક બુકિંગ</a>
+            <a href="#routes">રૂટ</a>
+            <a href="#reviews">રિવ્યૂ</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">સંપર્ક</a>
             <a
               href="https://wa.me/919558959579"
@@ -1077,18 +1222,43 @@ export default function Home() {
 
                     <div className="ml-load-rate">💰 {l.rate}</div>
 
-                    <a
-                      href={`https://wa.me/919558959579?text=Hello%20Meera%20Logistics%2C%20Return%20Load%20Book%20Karvu%20Chhe%0ARoute%3A%20${encodeURIComponent(
-                        l.from
-                      )}%20to%20${encodeURIComponent(
-                        l.to
-                      )}%0ATruck%3A%20${encodeURIComponent(l.truck)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-btn ml-btn-green ml-btn-full"
-                    >
-                      📲 હમણાં બુક કરો
-                    </a>
+                    <div className="ml-load-actions">
+                      <a
+                        href={`https://wa.me/919558959579?text=${encodeURIComponent(
+                          `Hello Meera Logistics, Return Load Book Karvu Chhe\n\n` +
+                          `Route: ${l.from} → ${l.to}\n` +
+                          `Truck: ${l.truck}\nMaterial: ${l.material}\n` +
+                          `Time: ${l.time}\nRate: ${l.rate}`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-btn ml-btn-green ml-btn-full"
+                      >
+                        📲 હમણાં બુક કરો
+                      </a>
+
+                      <a
+                        href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                          `◾◾ *${l.material}* ◾◾\n\n` +
+                          `🚚 *મીરા લોજિસ્ટિક્સ* 🚚\n\n` +
+                          `📍 *${l.from} થી ${l.to}*\n\n` +
+                          `જેને આ લોડ ભરવો હોય તેઓ નીચે આપેલા નંબર પર જાણ કરવી.\n\n` +
+                          `📱 95589 59579\n` +
+                          `📱 95589 59580\n\n` +
+                          `🚛 *${l.truck} જ ચાલશે*\n\n` +
+                          `📌 *Loading અને Unloading Point:*\n` +
+                          `https://www.meeralogistics.in/#loads\n\n` +
+                          `⭐ *અમને Google Review આપો:*\n` +
+                          `https://share.google/u1RdWtaFpQkWwCnsl\n\n` +
+                          `_વિશ્વસનીય Gujarat Transport Service_ 🤝`
+                        )}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-btn ml-btn-blue ml-btn-full"
+                      >
+                        ↗️ WhatsApp પર Share કરો
+                      </a>
+                    </div>
                   </article>
                 ))}
               </div>
@@ -1236,22 +1406,113 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="ml-section">
+        <section className="ml-section" id="routes">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">મુખ્ય ટ્રાન્સપોર્ટ રૂટ</p>
+
+            <h2 className="ml-sec-title">Popular Transport Routes From Jamnagar</h2>
+
+            <p className="ml-sec-sub">
+              Gujaratના industrial city, port અને commercial hub માટે truck
+              booking અને return load coordination.
+            </p>
+
+            <div className="ml-route-grid">
+              {routes.map(([title, desc]) => (
+                <article key={title} className="ml-route-card">
+                  <h3>🚛 {title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="ml-section ml-areas-bg">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">સરળ પ્રક્રિયા</p>
+
+            <h2 className="ml-sec-title">Truck Booking કેવી રીતે થાય?</h2>
+
+            <p className="ml-sec-sub">
+              માત્ર ત્રણ સરળ stepમાં તમારી transport enquiry મોકલો.
+            </p>
+
+            <div className="ml-process-grid">
+              {[
+                ["1", "માહિતી મોકલો", "Loading, unloading, material અને truck type જણાવો."],
+                ["2", "Availability મેળવો", "અમારી ટીમ vehicle availability અને estimated rate જણાવશે."],
+                ["3", "Booking Confirm કરો", "Details confirm થયા પછી truck dispatch coordination મળશે."],
+              ].map(([num, title, desc]) => (
+                <article key={num} className="ml-process-card">
+                  <div className="ml-process-num">{num}</div>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="ml-section" id="reviews">
           <div className="ml-section-inner">
             <p className="ml-sec-badge">ગ્રાહકોનો વિશ્વાસ</p>
 
-            <h2 className="ml-sec-title">Transport Service Reviews</h2>
+            <h2 className="ml-sec-title">Meera Logistics Google Reviews</h2>
 
             <p className="ml-sec-sub">
-              Gujarat ભરના Truck Owner, Broker અને Business Customer નો વિશ્વાસ.
+              Meera Logistics વિશે verified customer feedback Google Business
+              Profile પર જુઓ અથવા તમારી service experience share કરો.
             </p>
 
-            <div className="ml-reviews-grid">
-              {reviews.map((r) => (
-                <article key={r.author} className="ml-review-card">
-                  <div className="ml-review-stars">★★★★★</div>
-                  <p className="ml-review-text">&ldquo;{r.text}&rdquo;</p>
-                  <div className="ml-review-author">— {r.author}</div>
+            <div className="ml-google-review-card">
+              <div className="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <h3 style={{ color: "var(--navy)", fontSize: 24, marginBottom: 8 }}>
+                5.0 Rating on Google
+              </h3>
+              <p style={{ color: "var(--muted)", marginBottom: 20 }}>
+                7 verified Google ratings • તમામ reviewersએ 5-star rating આપી છે.
+              </p>
+
+              <div className="ml-reviews-grid" style={{ marginBottom: 24, textAlign: "left" }}>
+                {googleReviews.map((name) => (
+                  <article key={name} className="ml-review-card">
+                    <div className="ml-review-stars" aria-label="5 stars">★★★★★</div>
+                    <div className="ml-review-author">{name}</div>
+                    <p style={{ color: "var(--muted)", fontSize: 13, marginTop: 4 }}>
+                      Google Review
+                    </p>
+                  </article>
+                ))}
+              </div>
+
+              <a
+                href="https://share.google/u1RdWtaFpQkWwCnsl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-btn ml-btn-blue"
+              >
+                ⭐ Google Reviews જુઓ
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="ml-section ml-areas-bg" id="faq">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">જરૂરી માહિતી</p>
+
+            <h2 className="ml-sec-title">Frequently Asked Questions</h2>
+
+            <p className="ml-sec-sub">
+              Truck booking, rate, vehicle અને return load વિશે સામાન્ય પ્રશ્નોના જવાબ.
+            </p>
+
+            <div className="ml-faq-grid">
+              {faqs.map(([question, answer]) => (
+                <article key={question} className="ml-faq-item">
+                  <h3>{question}</h3>
+                  <p>{answer}</p>
                 </article>
               ))}
             </div>
