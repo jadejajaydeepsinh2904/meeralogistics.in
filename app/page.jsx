@@ -537,9 +537,19 @@ const styles = `
 
   .ml-load-actions {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-    margin-top: 10px;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .ml-load-actions .ml-btn {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 10px;
+    font-size: 14px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
   }
 
   .ml-post-truck-banner {
@@ -820,9 +830,6 @@ const styles = `
       padding: 28px 20px;
     }
 
-    .ml-load-actions {
-      grid-template-columns: 1fr;
-    }
   }
 `;
 
@@ -1231,20 +1238,20 @@ export default function Home() {
                       </a>
 
                       <a
-                        href={`https://wa.me/?text=${encodeURIComponent(
-                          `🚛 *MEERA LOGISTICS* 🚛\n` +
+                        href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                          `◆ *MEERA LOGISTICS* ◆\n` +
                           `━━━━━━━━━━━━━━━━\n` +
-                          `🔄 *RETURN LOAD AVAILABLE*\n\n` +
-                          `📍 *Route:* ${l.from} ➜ ${l.to}\n` +
-                          `🚚 *Truck:* ${l.truck}\n` +
-                          `📦 *Material:* ${l.material}\n\n` +
+                          `↻ *RETURN LOAD AVAILABLE*\n\n` +
+                          `● *Route:* ${l.from} ➜ ${l.to}\n` +
+                          `▰ *Truck:* ${l.truck}\n` +
+                          `■ *Material:* ${l.material}\n\n` +
                           `━━━━━━━━━━━━━━━━\n\n` +
-                          `✅ *સંપૂર્ણ માહિતી અને Booking માટે:*\n` +
-                          `🌐 https://www.meeralogistics.in/#loads\n\n` +
-                          `💬 *અમારા Google Reviews જુઓ:*\n` +
+                          `✓ *સંપૂર્ણ માહિતી અને Booking માટે:*\n` +
+                          `↗ https://www.meeralogistics.in/#loads\n\n` +
+                          `★ *અમારા Google Reviews જુઓ:*\n` +
                           `https://share.google/u1RdWtaFpQkWwCnsl\n\n` +
-                          `📞 *Call / WhatsApp:* 9558959579\n\n` +
-                          `_વિશ્વસનીય Gujarat Transport Service_ 🤝`
+                          `☎ *Call / WhatsApp:* 9558959579\n\n` +
+                          `_વિશ્વસનીય Gujarat Transport Service_ ✓`
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
