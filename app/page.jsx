@@ -144,19 +144,24 @@ const styles = `
 
   .ml-hero h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(38px, 8vw, 68px);
-    letter-spacing: 2px;
-    line-height: 1.08;
+    font-size: clamp(52px, 12vw, 96px);
+    letter-spacing: 4px;
+    line-height: 1;
     margin-bottom: 8px;
     color: white;
   }
 
   .ml-hero h1 span {
     color: var(--gold2);
-    display: block;
-    font-size: 0.58em;
-    margin-top: 10px;
-    letter-spacing: 3px;
+  }
+
+  .ml-hero-keyword {
+    color: #dbe7ff;
+    font-size: clamp(22px, 4vw, 34px);
+    line-height: 1.2;
+    margin: 16px auto 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
 
   .ml-hero-sub {
@@ -905,9 +910,12 @@ export default function Home() {
             </div>
 
             <h1>
-              Truck Booking &amp; Transport Service
-              <span>in Jamnagar, Gujarat</span>
+              MEERA <span>LOGISTICS</span>
             </h1>
+
+            <h2 className="ml-hero-keyword">
+              Truck Booking &amp; Transport Service in Jamnagar, Gujarat
+            </h2>
 
             <p className="ml-hero-sub">
               Meera Logistics — જામનગરથી સમગ્ર ગુજરાતમાં Truck Booking,
