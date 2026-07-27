@@ -373,6 +373,44 @@ const styles = `
     color: var(--navy2);
   }
 
+  .ml-materials-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ml-material-card {
+    overflow: hidden;
+    margin: 0;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .ml-material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(26,86,219,0.16);
+  }
+
+  .ml-material-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    object-fit: cover;
+    background: #e7ecf6;
+  }
+
+  .ml-material-name {
+    padding: 14px 10px;
+    text-align: center;
+    color: var(--navy);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
   .ml-fleet-bg {
     background: linear-gradient(180deg, #e9f0ff 0%, #f7f9ff 100%);
   }
@@ -899,12 +937,26 @@ const styles = `
   }
 
   @media (max-width: 900px) {
+    .ml-materials-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .ml-fleet-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (max-width: 560px) {
+    .ml-materials-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ml-material-name {
+      padding: 11px 7px;
+      font-size: 14px;
+    }
+
     .ml-fleet-grid {
       grid-template-columns: 1fr;
       gap: 14px;
@@ -1024,6 +1076,36 @@ const fleetPhotos = [
     title: "Road Roller",
     alt: "Meera Logistics road roller equipment",
   },
+];
+
+const transportedMaterials = [
+  ["કપચી", "kapchi.webp", "Kapchi crushed stone aggregate transport"],
+  ["રેતી (Sand)", "sand.webp", "Construction sand transport"],
+  ["માટી (Soil)", "soil.webp", "Soil and earth material transport"],
+  ["કોલસો (Coal)", "coal.webp", "Coal transport service Gujarat"],
+  ["પેટકોક (Petcoke)", "petcoke.webp", "Petroleum coke petcoke transport"],
+  ["સિમેન્ટ (Cement)", "cement.webp", "Cement bag transport"],
+  ["ઈંટ (Bricks)", "bricks.webp", "Construction bricks transport"],
+  ["બાંધકામ સામગ્રી", "construction-material.webp", "Construction material transport"],
+  ["Industrial Material", "industrial-material.webp", "Industrial material transport Gujarat"],
+  ["Machinery", "machinery.webp", "Industrial machinery transport"],
+  ["Fly Ash", "fly-ash.webp", "Fly ash bulk transport"],
+  ["Minerals", "minerals.webp", "Industrial minerals transport"],
+  ["અનાજ (Grain)", "grain.webp", "Grain transport service"],
+  ["કૃષિ સામગ્રી", "agriculture-material.webp", "Agricultural material transport"],
+  ["Commercial Goods", "commercial-goods.webp", "Commercial goods transport"],
+  ["General Goods", "general-goods.webp", "General goods truck transport"],
+  ["Bulk Material", "bulk-material.webp", "Bulk material transport"],
+  ["મીઠું (Salt)", "salt.webp", "Industrial salt transport Gujarat"],
+  ["Copper Slag", "copper-slag.webp", "Copper slag transport"],
+  ["Sulphur", "sulphur.webp", "Sulphur granules transport"],
+  ["Gypsum", "gypsum.webp", "Gypsum mineral transport"],
+  ["Plastic Dana", "plastic-dana.webp", "Plastic granules transport"],
+  ["Clinker", "clinker.webp", "Cement clinker transport"],
+  ["Tiles", "tiles.webp", "Ceramic tiles transport Gujarat"],
+  ["Bio Coal", "bio-coal.webp", "Bio coal briquettes transport"],
+  ["Fertilizer", "fertilizer.webp", "Fertilizer transport service"],
+  ["કચરો / Waste Material", "waste-material.webp", "Dry waste material transport"],
 ];
 
 const whyUs = [
@@ -1188,6 +1270,7 @@ export default function Home() {
 
           <div className="ml-nav-links">
             <a href="#services">સર્વિસ</a>
+            <a href="#materials">માલ</a>
             <a href="#fleet">ફ્લીટ</a>
             <a href="#loads">રિટર્ન લોડ</a>
             <a href="#booking">ટ્રક બુકિંગ</a>
@@ -1295,6 +1378,41 @@ export default function Home() {
               ઝડપી અને વિશ્વસનીય સેવા આપે છે. અમે Jamnagar, Morbi, Kutch,
               Dahej, Surat, Vapi, Vadodara, Ahmedabad, Rajkot અને Mundra જેવા
               મુખ્ય રૂટ પર ટ્રક અને લોડ સપોર્ટ આપીએ છીએ.
+            </div>
+          </div>
+        </section>
+
+        <section className="ml-section" id="materials">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">MATERIAL TRANSPORT SERVICE</p>
+
+            <h2 className="ml-sec-title">
+              અમે કયા માલનું Transport કરીએ છીએ?
+            </h2>
+
+            <p className="ml-sec-sub">
+              Construction, Industrial, Agriculture અને Commercial ક્ષેત્રના
+              વિવિધ માલ માટે Truck, Tipper, Dumper અને Full Load Transport
+              Service સમગ્ર Gujaratમાં ઉપલબ્ધ છે.
+            </p>
+
+            <div className="ml-materials-grid">
+              {transportedMaterials.map(([name, image, alt]) => (
+                <figure key={name} className="ml-material-card">
+                  <img
+                    src={`/materials/${image}`}
+                    alt={`Meera Logistics ${alt}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="ml-material-name">{name}</figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <div className="ml-fleet-note">
+              📦 ઉપર દર્શાવેલ માલ ઉપરાંત અન્ય પ્રકારના માલના Transport માટે પણ
+              અમારી સાથે સંપર્ક કરો.
             </div>
           </div>
         </section>
