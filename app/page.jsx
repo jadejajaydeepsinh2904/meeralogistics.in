@@ -1384,17 +1384,23 @@ export default function Home() {
 
         <section className="ml-section" id="materials">
           <div className="ml-section-inner">
-            <p className="ml-sec-badge">MATERIAL TRANSPORT SERVICE</p>
+            <p className="ml-sec-badge">MATERIAL SUPPLY &amp; TRANSPORT SERVICE</p>
 
             <h2 className="ml-sec-title">
-              અમે કયા માલનું Transport કરીએ છીએ?
+              અમે કયા માલનું Transport અને વેચાણ કરીએ છીએ?
             </h2>
 
             <p className="ml-sec-sub">
               Construction, Industrial, Agriculture અને Commercial ક્ષેત્રના
-              વિવિધ માલ માટે Truck, Tipper, Dumper અને Full Load Transport
-              Service સમગ્ર Gujaratમાં ઉપલબ્ધ છે.
+              વિવિધ માલનું વેચાણ તેમજ Truck, Tipper, Dumper અને Full Load
+              Transport Service સમગ્ર Gujaratમાં ઉપલબ્ધ છે.
             </p>
+
+            <div className="ml-fleet-note" style={{ marginTop: 0, marginBottom: 28 }}>
+              🚛📦 નીચે દર્શાવેલ કોઈપણ માલ ગુજરાતમાં કોઈપણ જગ્યાએ જોઈએ તો
+              Meera Logisticsનો સંપર્ક કરો—વેચાણથી લઈને તમારા સ્થળ સુધી
+              Transportની સંપૂર્ણ સુવિધા ઉપલબ્ધ છે.
+            </div>
 
             <div className="ml-materials-grid">
               {transportedMaterials.map(([name, image, alt]) => (
@@ -1411,8 +1417,8 @@ export default function Home() {
             </div>
 
             <div className="ml-fleet-note">
-              📦 ઉપર દર્શાવેલ માલ ઉપરાંત અન્ય પ્રકારના માલના Transport માટે પણ
-              અમારી સાથે સંપર્ક કરો.
+              📦 ઉપર દર્શાવેલ માલના વેચાણ અને Transport માટે તેમજ અન્ય
+              પ્રકારના માલની જરૂરિયાત માટે અમારી સાથે સંપર્ક કરો.
             </div>
           </div>
         </section>
