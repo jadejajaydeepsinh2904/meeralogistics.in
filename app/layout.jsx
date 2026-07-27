@@ -1,11 +1,13 @@
+import "./seo-pages.css";
+
 export const metadata = {
   metadataBase: new URL("https://www.meeralogistics.in"),
 
   title:
-    "Truck Booking & Transport Service in Jamnagar | Meera Logistics",
+    "Transport, Logistics & Material Supply in Jamnagar | Meera Logistics",
 
   description:
-    "Meera Logistics provides Gujarat transport service, Jamnagar truck booking, tipper service, dumper transport and return load service across Gujarat.",
+    "Meera Logistics provides transport, logistics, truck booking, tipper, dumper and construction or industrial material supply across Gujarat.",
 
   keywords:
     [
@@ -35,10 +37,10 @@ export const metadata = {
   },
 
   openGraph: {
-    title: "Truck Booking & Transport Service in Jamnagar | Meera Logistics",
+    title: "Transport, Logistics & Material Supply in Jamnagar | Meera Logistics",
 
     description:
-      "Truck, Tipper, Dumper and Return Load service across Gujarat.",
+      "Transport, material supply, truck, tipper, dumper and return load service across Gujarat.",
 
     url: "https://www.meeralogistics.in",
 
@@ -50,20 +52,20 @@ export const metadata = {
 
     images: [
       {
-        url: "/meera-logo.png",
-        width: 512,
-        height: 512,
-        alt: "Meera Logistics - Gujarat Transport Service",
+        url: "/fleet/meera-logistics-tata-tipper.webp",
+        width: 1400,
+        height: 1400,
+        alt: "Meera Logistics transport and material supply service Gujarat",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Truck Booking & Transport Service in Jamnagar | Meera Logistics",
+    title: "Transport, Logistics & Material Supply in Jamnagar | Meera Logistics",
     description:
-      "Truck, Tipper, Dumper and Return Load service across Gujarat.",
-    images: ["/meera-logo.png"],
+      "Transport, material supply, truck, tipper, dumper and return load service across Gujarat.",
+    images: ["/fleet/meera-logistics-tata-tipper.webp"],
   },
 };
 
@@ -123,8 +125,30 @@ export default function RootLayout({ children }) {
       closes: "23:59",
     },
 
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Transport and Material Supply Services",
+      itemListElement: [
+        "Transport Service",
+        "Logistics Service",
+        "Truck Booking",
+        "Tipper Service",
+        "Dumper Service",
+        "Return Load",
+        "Construction Material Supply",
+        "Industrial Material Supply",
+      ].map((name) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name,
+          areaServed: "Gujarat",
+        },
+      })),
+    },
+
     description:
-      "Gujarat transport service for truck booking, tipper service, dumper transport and return load.",
+      "Gujarat transport, logistics, truck booking, tipper, dumper, return load and material supply service.",
   };
 
   return (

@@ -325,6 +325,8 @@ const styles = `
   .ml-svc-card {
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
   }
 
   .ml-svc-card:hover {
@@ -387,6 +389,8 @@ const styles = `
     border-radius: 18px;
     box-shadow: var(--card-shadow);
     transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: inherit;
   }
 
   .ml-material-card:hover {
@@ -715,7 +719,8 @@ const styles = `
     border-radius: 50px;
     box-shadow: 0 2px 8px rgba(26,86,219,0.07);
     transition: background 0.2s, color 0.2s, border-color 0.2s;
-    cursor: default;
+    cursor: pointer;
+    text-decoration: none;
   }
 
   .ml-area-pill:hover {
@@ -984,31 +989,37 @@ const styles = `
 
 const services = [
   {
+    slug: "tipper-service",
     icon: "🚛",
     title: "ટિપર ટ્રાન્સપોર્ટ",
     desc: "રેતી, કપચી, કન્સ્ટ્રક્શન મટિરિયલ અને બલ્ક માલ માટે ઝડપી Tipper Service Gujarat.",
   },
   {
+    slug: "dumper-service",
     icon: "⛏️",
     title: "ડમ્પર સર્વિસ",
     desc: "ઇન્ડસ્ટ્રીયલ અને હેવી મટિરિયલ માટે વિશ્વસનીય Dumper Transport Service.",
   },
   {
+    slug: "truck-booking",
     icon: "🏗️",
     title: "ટ્રક બુકિંગ",
     desc: "Jamnagar થી Gujarat ભર માટે Truck Booking અને Full Load Transport Service.",
   },
   {
+    slug: "return-load",
     icon: "🔄",
     title: "રિટર્ન લોડ",
     desc: "ખાલી ન જાવ — Return Load Gujarat માટે ટ્રક ઓનર અને ડ્રાઈવર માટે ફ્રી લોડ મેચિંગ.",
   },
   {
+    slug: "logistics-service",
     icon: "📦",
     title: "ફ્લીટ મેનેજમેન્ટ",
     desc: "મોટા ઇન્ડસ્ટ્રીયલ અને કોમર્શિયલ પ્રોજેક્ટ માટે મલ્ટી ટ્રક મેનેજમેન્ટ.",
   },
   {
+    slug: "transport-service",
     icon: "🗺️",
     title: "ગુજરાત નેટવર્ક",
     desc: "જામનગર, દહેજ, મોરબી, સુરત, અમદાવાદ, કચ્છ સહિત All Gujarat Transport Service.",
@@ -1132,18 +1143,18 @@ const whyUs = [
 ];
 
 const areas = [
-  "🏭 જામનગર",
-  "🏗️ કચ્છ",
-  "🏺 મોરબી",
-  "🌆 અમદાવાદ",
-  "🏛️ વડોદરા",
-  "🌊 સુરત",
-  "⚓ વાપી",
-  "⚗️ દહેજ",
-  "🏘️ લીમડી",
-  "🌾 રાજકોટ",
-  "🏭 ભાવનગર",
-  "🚢 મુન્દ્રા",
+  ["🏭 જામનગર", "jamnagar"],
+  ["🏗️ કચ્છ", "kutch"],
+  ["🏺 મોરબી", "morbi"],
+  ["🌆 અમદાવાદ", "ahmedabad"],
+  ["🏛️ વડોદરા", "vadodara"],
+  ["🌊 સુરત", "surat"],
+  ["⚓ વાપી", "vapi"],
+  ["⚗️ દહેજ", "dahej"],
+  ["🏘️ લીમડી", "limdi"],
+  ["🌾 રાજકોટ", "rajkot"],
+  ["🏭 ભાવનગર", "bhavnagar"],
+  ["🚢 મુન્દ્રા", "mundra"],
 ];
 
 const routes = [
@@ -1363,11 +1374,15 @@ export default function Home() {
 
             <div className="ml-services-grid">
               {services.map((s) => (
-                <article key={s.title} className="ml-svc-card">
+                <a
+                  key={s.title}
+                  href={`/services/${s.slug}`}
+                  className="ml-svc-card"
+                >
                   <div className="ml-svc-icon">{s.icon}</div>
                   <h3>{s.title}</h3>
                   <p>{s.desc}</p>
-                </article>
+                </a>
               ))}
             </div>
 
@@ -1404,15 +1419,19 @@ export default function Home() {
 
             <div className="ml-materials-grid">
               {transportedMaterials.map(([name, image, alt]) => (
-                <figure key={name} className="ml-material-card">
+                <a
+                  key={name}
+                  href={`/material-supply/${image.replace(".webp", "")}`}
+                  className="ml-material-card"
+                >
                   <img
                     src={`/materials/${image}`}
                     alt={`Meera Logistics ${alt}`}
                     loading="lazy"
                     decoding="async"
                   />
-                  <figcaption className="ml-material-name">{name}</figcaption>
-                </figure>
+                  <div className="ml-material-name">{name}</div>
+                </a>
               ))}
             </div>
 
@@ -1731,10 +1750,14 @@ export default function Home() {
             </p>
 
             <div className="ml-areas-list">
-              {areas.map((a) => (
-                <div key={a} className="ml-area-pill">
-                  {a}
-                </div>
+              {areas.map(([name, slug]) => (
+                <a
+                  key={slug}
+                  href={`/transport-service/${slug}`}
+                  className="ml-area-pill"
+                >
+                  {name}
+                </a>
               ))}
             </div>
 
