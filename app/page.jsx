@@ -373,6 +373,64 @@ const styles = `
     color: var(--navy2);
   }
 
+  .ml-fleet-bg {
+    background: linear-gradient(180deg, #e9f0ff 0%, #f7f9ff 100%);
+  }
+
+  .ml-fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .ml-fleet-card {
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--navy);
+    border: 2px solid white;
+    box-shadow: var(--card-shadow);
+  }
+
+  .ml-fleet-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .ml-fleet-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .ml-fleet-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 34px 16px 15px;
+    background: linear-gradient(transparent, rgba(2, 13, 46, 0.92));
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+  }
+
+  .ml-fleet-note {
+    margin: 26px auto 0;
+    max-width: 850px;
+    padding: 16px 20px;
+    text-align: center;
+    border-radius: 14px;
+    background: white;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    font-weight: 600;
+  }
+
   .ml-whyus {
     background: var(--navy);
     color: white;
@@ -840,7 +898,23 @@ const styles = `
     white-space: nowrap;
   }
 
+  @media (max-width: 900px) {
+    .ml-fleet-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
   @media (max-width: 560px) {
+    .ml-fleet-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .ml-fleet-card,
+    .ml-fleet-card img {
+      min-height: 230px;
+    }
+
     .ml-form-row {
       grid-template-columns: 1fr;
     }
@@ -886,6 +960,69 @@ const services = [
     icon: "🗺️",
     title: "ગુજરાત નેટવર્ક",
     desc: "જામનગર, દહેજ, મોરબી, સુરત, અમદાવાદ, કચ્છ સહિત All Gujarat Transport Service.",
+  },
+];
+
+const fleetPhotos = [
+  {
+    src: "/fleet/meera-logistics-tata-tipper.webp",
+    title: "TATA Signa Tipper",
+    alt: "Meera Logistics TATA Signa tipper truck in Gujarat",
+  },
+  {
+    src: "/fleet/meera-logistics-white-tipper.webp",
+    title: "Heavy Duty Tipper",
+    alt: "Meera Logistics heavy duty white TATA tipper truck",
+  },
+  {
+    src: "/fleet/meera-logistics-blue-dumper.webp",
+    title: "Blue Dumper Truck",
+    alt: "Meera Logistics blue dumper truck for construction material",
+  },
+  {
+    src: "/fleet/meera-logistics-heavy-truck.webp",
+    title: "Multi Axle Truck",
+    alt: "Meera Logistics multi axle transport truck in Gujarat",
+  },
+  {
+    src: "/fleet/meera-logistics-trailer-dumper.webp",
+    title: "Trailer Dumper",
+    alt: "Meera Logistics trailer dumper for bulk material transport",
+  },
+  {
+    src: "/fleet/meera-logistics-site-transport.webp",
+    title: "Site Material Transport",
+    alt: "Meera Logistics dumper working at construction site",
+  },
+  {
+    src: "/fleet/meera-logistics-dumper-truck.webp",
+    title: "Construction Dumper",
+    alt: "Meera Logistics construction dumper truck",
+  },
+  {
+    src: "/fleet/meera-logistics-hydraulic-tipper.webp",
+    title: "Hydraulic Tipper",
+    alt: "Meera Logistics hydraulic tipper unloading material",
+  },
+  {
+    src: "/fleet/meera-logistics-color-tipper.webp",
+    title: "Tipper Transport",
+    alt: "Meera Logistics colourful tipper truck transport service",
+  },
+  {
+    src: "/fleet/meera-logistics-excavator.webp",
+    title: "Excavator",
+    alt: "Meera Logistics excavator machine for earthwork",
+  },
+  {
+    src: "/fleet/meera-logistics-jcb.webp",
+    title: "JCB Service",
+    alt: "Meera Logistics JCB machine for loading and earthwork",
+  },
+  {
+    src: "/fleet/meera-logistics-road-roller.webp",
+    title: "Road Roller",
+    alt: "Meera Logistics road roller equipment",
   },
 ];
 
@@ -1051,6 +1188,7 @@ export default function Home() {
 
           <div className="ml-nav-links">
             <a href="#services">સર્વિસ</a>
+            <a href="#fleet">ફ્લીટ</a>
             <a href="#loads">રિટર્ન લોડ</a>
             <a href="#booking">ટ્રક બુકિંગ</a>
             <a href="#routes">રૂટ</a>
@@ -1158,6 +1296,41 @@ export default function Home() {
               Dahej, Surat, Vapi, Vadodara, Ahmedabad, Rajkot અને Mundra જેવા
               મુખ્ય રૂટ પર ટ્રક અને લોડ સપોર્ટ આપીએ છીએ.
             </div>
+          </div>
+        </section>
+
+        <section className="ml-section ml-fleet-bg" id="fleet">
+          <div className="ml-section-inner">
+            <p className="ml-sec-badge">ORIGINAL VEHICLE PHOTOS</p>
+
+            <h2 className="ml-sec-title">અમારું Fleet &amp; Equipment</h2>
+
+            <p className="ml-sec-sub">
+              Meera Logistics સાથે જોડાયેલા original Trucks, Tippers, Dumpers
+              અને Heavy Equipment — Gujaratમાં વિશ્વસનીય transport અને
+              construction support માટે.
+            </p>
+
+            <div className="ml-fleet-grid">
+              {fleetPhotos.map((photo) => (
+                <figure key={photo.src} className="ml-fleet-card">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="ml-fleet-caption">
+                    {photo.title}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <p className="ml-fleet-note">
+              🚛 Truck, Tipper, Dumper, JCB અને Heavy Equipment માટે
+              availability જાણવા અમારો સંપર્ક કરો.
+            </p>
           </div>
         </section>
 
