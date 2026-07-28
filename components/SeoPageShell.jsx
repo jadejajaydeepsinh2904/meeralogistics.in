@@ -1,3 +1,5 @@
+import WhatsAppIcon from "./WhatsAppIcon";
+
 export default function SeoPageShell({ label, title, intro, schema, children }) {
   return (
     <main className="seo-page">
@@ -42,7 +44,7 @@ export function ContactCta({ message }) {
           rel="noopener noreferrer"
           className="seo-btn"
         >
-          📲 WhatsApp Enquiry
+          <WhatsAppIcon /> WhatsApp Enquiry
         </a>
       </div>
     </section>

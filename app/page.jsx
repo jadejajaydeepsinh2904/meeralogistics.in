@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import WhatsAppIcon from "../components/WhatsAppIcon";
 
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap');
@@ -1296,7 +1297,7 @@ export default function Home() {
               className="ml-btn ml-btn-green"
               style={{ borderRadius: 10, padding: "9px 18px" }}
             >
-              📲 વોટ્સએપ
+              <WhatsAppIcon /> વોટ્સએપ
             </a>
           </div>
         </nav>
@@ -1351,7 +1352,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="ml-btn ml-btn-outline"
               >
-                📲 વોટ્સએપ
+                <WhatsAppIcon /> વોટ્સએપ
               </a>
             </div>
           </div>
@@ -1598,7 +1599,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="ml-btn ml-btn-green ml-btn-full"
                       >
-                        📲 હમણાં બુક કરો
+                        <WhatsAppIcon /> હમણાં બુક કરો
                       </a>
 
                       <a
@@ -1620,7 +1621,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="ml-btn ml-btn-blue ml-btn-full"
                       >
-                        ↗️ WhatsApp પર Share કરો
+                        <WhatsAppIcon /> WhatsApp પર Share કરો
                       </a>
                     </div>
                   </article>
@@ -1642,7 +1643,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="ml-btn ml-btn-gold"
               >
-                📲 વોટ્સએપ પર પોસ્ટ કરો
+                <WhatsAppIcon /> વોટ્સએપ પર પોસ્ટ કરો
               </a>
             </div>
           </div>
@@ -1731,7 +1732,7 @@ export default function Home() {
               </div>
 
               <button onClick={sendBooking} className="ml-btn ml-btn-green ml-btn-full">
-                📲 વોટ્સએપ પર બુકિંગ મોકલો
+                <WhatsAppIcon /> વોટ્સએપ પર બુકિંગ મોકલો
               </button>
             </div>
           </div>
@@ -1908,7 +1909,7 @@ export default function Home() {
                   content: <a href="tel:9558959579">9558959579</a>,
                 },
                 {
-                  icon: "📲",
+                  icon: <WhatsAppIcon size={24} />,
                   title: "WhatsApp",
                   content: (
                     <a
@@ -1958,7 +1959,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="ml-btn ml-btn-green"
               >
-                📲 વોટ્સએપ સંપર્ક
+                <WhatsAppIcon /> વોટ્સએપ સંપર્ક
               </a>
 
               <a
@@ -1999,7 +2000,7 @@ export default function Home() {
           className="ml-wa-float"
           title="WhatsApp"
         >
-          📲
+          <WhatsAppIcon size={34} />
         </a>
       </main>
     </>
