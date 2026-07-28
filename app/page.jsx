@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import WhatsAppIcon from "../components/WhatsAppIcon";
 
 const styles = `
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
   :root {
     --navy: #071a4f;
@@ -26,7 +26,7 @@ const styles = `
   html { scroll-behavior: smooth; }
 
   .ml-body {
-    font-family: 'Rajdhani', 'Noto Sans Gujarati', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
     background: var(--bg);
     color: var(--text);
     font-size: 16px;
@@ -65,8 +65,9 @@ const styles = `
   }
 
   .ml-nav-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
     color: var(--navy);
     letter-spacing: 2px;
   }
@@ -144,10 +145,11 @@ const styles = `
   }
 
   .ml-hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 12vw, 96px);
-    letter-spacing: 4px;
-    line-height: 1;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-size: clamp(44px, 10vw, 78px);
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 1.08;
     margin-bottom: 8px;
     color: white;
   }
@@ -186,7 +188,8 @@ const styles = `
   }
 
   .ml-hero-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-weight: 900;
     font-size: 38px;
     color: var(--gold2);
     line-height: 1;
@@ -213,7 +216,7 @@ const styles = `
     gap: 8px;
     padding: 14px 26px;
     border-radius: 12px;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
     font-weight: 700;
     font-size: 16px;
     text-decoration: none;
@@ -274,30 +277,42 @@ const styles = `
   }
 
   .ml-sec-badge {
+    width: fit-content;
+    max-width: 100%;
     text-align: center;
-    color: var(--blue);
+    color: white;
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    border: 1px solid rgba(255,255,255,0.28);
+    box-shadow: 0 7px 20px rgba(26,86,219,0.22);
     font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 2.5px;
+    font-size: clamp(14px, 2.2vw, 16px);
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    line-height: 1.35;
+    padding: 9px 20px;
+    border-radius: 999px;
+    margin: 0 auto 16px;
   }
 
   .ml-sec-title {
     text-align: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(32px, 6vw, 52px);
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 900;
     color: var(--navy);
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+    line-height: 1.25;
+    margin-bottom: 16px;
   }
 
   .ml-sec-sub {
     text-align: center;
     color: var(--muted);
-    max-width: 720px;
+    max-width: 820px;
     margin: 0 auto 40px;
-    font-size: 16px;
+    font-size: clamp(16px, 2vw, 18px);
+    font-weight: 500;
+    line-height: 1.8;
   }
 
   .ml-services-grid,
@@ -349,16 +364,17 @@ const styles = `
   }
 
   .ml-svc-card h3 {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
     color: var(--navy2);
     margin-bottom: 8px;
   }
 
   .ml-svc-card p {
-    font-size: 14px;
+    font-size: 15px;
     color: var(--muted);
-    line-height: 1.6;
+    font-weight: 500;
+    line-height: 1.75;
   }
 
   .ml-seo-box {
@@ -369,7 +385,9 @@ const styles = `
     border-radius: 22px;
     padding: 24px;
     color: var(--muted);
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.8;
   }
 
   .ml-seo-box strong {
@@ -500,7 +518,8 @@ const styles = `
   }
 
   .ml-why-num {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-weight: 900;
     font-size: 48px;
     color: var(--gold2);
     line-height: 1;
@@ -553,7 +572,7 @@ const styles = `
     padding: 13px 16px;
     border-radius: 12px;
     border: 2px solid var(--border);
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
     font-size: 16px;
     color: var(--text);
     background: var(--bg);
@@ -602,7 +621,8 @@ const styles = `
   }
 
   .ml-load-route {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-weight: 900;
     font-size: 26px;
     color: var(--navy);
     letter-spacing: 1px;
@@ -687,7 +707,8 @@ const styles = `
   }
 
   .ml-post-truck-banner h3 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', 'Noto Sans Gujarati', sans-serif;
+    font-weight: 900;
     font-size: 32px;
     letter-spacing: 2px;
     margin-bottom: 10px;
