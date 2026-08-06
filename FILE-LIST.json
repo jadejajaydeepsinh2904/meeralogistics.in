@@ -1,28 +1,23 @@
 {
-  "version": "V45-TRIP-AMOUNT-SUPPLIER-EDIT",
-  "source": "V44 Audit + Supplier + Settings full project",
-  "protected_login_changed": false,
-  "schema_version": "34 unchanged",
+  "version": "V46-VERCEL-DEPLOY-FIX",
+  "source": "V45 Trip Amount + Supplier Edit full project",
+  "protected_backend_changed": false,
   "checks": {
-    "public/src/app.js": "passed",
-    "public/src/advanced-v44.js": "passed",
-    "public/src/invoice-v36.js": "passed",
-    "public/src/party-ledger-v40.js": "passed",
-    "public/src/supplier-ledger-v41.js": "passed",
-    "public/sw-v45.js": "passed",
-    "worker/src/index.js": "passed",
-    "worker/src/seed-data.js": "passed",
-    "trip_line_revenue_not_full_invoice": "passed",
-    "trip_profit_formula": "passed",
-    "trip_supplier_edit_ui": "passed",
-    "trip_supplier_lazy_column": "passed",
-    "linked_supplier_records_update": "passed",
-    "pml_auto_create": "passed",
-    "schema_version_34_unchanged": "passed",
-    "cache_v45": "passed"
+    "valid_root_package_json": "passed",
+    "vercel_install_skipped": "passed",
+    "static_build_command": "passed",
+    "output_directory_public": "passed",
+    "javascript_syntax": "passed",
+    "public_index_exists": "passed",
+    "login_worker_d1_unchanged": "passed"
   },
-  "total_files": 42,
+  "total_files": 46,
   "files": [
+    {
+      "path": ".vercelignore",
+      "size": 23,
+      "sha256": "a075e028fd7ee97f3b4cc2062c5449406cbbe47f5ef22929ddf31b360cf6b939"
+    },
     {
       "path": "README.md",
       "size": 20681,
@@ -37,6 +32,21 @@
       "path": "V44-TEST-REPORT.txt",
       "size": 1611,
       "sha256": "2d6f172465ed27194f106b7605bc31a9393fd585f3837d5688c6416227c8dd93"
+    },
+    {
+      "path": "V45-TEST-REPORT.txt",
+      "size": 646,
+      "sha256": "b1076577e0b4dd88fdad41755764b5d41d4c515b44e4f072a5593de7cfb10411"
+    },
+    {
+      "path": "V46-VERCEL-DEPLOY-REPORT.txt",
+      "size": 475,
+      "sha256": "162219c8587a2ec9dc398714ed33484b13386b8f791b52633433c7d072afd8d0"
+    },
+    {
+      "path": "package.json",
+      "size": 245,
+      "sha256": "9cebe7ba146f445b1a6543f45e8b006cd2de70f4ef4ce825466079d72bc78913"
     },
     {
       "path": "public/assets/meera-logo-pdf.jpg",
@@ -205,8 +215,8 @@
     },
     {
       "path": "vercel.json",
-      "size": 482,
-      "sha256": "1c529052a69a7985fbd2d8651b94c46f708f7794798e486440a1af7e8922a761"
+      "size": 541,
+      "sha256": "128ed16c320827e9a774b0c2f3c20153261749c13e92426ea7026af427b64cbb"
     },
     {
       "path": "worker/migrations/0001_init.sql",
