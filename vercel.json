@@ -3,25 +3,5 @@
   "installCommand": "",
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "cleanUrls": true,
-  "headers": [
-    {
-      "source": "/src/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=0, must-revalidate"
-        }
-      ]
-    }
-  ]
+  "cleanUrls": true
 }
