@@ -1,0 +1,237 @@
+{
+  "version": "V45-TRIP-AMOUNT-SUPPLIER-EDIT",
+  "source": "V44 Audit + Supplier + Settings full project",
+  "protected_login_changed": false,
+  "schema_version": "34 unchanged",
+  "checks": {
+    "public/src/app.js": "passed",
+    "public/src/advanced-v44.js": "passed",
+    "public/src/invoice-v36.js": "passed",
+    "public/src/party-ledger-v40.js": "passed",
+    "public/src/supplier-ledger-v41.js": "passed",
+    "public/sw-v45.js": "passed",
+    "worker/src/index.js": "passed",
+    "worker/src/seed-data.js": "passed",
+    "trip_line_revenue_not_full_invoice": "passed",
+    "trip_profit_formula": "passed",
+    "trip_supplier_edit_ui": "passed",
+    "trip_supplier_lazy_column": "passed",
+    "linked_supplier_records_update": "passed",
+    "pml_auto_create": "passed",
+    "schema_version_34_unchanged": "passed",
+    "cache_v45": "passed"
+  },
+  "total_files": 42,
+  "files": [
+    {
+      "path": "README.md",
+      "size": 20681,
+      "sha256": "2e34aef15873ef466d0feb55e2d4ef36f15e8af94abea1e11f1066ae0b87b8d6"
+    },
+    {
+      "path": "START-HERE.txt",
+      "size": 18029,
+      "sha256": "d5a5cec68a808e7d16d6fdd1c92a636b4e7ae1f9aad97c67274dc0eca7b924ac"
+    },
+    {
+      "path": "V44-TEST-REPORT.txt",
+      "size": 1611,
+      "sha256": "2d6f172465ed27194f106b7605bc31a9393fd585f3837d5688c6416227c8dd93"
+    },
+    {
+      "path": "public/assets/meera-logo-pdf.jpg",
+      "size": 42940,
+      "sha256": "79d5159e83ba965a971726fced7f3190b1933f7c3a262a90afbdb0fdf086a3a0"
+    },
+    {
+      "path": "public/assets/meera-logo.png",
+      "size": 409508,
+      "sha256": "3b0d2414c0a4b63876149d6c98d471f97d5362f0cd35979baf386ae492c61238"
+    },
+    {
+      "path": "public/assets/meera-partner-stamp-pdf.jpg",
+      "size": 63025,
+      "sha256": "483cad13fd1d570c14279d1185ffe94390ab8004576540b17eab1dd808de2ae0"
+    },
+    {
+      "path": "public/assets/meera-partner-stamp.png",
+      "size": 103399,
+      "sha256": "c79b6f6a60394e5dc4f2d1a528f57ef52cf37f44c764794f942897cfa283d1c1"
+    },
+    {
+      "path": "public/cache-reset-v44.html",
+      "size": 866,
+      "sha256": "8d51843fa1d6182bbff51829afe04d7458b78cb5db773ae51e35be0b123314cc"
+    },
+    {
+      "path": "public/cache-reset-v45.html",
+      "size": 589,
+      "sha256": "5d796a1ee31bcddacf60571deb6a3d8480553af1cec7b2079fd8af9dcd6a9ae5"
+    },
+    {
+      "path": "public/data/invoices.json",
+      "size": 19834,
+      "sha256": "cdcc10cfb1ed33a3c914b3d71f26ad907a3ad81a0a9cd2300a50394b6255147b"
+    },
+    {
+      "path": "public/data/party-accounts.json",
+      "size": 642,
+      "sha256": "1211b5093665702c4803ddffdf2a9b7a7f2c47077823148ec4904a6a551745df"
+    },
+    {
+      "path": "public/data/party-payments.json",
+      "size": 848,
+      "sha256": "e8de46d85ba0d2fa7b01aeb4a8ea0f27e4977f3915cae938e390613a1acc6ff2"
+    },
+    {
+      "path": "public/data/routes.json",
+      "size": 1263,
+      "sha256": "a1503198f0f21decdca1219253185d9af1ed81f4b8bd13091bf4c8f93ec04c85"
+    },
+    {
+      "path": "public/data/trip-account-entries.json",
+      "size": 19,
+      "sha256": "498ca50ab1b22eb01c73569d8d8538c1f5e47f45d7a72bd72803a39a3206d8aa"
+    },
+    {
+      "path": "public/data/trip-bookings.json",
+      "size": 2188,
+      "sha256": "34fb2709c33f60dc893b1848fa615cce3e28d29b7f7b2a1e2d7ccb2b928a63f9"
+    },
+    {
+      "path": "public/data/trip-expenses.json",
+      "size": 20,
+      "sha256": "be7148dff4aa3428ceae3af28c48ae681143fb4865d5f734327e2dfe0c81efe9"
+    },
+    {
+      "path": "public/data/truck-payments.json",
+      "size": 13961,
+      "sha256": "def06e1a342b1d12529a34bff799d9692e1a776bc03b511ae23ad73498a07ee9"
+    },
+    {
+      "path": "public/data/trucks.json",
+      "size": 8479,
+      "sha256": "49484fc2447be51b10138bc45dee7c9d0323f6af0bd1fa750886a16ee6f17052"
+    },
+    {
+      "path": "public/index.html",
+      "size": 1047,
+      "sha256": "feb2e91a60ab10ad462dbbde45f646cfa6cdffed3bdb48d6f73d34873c539e45"
+    },
+    {
+      "path": "public/manifest.webmanifest",
+      "size": 525,
+      "sha256": "a2220c9b3905a08496b7b578b6194306bd22c5d0e6728a4c6416d5e9365a4ade"
+    },
+    {
+      "path": "public/src/advanced-v44.css",
+      "size": 9563,
+      "sha256": "2751845ce85704a27d9212bed3008eab758b277d532d21db54bcac598b0966be"
+    },
+    {
+      "path": "public/src/advanced-v44.js",
+      "size": 38374,
+      "sha256": "39deb37da6a5b5130203e6acad4374b083a8689f16a66033d3d96cc78ff29233"
+    },
+    {
+      "path": "public/src/app.js",
+      "size": 111934,
+      "sha256": "ea38adfbb0b0b2090b8a63993323bc74e6b7a60aea80b305722a5b2624614ac8"
+    },
+    {
+      "path": "public/src/core/api.js",
+      "size": 1048,
+      "sha256": "78b89ffbd733cb742a716e7cc818f1e8d186c9fbae26b5a7e85fb8a625a3bb8b"
+    },
+    {
+      "path": "public/src/invoice-pdf-v39.js",
+      "size": 14811,
+      "sha256": "8c30e8d8f04390f19d31ad9971f8d84da3f21e5d5ed78015c71e36758346ae75"
+    },
+    {
+      "path": "public/src/invoice-v36.css",
+      "size": 7064,
+      "sha256": "c190ab492eb4150f43fde9ecbe562116bb3494cac3308b8c29dcf41ae5b58f99"
+    },
+    {
+      "path": "public/src/invoice-v36.js",
+      "size": 13261,
+      "sha256": "5803ea5631162cdacc814eff8d8d006b1e90867d3e7d7d38600bcb85f3d861e6"
+    },
+    {
+      "path": "public/src/party-ledger-pdf-v40.js",
+      "size": 10992,
+      "sha256": "5c48ed59bc6cdd825f4f7415d98b58bbb9a37387a09098829784794757bd479d"
+    },
+    {
+      "path": "public/src/party-ledger-v40.css",
+      "size": 3095,
+      "sha256": "1f4d9340cd945e2119a59f8f2b2086f036a13b0106b7abc4f8aa82b9c7b5b230"
+    },
+    {
+      "path": "public/src/party-ledger-v40.js",
+      "size": 6188,
+      "sha256": "f931b9d6afa94a1b8f15d1e0f95916ba9097b147bc2cc19181f09740408883ea"
+    },
+    {
+      "path": "public/src/styles.css",
+      "size": 31603,
+      "sha256": "511b97fd3d29c3d8bab36471fcab8ee2c1dddbe9ba072efb3f036e2faa485903"
+    },
+    {
+      "path": "public/src/supplier-ledger-pdf-v41.js",
+      "size": 17069,
+      "sha256": "ae207f0716c9ed8e82df7c58661d1d6e5c66a60eef8a3bd718becf6676d8bc67"
+    },
+    {
+      "path": "public/src/supplier-ledger-v41.css",
+      "size": 4615,
+      "sha256": "00a63c162c860ccd5d31c1cd927994fac48994053aee84d38ca66022fc8bbe76"
+    },
+    {
+      "path": "public/src/supplier-ledger-v41.js",
+      "size": 6968,
+      "sha256": "3127397e6a7b98ed0eb7c9069f82fe54b2c14c0a8bb3bbd3344d059889d40dd9"
+    },
+    {
+      "path": "public/sw-v44.js",
+      "size": 4165,
+      "sha256": "075df98f87eac13776eca058fb4fcd7f14757f9819e604f613682675882795bb"
+    },
+    {
+      "path": "public/sw-v45.js",
+      "size": 4165,
+      "sha256": "7bee83e1b300b27613aea59248442b9e54d05581ac4c1d10a07b41beb23c8fa9"
+    },
+    {
+      "path": "vercel.json",
+      "size": 482,
+      "sha256": "1c529052a69a7985fbd2d8651b94c46f708f7794798e486440a1af7e8922a761"
+    },
+    {
+      "path": "worker/migrations/0001_init.sql",
+      "size": 248,
+      "sha256": "bf9b9be171dc0f5dfce0e4b5c711946f9d924fb1bfb735e4bcbbcf655df2cef5"
+    },
+    {
+      "path": "worker/package.json",
+      "size": 266,
+      "sha256": "eb8864702c69ac951a9a76b54e05bae2168e11de3c4274aaa0920b413725b1a9"
+    },
+    {
+      "path": "worker/src/index.js",
+      "size": 103410,
+      "sha256": "acd37f25509385b0d42c39fab97d1e221e436c9ee583087dae6231b6c5089da2"
+    },
+    {
+      "path": "worker/src/seed-data.js",
+      "size": 39000,
+      "sha256": "264ff42648723f20640ec353d404be9f4a45ec33669e3943b4d8a96d473df74e"
+    },
+    {
+      "path": "worker/wrangler.toml",
+      "size": 248,
+      "sha256": "2db6244c2d5d844d50a0e12578b6f82b71ebe555ab8c63e7a9aec18ad63fe3a3"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+MEERA LOGISTICS FINAL PROJECT
+
+1. Extract this ZIP.
+2. Upload EVERYTHING directly to the GitHub main root.
+3. Commit changes.
+4. Cloudflare Worker will auto-deploy.
+5. Vercel will auto-deploy the public folder.
+
+CLOUDFLARE SETTINGS
+Build command: cd worker && npm install
+Deploy command: cd worker && npx wrangler deploy
+Path: /
+
+VERCEL SETTINGS
+Framework: Other
+Build command: empty
+Output directory: public
+
+LOGIN
+Username: admin
+Password: Meera@2026
+
+WORKER
+https://meera-logistics-invoice.jadejajaydeepsinhk007.workers.dev
+
+D1 DATABASE
+bdb1ef72-c3eb-465e-ae2d-853d63f3dea3
+
+
+V2 D1 FIX
+- Fixed D1_ERROR: Cannot add a column with non-constant default.
+- Existing database, data and admin login remain unchanged.
+- Upload this complete ZIP to GitHub main root; no SQL Console step is needed.
+
+
+V3 VERCEL FIX
+- Removed the rejected `public` property from vercel.json.
+- Added `outputDirectory: public` directly in vercel.json.
+- Vercel Root Directory must remain blank / repository root.
+- No D1 or login changes are required.
+
+
+V4 INVOICE UPDATE
+- Reference-style invoice layout added.
+- Edit, View and Download PDF added.
+- Multiple trucks in one invoice supported.
+- Existing D1 data and login remain preserved.
+
+
+V5 DROPDOWN UPDATE
+- Party dropdown with + Add New Party
+- Truck dropdown with + Add New Truck
+- Loading Point dropdown with + Add New Route
+- Unloading Point dropdown with + Add New Route
+- Material dropdown with + Add New Material
+- Same dropdown behavior in Trip, Invoice, Party Payment, Truck Entry, Supplier Payment and Documents.
+- Invoice truck lines also include Truck dropdown and + Add New Truck.
+
+
+V6 SPEED UPDATE
+- Login uses a fast database path and no longer repeats the full D1 schema setup.
+- The dashboard opens immediately from a safe local cache, then refreshes online.
+- Static JavaScript/CSS files use long browser caching.
+- API requests have a clear timeout instead of appearing frozen.
+- Existing online data, D1 database and login remain unchanged.
+
+
+V7 INVOICE LAYOUT FIX
+- Removed the negative Bill To overlap.
+- Bill To now stays in a clean left column.
+- Invoice summary stays aligned on the right.
+- Truck table widths are balanced.
+- Comments and totals align correctly.
+- Signature and stamp stay at the bottom.
+- Preview scales automatically for desktop and mobile.
+- A4 landscape print/PDF layout is fixed.
+
+
+V8 INVOICE BOUNDARY FIX
+- Fixed the real overlap cause: the global table min-width was forcing invoice tables outside the border.
+- Every invoice table now has min-width 0 and stays inside the blue square.
+- Bill To, right summary, truck table, comments and totals cannot cross the invoice boundary.
+- Desktop/mobile preview scales without changing internal table widths.
+- A4 landscape PDF/print remains inside one page.
+
+
+V9 TRIP DETAILS
+- Trip ID and View button now open a full Trip Details screen.
+- Party tab: freight, bill, payments and pending balance.
+- Profit tab: revenue, supplier cost, expenses and trip profit.
+- Supplier tab: truck hire cost, supplier payments and pending payable.
+- More tab: Bilty/LR and POD actions.
+- Mobile layout follows the supplied TransportBook reference.
+
+
+V10 CLICK AND CACHE FIX
+- New Trip, New Invoice, Receive Payment and Pay Supplier now use reliable event delegation.
+- Fixed stale Vercel/browser cache that kept old app.js after deployment.
+- app.js and styles.css now use versioned URLs.
+- Removed one-year immutable caching from /src files.
+- All action buttons are touch-friendly and work on desktop/mobile.
+
+
+V11 NULL + TRIP-IN-INVOICE FIX
+- Fixed: Cannot read properties of null (reading 'id').
+- New Trip and New Invoice now open correctly.
+- All new/edit forms are null-safe.
+- New Invoice includes + New Trip.
+- Saving that trip automatically adds it as a truck line.
+- Party, material, truck, route, loading/unloading weight and rate are copied.
+- Frontend cache updated to v11.
+
+
+V12 UNIVERSAL TRIP
+- Trip is now the central universal record.
+- Create Invoice directly inside Trip Details.
+- Party Payment is saved against the selected Trip.
+- Supplier Payment is saved against the selected Trip.
+- Expenses are saved against the selected Trip.
+- Profit, party pending and supplier pending are calculated only from that Trip.
+- One Trip now connects Party, Invoice, Supplier, Payments, Expenses, Profit, POD and Bilty.
+- Changes automatically apply in Party Khata, Supplier Khata, Invoice Desk and Reports.
+
+
+V13 VISIBLE TRIP SCREEN
+- Open Trip now shows the full Trip Details screen immediately.
+- Party tab: Create/View Bill, party payment and pending balance.
+- Profit tab: revenue, truck hire cost, expenses and profit.
+- Supplier tab: supplier payment and pending payable.
+- More tab: Bilty/LR and POD actions.
+- UI matches the four TransportBook reference screenshots.
+- Frontend cache updated to v13 so the new screen must load.
+
+
+V14 D1 TRIP_ID FIX
+- Fixed D1_ERROR: no such column: trip_id.
+- Adds trip_id to party_payments, supplier_payments and expenses automatically.
+- Does not trust an old schema_version unless all required columns are verified.
+- Existing login, invoices, trips, payments and other data are preserved.
+- No SQL Console command is required.
+
+
+V15 TRIP INVOICE GST UNIVERSAL
+- New/Edit Trip now contains Invoice Number, Invoice Date, Party GST, LR No, SGST and CGST.
+- Saving the Trip can create or update its Invoice automatically.
+- Entering an existing Invoice Number adds this Trip's truck to that same multi-truck invoice.
+- Trip screen visibly shows Invoice Number, GST, LR and Invoice Total.
+- Supplier rate, commission and advance are also saved from the same Universal Trip form.
+- Multiple POD images can be selected in the Trip form.
+
+
+V16 PARTY AUTO-FILL & LOCK
+- Selecting Party automatically fills GST Number and Address.
+- GST Number and Address are readonly in Universal Trip and Invoice forms.
+- Edit GST/Address only from Party Master.
+- Quick Add Party also fills and locks both values.
+
+
+V17 INVOICE SERIES
+- New invoice number is generated after the highest existing invoice number.
+- The actual series/prefix is preserved automatically.
+- Examples: ML - 123 -> ML - 124, ML-009 -> ML-010.
+- Invoice Number remains fully editable before saving.
+- Duplicate invoice numbers are still blocked by the database.
+
+
+V18 FINAL CHECKED
+- Fixed Party GST/Address disappearing after Party selection.
+- Party details now come from Party Master, with latest Invoice fallback for older data.
+- Old D1 Party rows with blank GST/Address are automatically backfilled from invoices.
+- GST and Address remain readonly; edit them only in Party Master.
+- Cache version updated to v18.
+- JavaScript syntax, JSON configuration and old-D1 upgrade were validated.
+
+
+V19 FORMS - TDS DECLARATION
+- Added Forms section.
+- Party dropdown auto-fills payer address.
+- Preview and PDF download included.
+
+
+V20 PARTY INVOICE + SERIES
+- Party Khata now shows invoice number, date, trucks/routes, bill, received, pending and status.
+- View, Edit, PDF and Delete are available from Party Khata and Party Ledger.
+- Dashboard Party Outstanding shows the latest invoice number.
+- Invoice Desk is sorted series-wise.
+- New invoice number continues after the highest number in the current series.
+- Invoice number remains editable.
+
+
+V21 TDS PARTNERSHIP
+- Removed Jaydeepsinh personal/proprietor auto-fill.
+- Default entity is Partnership Firm.
+- Meera Logistics firm details auto-fill by default.
+- Firm name, address, PAN, GST, phone, email and authorized partner are editable.
+- Declaration wording is partnership-based.
+
+
+V22 PM NON-GST BILLS
+- Added a separate PM Non-GST Bills section.
+- Bill number series starts from PM - 1 and continues automatically.
+- Bill number remains editable.
+- Party, address, supplier, truck, route, weight, party rate and supplier rate are included.
+- History includes View, Edit, PDF and Delete.
+- Party billing, supplier payable and PM profit are shown in the same section.
+
+
+V23 PM SUPPLIER LINK
+- PM bill supplier uses the same Supplier/Truck Malik names as Supplier Khata.
+- PM supplier payable is added automatically to Supplier Khata.
+- PM bills appear inside the selected supplier ledger.
+- Supplier pending = freight payable + PM payable - supplier payments.
+- PM bills can be viewed, edited and downloaded from Supplier Khata.
+
+
+V24 JAY NON-GST INVOICE
+- Non-GST invoice is integrated into the existing Invoice Desk.
+- New Invoice has GST / NON_GST type selection.
+- GST series continues as ML.
+- Non-GST series starts JAY 001 and continues automatically.
+- Invoice number remains editable.
+- Both types save in Party Khata, Supplier Khata, Outstanding and history.
+- GST fields and GST amount are disabled for NON_GST invoices.
+- Separate PM section is removed from navigation to avoid duplicate accounting.
+
+
+V25 NON-GST VISIBLE FIX
+- New Invoice visibly shows GST Invoice and Non-GST Invoice buttons at the top.
+- Non-GST selection switches invoice series to JAY 001.
+- GST fields and GST summary hide immediately.
+- GST amount becomes zero.
+- Switching back to GST restores ML series and GST fields.
+- New Invoice screen was rebuilt to guarantee visible behavior.
+
+
+V26 TRIP GST / NON-GST
+- New/Edit Trip visibly shows GST Trip and Non-GST Trip buttons.
+- GST Trip creates/updates ML-series GST invoice.
+- Non-GST Trip creates/updates JAY-series invoice.
+- Party GST, SGST and CGST hide for Non-GST Trip.
+- GST values are zero for Non-GST Trip.
+- Trip Type and linked Invoice Type always remain the same.
+
+
+V30 CORE FINAL
+- Every invoice truck line creates one separate TR-series trip.
+- Existing invoice lines are migrated to missing trips automatically.
+- Old trips receive permanent TR 001, TR 002... numbers.
+- Invoice edit/add/delete synchronizes linked trip history.
+- Trip edit/delete synchronizes the linked invoice line and totals.
+- Supplier ledger numbers use permanent PML 001, PML 002... identities.
+- Party and Supplier Ledgers include View, PDF/Print, Excel-compatible XLS and WhatsApp.
+- Universal Search supports ML/JAY invoice, TR trip, PML supplier, party and truck.
+- TDS declaration includes the Meera Logistics digital stamp.
+
+
+V31 LOGIN ALTER FIX
+- Fixed login crash: "ALTER TABLE invoice_items ADD COLUMN shortage REAL DEFAULT 0" is not a function.
+- Cause was a missing comma between D1 migration template strings.
+- CREATE TABLE, ALTER TABLE and CREATE INDEX arrays were normalized and syntax-checked.
+- Existing D1 data is preserved.
+
+
+V32 MIGRATION RUNTIME FIX
+- Fixed: "CREATE INDEX IF NOT EXISTS idx_expense_trip ON expenses(trip_id)" is not a function.
+- Audited CREATE TABLE, ALTER TABLE, CREATE INDEX and CREATE TRIGGER arrays for missing commas.
+- Added a runtime Worker health test with a mock D1 database, not only a syntax check.
+- Existing D1 records are preserved.
+
+
+V33 TRIP NUMBER IDEMPOTENT FIX
+- Fixed D1 UNIQUE constraint failed: trips.trip_no.
+- Blank, invalid and duplicate old Trip numbers are normalized once.
+- Missing invoice Trips are created only when no invoice_item_id or trip_id link exists.
+- Trip number allocation retries safely on UNIQUE collisions.
+- Historical repair does not replay on every successful login.
+- Existing data is preserved.
+
+
+V34 TRIP UNIQUE MIGRATION FIX
+- Fixed repeated D1 UNIQUE constraint failed: trips.trip_no.
+- Drops the old named TR unique index before repairing legacy rows.
+- Blank and duplicate legacy trip numbers are temporarily stored as NULL.
+- TR 001, TR 002... are assigned first; the partial unique index is created afterward.
+- Fresh databases no longer use trip_no UNIQUE DEFAULT ''.
+- Seed Trips explicitly use NULL until TR numbering is assigned.
+- Existing invoices, trips, payments and ledgers are preserved.
+
+
+V35 LR & WEIGHT LINES
+- Login migration/version is unchanged.
+- LR Number is now stored separately for every Truck line.
+- Removed the Manual Trip dropdown; linked lines show TR series, new lines show AUTO.
+- Invoice and Trip both include Loading Weight, Unloading Weight, Difference/Shortage and Billing Weight.
+- Difference is calculated automatically.
+- Billing Weight remains editable and is used for Amount calculation.
+- Every Invoice line synchronizes these values to its linked Trip.
+- Operational columns are added lazily only when Trip/Invoice is used, not during login.
+
+
+V36 REFERENCE INVOICE LAYER
+- Added reference-matched Invoice View/Print/PDF without modifying login, app core or Worker backend.
+- Per-truck LR Number, TR Number, loading/unloading/difference/billing weights, rate and amount are printed line-wise.
+- Invoice WhatsApp and CSV export use line-wise LR/truck details.
+
+
+V37 A4 INVOICE LAYOUT FIX
+- Login, D1 migration and Worker backend are unchanged.
+- Removed Trip Number and LR Number columns from the truck table.
+- LR numbers remain in the invoice summary.
+- Compact truck table follows the original reference layout.
+- Bottom totals always show Total, GST (when applicable), Diesel, Munshi Charges and final Total.
+- Exact A4 landscape print/PDF sizing.
+- Removed the generated round stamp and replaced it with the supplied Meera Logistics / J.K. Jadeja / Partner stamp-signature image.
+- Fixed table sizing, spacing and overlap.
+
+
+V38 REAL PDF DOWNLOAD & WHATSAPP SHARE
+- Invoice buttons now show only Download (no Print wording).
+- Download creates a real A4 landscape PDF named with Invoice Number and Party Name.
+- WhatsApp generates the same PDF and uses the device Web Share sheet to attach the PDF directly.
+- On desktop browsers that cannot share files, the PDF is downloaded and WhatsApp opens as a safe fallback.
+- Partner stamp/signature area is moved upward.
+- Login, D1 migrations and Worker backend are unchanged.
+
+V39 STABLE INVOICE VIEW / PRINT / DOWNLOAD
+1. Upload/replace every file from this ZIP in GitHub main root.
+2. Keep the public, worker and data folder structure exactly as supplied.
+3. Vercel serves the public folder; Cloudflare Worker/D1 login code is unchanged.
+4. Invoice View has separate Print and Download buttons.
+5. LR Number appears in each Truck line, not in the top summary box.
+6. Download creates a one-page A4 landscape PDF with complete values and totals.
+
+
+V40 PARTY LEDGER — SAMPLE FORMAT
+- Every Party Khata card now shows separate Ledger View and Download buttons below the party summary.
+- Ledger View follows the supplied Party Ledger sample: party name/address/GST, Meera Logistics Ledger Account heading, date range, voucher table and Closing Balance.
+- Invoice entries appear as Purchase credits; Party receipts appear as Receipt debits, with running Cr/Dr balance.
+- Download creates a direct A4 portrait PDF named “PARTY NAME PARTY LEDGER.pdf”.
+- Long ledgers automatically continue across multiple PDF pages with page numbering.
+- Login, authentication, D1 migration, Worker backend, invoice logic and existing data were not modified.
+
+V41 SUPPLIER LEDGER — SAMPLE FORMAT
+1. Upload/replace every file from this ZIP in GitHub main root.
+2. Keep public, worker and data folder structure exactly as supplied.
+3. Open Supplier Khata: every supplier has Ledger View and Download buttons below the supplier summary.
+4. Supplier PDF follows the supplied trip-wise ledger format and downloads as "PML 001 - SUPPLIER NAME SUPPLIER LEDGER.pdf".
+5. Login, D1 migration and Cloudflare Worker files are unchanged.
+
+
+V42 CLEAN DASHBOARD MENU
+- Sidebar now contains only the approved sections.
+- Dashboard: Dashboard, Trip History (Transport Khata), Invoice History.
+- Account: Party Khata, Supplier Khata.
+- Office: Truck & Document, Master, Forms, Reports & Audit.
+- Party Payments, Supplier Payments, Truck/Supplier Entries and Office Expenses are hidden from the sidebar only; existing records and internal workflows are preserved.
+- Login, D1, Worker, Invoice, Party Ledger and Supplier Ledger logic are unchanged.
+
+V43 SMART OPERATIONS DEPLOYMENT
+1. Replace/upload every file from this ZIP to the GitHub main root.
+2. Keep public/, worker/ and all nested paths exactly as supplied.
+3. Cloudflare Worker deploy reads worker/wrangler.toml and creates the daily Cron trigger.
+4. Vercel deploy serves public/index.html with cache version 43.
+5. After deployment, hard refresh once: Ctrl + Shift + R.
+6. Open Smart Tools from the top-right button or press Ctrl + K.
+7. Advanced D1 tables are created lazily after login, so the working login path is unchanged.
+8. Excel Center supports the supplied multi-sheet .xls format, CSV and JSON imports/exports.
+9. Offline writes are queued on the device and replay when the internet returns.
+
+
+V44 AUDIT SOLVE + SUPPLIER TRUCKS + SETTINGS
+- Reports & Audit alerts now include Solve buttons.
+- Missing Truck Master opens Add Truck with the number prefilled.
+- Supplier Khata lists every vehicle linked to each truck owner.
+- Supplier Ledger View/PDF shows Truck Number together with Supplier Name.
+- Settings button is available in Sidebar, Dashboard and Topbar.
+- Settings store company profile, invoice defaults, interface density and backup preferences online.
+- Invoice View/PDF and TDS defaults use saved company settings.
+- Service Worker navigation is network-first to avoid stale old screens.
+- Open /cache-reset-v44.html once after deployment to clear the previous PWA cache.
+- Login and D1 schema_version 34 are unchanged.
+
+
+V45 TRIP AMOUNT & SUPPLIER EDIT
+- Universal Trip revenue now uses only the linked Trip/Truck invoice line amount, never the full multi-truck invoice total.
+- Profit = this Trip line freight - this Trip supplier payable - this Trip expenses. GST is not treated as profit.
+- Party tab shows TRIP BILL AMOUNT and the line-wise LR Number.
+- Supplier Name is saved separately on every Trip and is editable from both Universal Trip form and Supplier tab.
+- Editing a Trip supplier updates linked Truck/Supplier Entry and Supplier Payments for the same trip_id.
+- A new PML supplier account is created automatically when a new per-trip supplier name is used.
+- Login/authentication and schema_version 34 are unchanged; supplier_name is added lazily only when Trip operations run.
